@@ -44,15 +44,33 @@ export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
 
   return (
     <>
+      {/* Overlay for mobile - appears behind sidebar */}
+      {isOpen && (
+        <div
+          onClick={onClose}
+          className="lg:hidden fixed inset-0 bg-black/50 z-40 transition-opacity duration-300"
+        />
+      )}
+
       {/* Sidebar - Always visible on desktop */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-2xl z-40 transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-2xl z-50 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
-        <div className="p-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Admin Panel</h1>
-          <p className="text-sm text-gray-500">E-Health Pneumonia</p>
+        <div className="p-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Admin Panel</h1>
+            <p className="text-sm text-gray-500">E-Health Pneumonia</p>
+          </div>
+          {/* Close button for mobile */}
+          <button
+            onClick={onClose}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-label="Tutup menu"
+          >
+            <X className="w-6 h-6 text-gray-600" />
+          </button>
         </div>
 
         <nav className="px-4 space-y-2">
@@ -64,6 +82,7 @@ export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={onClose}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${
                   isActive
                     ? 'bg-blue-50 text-blue-600'
@@ -87,14 +106,6 @@ export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
           </button>
         </div>
       </aside>
-
-      {/* Overlay for mobile */}
-      {isOpen && (
-        <div
-          onClick={onClose}
-          className="lg:hidden fixed inset-0 bg-black/50 z-30"
-        />
-      )}
     </>
   )
 }

@@ -59,20 +59,41 @@ NEXTAUTH_SECRET=xxx (generate dengan: openssl rand -base64 32)
 - Tambahkan: `NEXTAUTH_URL=https://nama-project.vercel.app`
 - Klik "Redeploy" untuk apply perubahan
 
-### 7. Update Google OAuth Redirect
-- Buka Google Cloud Console
-- Pilih project OAuth Anda
-- Tambahkan Authorized redirect URIs:
-  ```
-  https://nama-project.vercel.app/api/auth/callback/google
-  ```
+### 7. Konfigurasi Google OAuth di Supabase
 
-### 8. Update Supabase Auth Settings
-- Buka Supabase Dashboard → Authentication → URL Configuration
-- Tambahkan di "Redirect URLs":
+**A. Setup Google Provider di Supabase:**
+- Buka Supabase Dashboard → Authentication → Providers
+- Cari "Google" dan klik "Enable"
+- Isi form:
+  - **Client ID:** Paste dari Google Cloud Console
+  - **Client Secret:** Paste dari Google Cloud Console
+  - **Skip nonce checks:** Biarkan OFF (lebih aman)
+  - **Allow users without email:** Biarkan OFF
+- **Callback URL** sudah otomatis muncul dan tidak bisa diedit:
   ```
-  https://nama-project.vercel.app/api/auth/callback/google
+  https://mkizabmccfkznmxrmuht.supabase.co/auth/v1/callback
+  ```
+  ⚠️ Copy URL ini, akan dipakai di Google Cloud Console
+- Klik "Save"
+
+**B. Update Google Cloud Console:**
+- Buka Google Cloud Console → APIs & Services → Credentials
+- Pilih OAuth 2.0 Client ID Anda
+- Tambahkan di "Authorized redirect URIs":
+  ```
+  https://mkizabmccfkznmxrmuht.supabase.co/auth/v1/callback
+  ```
+  ⚠️ Gunakan URL callback dari Supabase (langkah A)
+- Klik "Save"
+
+**C. Update Supabase Site URL:**
+- Buka Supabase Dashboard → Authentication → URL Configuration
+- Set **Site URL:** `https://nama-project.vercel.app`
+- Tambahkan di **Redirect URLs:**
+  ```
+  https://nama-project.vercel.app/*
   https://nama-project.vercel.app/dashboard
+  https://nama-project.vercel.app/profile-setup
   ```
 
 ✅ **Deploy tanpa domain custom selesai!**
@@ -128,18 +149,17 @@ Vercel akan memberikan instruksi DNS. Ada 2 opsi:
   ```
 - Redeploy project
 
-### 6. Update Google OAuth Redirect
-- Tambahkan redirect URI baru:
+### 6. Update Supabase Site URL
+- Buka Supabase Dashboard → Authentication → URL Configuration
+- Update **Site URL:** `https://belajar-anak.com`
+- Update **Redirect URLs:**
   ```
-  https://belajar-anak.com/api/auth/callback/google
+  https://belajar-anak.com/*
+  https://belajar-anak.com/dashboard
+  https://belajar-anak.com/profile-setup
   ```
 
-### 7. Update Supabase Auth Settings
-- Tambahkan redirect URLs baru:
-  ```
-  https://belajar-anak.com/api/auth/callback/google
-  https://belajar-anak.com/dashboard
-  ```
+**Note:** Tidak perlu update Google Cloud Console karena callback tetap ke Supabase (`https://xxx.supabase.co/auth/v1/callback`)
 
 ✅ **Deploy dengan domain custom selesai!**
 
@@ -165,9 +185,26 @@ Vercel akan memberikan instruksi DNS. Ada 2 opsi:
 
 ### Common Issues
 1. **Build Error:** Cek logs, biasanya missing dependencies atau TypeScript errors
-2. **OAuth Error:** Pastikan redirect URIs sudah benar di Google Console
-3. **Database Error:** Cek Supabase connection dan RLS policies
-4. **404 Error:** Pastikan routing Next.js sudah benar
+2. **OAuth Error:** Pastikan callback URL di Google Console sudah benar (harus ke Supabase: `https://xxx.supabase.co/auth/v1/callback`)
+3. **Redirect Error:** Pastikan Site URL dan Redirect URLs di Supabase sudah sesuai domain Vercel
+4. **Database Error:** Cek Supabase connection dan RLS policies
+5. **404 Error:** Pastikan routing Next.js sudah benar
+
+### Perbedaan Supabase Auth vs NextAuth
+Project ini menggunakan **Supabase Auth** (bukan NextAuth), jadi:
+- Google OAuth dihandle langsung oleh Supabase
+- Callback URL adalah URL Supabase yang fixed/tidak bisa diubah: `https://mkizabmccfkznmxrmuht.supabase.co/auth/v1/callback`
+- Setelah callback ke Supabase, user akan di-redirect ke Site URL yang Anda set
+- Tidak perlu setup NextAuth providers untuk Google
+- Session management menggunakan Supabase client
+
+### Flow Login dengan Google:
+1. User klik "Login with Google" di aplikasi Anda
+2. Redirect ke Google OAuth
+3. User approve permission
+4. Google redirect ke Supabase callback: `https://mkizabmccfkznmxrmuht.supabase.co/auth/v1/callback`
+5. Supabase proses authentication
+6. Supabase redirect ke Site URL Anda (misal: `https://nama-project.vercel.app/dashboard`)
 
 ---
 
@@ -175,12 +212,14 @@ Vercel akan memberikan instruksi DNS. Ada 2 opsi:
 
 - [ ] Code sudah di push ke Git
 - [ ] Environment variables sudah lengkap
+- [ ] Google OAuth di Supabase sudah enabled
+- [ ] Google Cloud Console redirect URI sudah di-update (ke Supabase callback)
+- [ ] Supabase Site URL sudah di-set
 - [ ] Project berhasil di-import ke Vercel
 - [ ] Build berhasil tanpa error
 - [ ] NEXTAUTH_URL sudah di-update
-- [ ] Google OAuth redirect sudah di-update
-- [ ] Supabase redirect URLs sudah di-update
-- [ ] Testing login dan fitur utama
+- [ ] Testing login dengan Google
+- [ ] Testing fitur utama (dashboard, session, test)
 - [ ] (Opsional) Domain custom sudah terhubung
 - [ ] SSL certificate aktif (otomatis dari Vercel)
 

@@ -15,14 +15,6 @@ export default function AdminQuestionsPage() {
       {/* Sidebar */}
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Header */}
@@ -32,7 +24,7 @@ export default function AdminQuestionsPage() {
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => setSidebarOpen(true)}
-                  className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+                  className="lg:hidden p-2 rounded-lg hover:bg-gray-100 fixed top-4 right-4 z-50 bg-white shadow-lg"
                 >
                   <svg
                     className="w-6 h-6"

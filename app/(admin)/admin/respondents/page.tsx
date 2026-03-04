@@ -112,20 +112,12 @@ export default function RespondentsPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
       {/* Main Content */}
       <main className="lg:ml-64 p-4 lg:p-8">
         {/* Mobile menu button */}
         <button
           onClick={() => setSidebarOpen(true)}
-          className="lg:hidden fixed top-4 right-4 z-30 p-3 bg-white rounded-xl shadow-lg"
+          className="lg:hidden fixed top-4 right-4 z-50 p-3 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
         >
           <svg
             className="w-6 h-6"
