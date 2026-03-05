@@ -2,8 +2,6 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { ProfileSetupInput } from '@/lib/validations/profile-schema'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Baby } from 'lucide-react'
 
 interface ChildInfoFormProps {
@@ -14,66 +12,70 @@ export function ChildInfoForm({ form }: ChildInfoFormProps) {
   const { register, formState: { errors } } = form
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="bg-blue-50 rounded-xl p-3">
-          <Baby className="w-6 h-6 text-blue-600" />
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center gap-3 pb-6 border-b border-[#2F5D50]/10">
+        <div className="w-12 h-12 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center">
+          <Baby className="w-6 h-6 text-[#2F5D50]" strokeWidth={2} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Data Anak</h2>
-          <p className="text-sm text-gray-500">Informasi tentang anak</p>
+          <h2 className="text-xl font-medium text-[#1F2933]">Data Anak</h2>
+          <p className="text-sm text-[#1F2933]/60">Informasi tentang anak</p>
         </div>
       </div>
       
+      {/* Nama Lengkap Anak */}
       <div className="space-y-2">
-        <Label htmlFor="child-name" className="text-sm font-medium text-gray-700">
-          Nama Lengkap Anak <span className="text-red-500">*</span>
-        </Label>
-        <Input
+        <label htmlFor="child-name" className="block text-sm font-medium text-[#1F2933]">
+          Nama Lengkap Anak <span className="text-[#E07A5F]">*</span>
+        </label>
+        <input
           id="child-name"
           {...register('child.name')}
           placeholder="Masukkan nama lengkap anak"
-          className="h-11"
+          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
         />
         {errors.child?.name && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-[#E07A5F] font-medium">
             {errors.child.name.message}
           </p>
         )}
       </div>
 
+      {/* Tanggal Lahir */}
       <div className="space-y-2">
-        <Label htmlFor="child-birth-date" className="text-sm font-medium text-gray-700">
-          Tanggal Lahir <span className="text-red-500">*</span>
-        </Label>
-        <Input
+        <label htmlFor="child-birth-date" className="block text-sm font-medium text-[#1F2933]">
+          Tanggal Lahir <span className="text-[#E07A5F]">*</span>
+        </label>
+        <input
           id="child-birth-date"
           type="date"
           {...register('child.birth_date')}
-          className="h-11"
+          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
         />
         {errors.child?.birth_date && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-[#E07A5F] font-medium">
             {errors.child.birth_date.message}
           </p>
         )}
       </div>
 
+      {/* Jenis Kelamin */}
       <div className="space-y-2">
-        <Label htmlFor="child-gender" className="text-sm font-medium text-gray-700">
-          Jenis Kelamin <span className="text-red-500">*</span>
-        </Label>
+        <label htmlFor="child-gender" className="block text-sm font-medium text-[#1F2933]">
+          Jenis Kelamin <span className="text-[#E07A5F]">*</span>
+        </label>
         <select
           id="child-gender"
           {...register('child.gender')}
-          className="flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
         >
           <option value="">Pilih jenis kelamin</option>
           <option value="male">Laki-laki</option>
           <option value="female">Perempuan</option>
         </select>
         {errors.child?.gender && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-[#E07A5F] font-medium">
             {errors.child.gender.message}
           </p>
         )}

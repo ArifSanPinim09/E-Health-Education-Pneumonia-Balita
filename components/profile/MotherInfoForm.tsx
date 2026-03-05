@@ -2,8 +2,6 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { ProfileSetupInput } from '@/lib/validations/profile-schema'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { User } from 'lucide-react'
 
 interface MotherInfoFormProps {
@@ -38,61 +36,64 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
   const { register, formState: { errors } } = form
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="bg-blue-50 rounded-xl p-3">
-          <User className="w-6 h-6 text-blue-600" />
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center gap-3 pb-6 border-b border-[#2F5D50]/10">
+        <div className="w-12 h-12 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center">
+          <User className="w-6 h-6 text-[#2F5D50]" strokeWidth={2} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Data Ibu</h2>
-          <p className="text-sm text-gray-500">Informasi tentang ibu</p>
+          <h2 className="text-xl font-medium text-[#1F2933]">Data Ibu</h2>
+          <p className="text-sm text-[#1F2933]/60">Informasi tentang ibu</p>
         </div>
       </div>
       
+      {/* Nama Lengkap */}
       <div className="space-y-2">
-        <Label htmlFor="mother-name" className="text-sm font-medium text-gray-700">
-          Nama Lengkap <span className="text-red-500">*</span>
-        </Label>
-        <Input
+        <label htmlFor="mother-name" className="block text-sm font-medium text-[#1F2933]">
+          Nama Lengkap <span className="text-[#E07A5F]">*</span>
+        </label>
+        <input
           id="mother-name"
           {...register('mother.name')}
           placeholder="Masukkan nama lengkap"
-          className="h-11"
+          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
         />
         {errors.mother?.name && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-[#E07A5F] font-medium">
             {errors.mother.name.message}
           </p>
         )}
       </div>
 
+      {/* Usia & Agama */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="mother-age" className="text-sm font-medium text-gray-700">
-            Usia <span className="text-red-500">*</span>
-          </Label>
-          <Input
+          <label htmlFor="mother-age" className="block text-sm font-medium text-[#1F2933]">
+            Usia <span className="text-[#E07A5F]">*</span>
+          </label>
+          <input
             id="mother-age"
             type="number"
             {...register('mother.age', { valueAsNumber: true })}
             placeholder="Contoh: 30"
-            className="h-11"
+            className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
           />
           {errors.mother?.age && (
-            <p className="text-sm text-red-600">
+            <p className="text-sm text-[#E07A5F] font-medium">
               {errors.mother.age.message}
             </p>
           )}
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="mother-religion" className="text-sm font-medium text-gray-700">
-            Agama <span className="text-red-500">*</span>
-          </Label>
+          <label htmlFor="mother-religion" className="block text-sm font-medium text-[#1F2933]">
+            Agama <span className="text-[#E07A5F]">*</span>
+          </label>
           <select
             id="mother-religion"
             {...register('mother.religion')}
-            className="flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
           >
             <option value="">Pilih agama</option>
             {RELIGIONS.map((religion) => (
@@ -102,21 +103,22 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
             ))}
           </select>
           {errors.mother?.religion && (
-            <p className="text-sm text-red-600">
+            <p className="text-sm text-[#E07A5F] font-medium">
               {errors.mother.religion.message}
             </p>
           )}
         </div>
       </div>
 
+      {/* Pekerjaan */}
       <div className="space-y-2">
-        <Label htmlFor="mother-occupation" className="text-sm font-medium text-gray-700">
-          Pekerjaan <span className="text-red-500">*</span>
-        </Label>
+        <label htmlFor="mother-occupation" className="block text-sm font-medium text-[#1F2933]">
+          Pekerjaan <span className="text-[#E07A5F]">*</span>
+        </label>
         <select
           id="mother-occupation"
           {...register('mother.occupation')}
-          className="flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
         >
           <option value="">Pilih pekerjaan</option>
           {OCCUPATIONS.map((occupation) => (
@@ -126,42 +128,44 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
           ))}
         </select>
         {errors.mother?.occupation && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-[#E07A5F] font-medium">
             {errors.mother.occupation.message}
           </p>
         )}
       </div>
 
+      {/* Alamat */}
       <div className="space-y-2">
-        <Label htmlFor="mother-address" className="text-sm font-medium text-gray-700">
-          Alamat Lengkap <span className="text-red-500">*</span>
-        </Label>
-        <Input
+        <label htmlFor="mother-address" className="block text-sm font-medium text-[#1F2933]">
+          Alamat Lengkap <span className="text-[#E07A5F]">*</span>
+        </label>
+        <input
           id="mother-address"
           {...register('mother.address')}
           placeholder="Masukkan alamat lengkap"
-          className="h-11"
+          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
         />
         {errors.mother?.address && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-[#E07A5F] font-medium">
             {errors.mother.address.message}
           </p>
         )}
       </div>
 
+      {/* Nomor Telepon */}
       <div className="space-y-2">
-        <Label htmlFor="mother-phone" className="text-sm font-medium text-gray-700">
-          Nomor Telepon <span className="text-red-500">*</span>
-        </Label>
-        <Input
+        <label htmlFor="mother-phone" className="block text-sm font-medium text-[#1F2933]">
+          Nomor Telepon <span className="text-[#E07A5F]">*</span>
+        </label>
+        <input
           id="mother-phone"
           type="tel"
           {...register('mother.phone')}
           placeholder="Contoh: 081234567890"
-          className="h-11"
+          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all"
         />
         {errors.mother?.phone && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-[#E07A5F] font-medium">
             {errors.mother.phone.message}
           </p>
         )}
