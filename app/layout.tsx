@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body
-        className={`${plusJakartaSans.variable} ${inter.variable} antialiased font-body`}
+        className={`${plusJakartaSans.variable} ${inter.variable} ${lora.variable} antialiased font-body`}
       >
         {children}
       </body>

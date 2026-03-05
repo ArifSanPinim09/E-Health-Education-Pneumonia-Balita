@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { motion } from 'framer-motion'
+import { CheckCircle, XCircle } from 'lucide-react'
 
 export default function AuthCallbackPage() {
   const router = useRouter()
@@ -90,67 +91,116 @@ export default function AuthCallbackPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#F4F7F5] flex items-center justify-center p-4">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="bg-white rounded-lg p-8 sm:p-10 max-w-md w-full text-center border border-[#E07A5F]/20"
         >
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="w-20 h-20 mx-auto mb-6 bg-red-100 rounded-full flex items-center justify-center"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="inline-flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-[#E07A5F]/10 rounded-lg"
           >
-            <svg className="w-10 h-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <XCircle className="w-8 h-8 text-[#E07A5F]" strokeWidth={2} />
           </motion.div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Autentikasi Gagal</h2>
-          <p className="text-gray-600 mb-4">{error}</p>
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+          
+          <motion.h2 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="text-2xl font-serif text-[#1F2933] mb-3"
+          >
+            Autentikasi Gagal
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
+            className="text-[#1F2933]/70 mb-6 leading-relaxed"
+          >
+            {error}
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+            className="flex items-center justify-center gap-2 text-sm text-[#1F2933]/60"
+          >
+            <div className="w-2 h-2 bg-[#2F5D50] rounded-full animate-pulse"></div>
             <span>Mengalihkan ke halaman login...</span>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#F4F7F5] flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full"
+        transition={{ duration: 0.3 }}
+        className="bg-white rounded-lg p-8 sm:p-10 max-w-md w-full border border-[#2F5D50]/10"
       >
-        {/* Modern Loading Animation */}
         <div className="flex flex-col items-center">
-          {/* Animated Circles */}
-          <div className="relative w-24 h-24 mb-6">
+          {/* Loading Animation */}
+          <div className="relative w-20 h-20 mb-8">
+            {/* Outer ring */}
             <motion.div
-              className="absolute inset-0 border-4 border-blue-200 rounded-full"
-              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.2, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 border-4 border-[#2F5D50]/20 rounded-full"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.1, 0.3]
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
             />
+            
+            {/* Middle ring */}
             <motion.div
-              className="absolute inset-2 border-4 border-blue-400 rounded-full"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.7, 0.3, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+              className="absolute inset-2 border-4 border-[#2F5D50]/40 rounded-full"
+              animate={{ 
+                scale: [1, 1.05, 1],
+                opacity: [0.5, 0.2, 0.5]
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: 0.2
+              }}
             />
+            
+            {/* Inner spinning ring */}
             <motion.div
-              className="absolute inset-4 border-4 border-blue-600 rounded-full"
+              className="absolute inset-4 border-4 border-[#2F5D50] border-t-transparent rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+              transition={{ 
+                duration: 1.5, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
             />
+            
+            {/* Center icon */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
-                <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <CheckCircle className="w-8 h-8 text-[#2F5D50]" strokeWidth={2} />
               </motion.div>
             </div>
           </div>
@@ -159,8 +209,8 @@ export default function AuthCallbackPage() {
           <motion.h2
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-2xl font-bold text-gray-900 mb-2"
+            transition={{ delay: 0.2, duration: 0.3 }}
+            className="text-2xl font-serif text-[#1F2933] mb-3"
           >
             Memproses Login
           </motion.h2>
@@ -168,8 +218,8 @@ export default function AuthCallbackPage() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-gray-600 text-center mb-6"
+            transition={{ delay: 0.3, duration: 0.3 }}
+            className="text-[#1F2933]/70 text-center mb-8 leading-relaxed"
           >
             Mohon tunggu sebentar, kami sedang memverifikasi akun Anda
           </motion.p>
@@ -179,12 +229,16 @@ export default function AuthCallbackPage() {
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
-                className="w-3 h-3 bg-blue-600 rounded-full"
-                animate={{ y: [0, -10, 0] }}
+                className="w-2.5 h-2.5 bg-[#2F5D50] rounded-full"
+                animate={{ 
+                  y: [0, -8, 0],
+                  opacity: [1, 0.5, 1]
+                }}
                 transition={{
-                  duration: 0.6,
+                  duration: 0.8,
                   repeat: Infinity,
-                  delay: i * 0.2,
+                  delay: i * 0.15,
+                  ease: "easeInOut"
                 }}
               />
             ))}

@@ -12,9 +12,9 @@ export default function Home() {
       <Navbar />
       <main className="min-h-screen">
         <HeroSection />
-        <HowItWorksSection />
-        <BenefitsSection />
         <StatisticsSection />
+        <BenefitsSection />
+        <HowItWorksSection />
         <CTASection />
       </main>
       <GeminiChatBot />
