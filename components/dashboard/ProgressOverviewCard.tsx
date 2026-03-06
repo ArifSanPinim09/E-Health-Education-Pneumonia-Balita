@@ -1,67 +1,70 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ProgressRing } from './ProgressRing'
-import { CheckCircle2, Circle } from 'lucide-react'
+import { CheckCircle2, Circle, Loader2 } from 'lucide-react'
 
 interface ProgressItem {
   label: string
   completed: boolean
+  current?: boolean
 }
 
-interface ProgressOverviewCardProps {
-  percentage: number
+interface ProgressTimelineProps {
   items: ProgressItem[]
 }
 
-export function ProgressOverviewCard({ percentage, items }: ProgressOverviewCardProps) {
+export function ProgressTimeline({ items }: ProgressTimelineProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200"
+      transition={{ duration: 0.25, delay: 0.1 }}
+      className="space-y-8"
     >
-      {/* Header */}
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Progress Pembelajaran</h2>
-        <p className="text-sm text-gray-600">Pantau perkembangan Anda</p>
+      {/* Section Header */}
+      <div className="space-y-3">
+        <h2 className="text-2xl sm:text-3xl font-serif text-[#1F2933]">
+          Progress Program
+        </h2>
+        <div className="h-px bg-[#2F5D50]/20 max-w-md"></div>
       </div>
 
-      {/* Desktop: Side by side | Mobile: Stack */}
-      <div className="flex flex-col lg:flex-row items-center gap-6">
-        {/* Progress Ring */}
-        <div className="flex-shrink-0">
-          <ProgressRing percentage={percentage} />
-        </div>
-
-        {/* Progress Stats */}
-        <div className="flex-1 w-full space-y-3">
-          {items.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-              className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
-                item.completed 
-                  ? 'bg-blue-50 border border-blue-100' 
-                  : 'bg-gray-50 border border-gray-100'
-              }`}
-            >
-              <span className={`text-sm font-medium ${
-                item.completed ? 'text-gray-900' : 'text-gray-600'
-              }`}>
-                {item.label}
-              </span>
+      {/* Timeline List - Research Progress Style */}
+      <div className="space-y-4">
+        {items.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.25, delay: 0.15 + index * 0.05 }}
+            className="flex items-start gap-4"
+          >
+            {/* Icon */}
+            <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center mt-0.5">
               {item.completed ? (
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                <CheckCircle2 className="w-5 h-5 text-[#2F5D50]" strokeWidth={1.5} />
+              ) : item.current ? (
+                <div className="w-3 h-3 rounded-full bg-[#E07A5F]" />
               ) : (
-                <Circle className="w-5 h-5 text-gray-300" />
+                <Circle className="w-5 h-5 text-[#1F2933]/20" strokeWidth={1.5} />
               )}
-            </motion.div>
-          ))}
-        </div>
+            </div>
+
+            {/* Label */}
+            <div className={`text-lg ${
+              item.completed 
+                ? 'text-[#1F2933]' 
+                : item.current 
+                ? 'text-[#1F2933] font-medium' 
+                : 'text-[#1F2933]/40'
+            }`}>
+              {item.label}
+              {item.current && (
+                <span className="ml-2 text-sm text-[#E07A5F]">sedang dipelajari</span>
+              )}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </motion.div>
   )
