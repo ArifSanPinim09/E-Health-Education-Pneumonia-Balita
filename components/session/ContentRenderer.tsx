@@ -13,7 +13,7 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
   let headingNumber = 0;
 
   return (
-    <div className="content-renderer">
+    <article className="content-renderer">
       {sections.map((section, index) => {
         // Increment heading number only for heading type
         if (section.type === 'heading') {
@@ -29,12 +29,9 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.3 }}
-                className="px-6 py-4 border-b border-gray-200 bg-gray-50"
+                className="px-6 sm:px-8 lg:px-12 pt-10 pb-4 first:pt-8"
               >
-                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-3">
-                  <span className="bg-blue-600 text-white rounded-lg w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0">
-                    {headingNumber}
-                  </span>
+                <h2 className="text-xl sm:text-2xl font-serif text-[#1F2933] leading-tight">
                   {section.content as string}
                 </h2>
               </motion.div>
@@ -48,9 +45,9 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.3 }}
-                className="px-6 py-4"
+                className="px-6 sm:px-8 lg:px-12 py-3"
               >
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-[#1F2933]/80 text-base sm:text-lg leading-relaxed sm:leading-loose">
                   {section.content as string}
                 </p>
               </motion.div>
@@ -64,15 +61,15 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.3 }}
-                className="px-6 py-4 bg-blue-50"
+                className="px-6 sm:px-8 lg:px-12 py-3"
               >
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {(section.content as string[]).map((item, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2 text-gray-700 leading-relaxed"
+                      className="flex items-start gap-3 text-[#1F2933]/80 text-base sm:text-lg leading-relaxed sm:leading-loose"
                     >
-                      <span className="text-blue-600 font-bold flex-shrink-0 mt-1">•</span>
+                      <span className="text-[#2F5D50] font-bold flex-shrink-0 mt-1.5">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -88,7 +85,7 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.3 }}
-                className="px-6 py-4"
+                className="px-6 sm:px-8 lg:px-12 py-6"
               >
                 <MediaEmbed
                   type="image"
@@ -106,7 +103,7 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.3 }}
-                className="px-6 py-4 bg-gray-50"
+                className="px-6 sm:px-8 lg:px-12 py-6"
               >
                 <MediaEmbed
                   type="video"
@@ -120,6 +117,9 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return null;
         }
       })}
-    </div>
+      
+      {/* Bottom Spacing */}
+      <div className="h-8"></div>
+    </article>
   );
 }
