@@ -94,6 +94,35 @@ export default function ProfilePage() {
     })
   }
 
+  const calculateDetailedAge = (birthDate: string) => {
+    const birth = new Date(birthDate)
+    const now = new Date()
+    
+    let years = now.getFullYear() - birth.getFullYear()
+    let months = now.getMonth() - birth.getMonth()
+    let days = now.getDate() - birth.getDate()
+    
+    // Adjust if days are negative
+    if (days < 0) {
+      months--
+      const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0)
+      days += lastMonth.getDate()
+    }
+    
+    // Adjust if months are negative
+    if (months < 0) {
+      years--
+      months += 12
+    }
+    
+    const parts = []
+    if (years > 0) parts.push(`${years} tahun`)
+    if (months > 0) parts.push(`${months} bulan`)
+    if (days > 0) parts.push(`${days} hari`)
+    
+    return parts.length > 0 ? parts.join(' ') : '0 hari'
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F4F7F5]">
@@ -307,7 +336,7 @@ export default function ProfilePage() {
                 <span>Usia</span>
               </div>
               <p className="text-sm sm:text-base font-medium text-[#1F2933] pl-6">
-                {profile.child.age} bulan
+                {calculateDetailedAge(profile.child.birth_date)}
               </p>
             </div>
           </div>

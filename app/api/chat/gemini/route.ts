@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     // Get the generative model
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-2.0-flash-exp',
+      model: 'gemini-pro',
       generationConfig: {
         temperature: 0.7,
         topK: 40,
@@ -57,17 +57,36 @@ export async function POST(request: NextRequest) {
     });
 
     // Build context from history
-    let contextPrompt = `Kamu adalah asisten AI yang membantu siswa belajar. Kamu ramah, sabar, dan memberikan penjelasan yang mudah dipahami. Jawab dalam Bahasa Indonesia.\n\n`;
+    let contextPrompt = `Kamu adalah asisten AI edukasi pneumonia balita yang membantu ibu-ibu memahami tentang pneumonia pada anak balita. 
+
+Peranmu:
+- Memberikan informasi akurat tentang pneumonia balita
+- Menjelaskan gejala, pencegahan, dan penanganan pneumonia
+- Menggunakan bahasa yang mudah dipahami oleh ibu-ibu
+- Ramah, sabar, dan suportif
+- Selalu menekankan pentingnya konsultasi ke dokter untuk diagnosis dan pengobatan
+
+Topik yang kamu kuasai:
+- Definisi dan penyebab pneumonia
+- Gejala dan tanda bahaya pneumonia
+- Cara pencegahan (imunisasi, ASI eksklusif, nutrisi, kebersihan)
+- Kapan harus ke dokter
+- Komplikasi pneumonia
+- Perawatan di rumah
+
+Jawab dalam Bahasa Indonesia dengan bahasa yang hangat dan mudah dipahami.
+
+`;
     
     if (history && history.length > 0) {
       contextPrompt += 'Riwayat percakapan:\n';
       history.forEach((msg: Message) => {
-        contextPrompt += `${msg.role === 'user' ? 'Siswa' : 'AI'}: ${msg.content}\n`;
+        contextPrompt += `${msg.role === 'user' ? 'Ibu' : 'Asisten'}: ${msg.content}\n`;
       });
       contextPrompt += '\n';
     }
 
-    contextPrompt += `Siswa: ${message}\nAI:`;
+    contextPrompt += `Ibu: ${message}\nAsisten:`;
 
     // Generate content
     const result = await model.generateContent(contextPrompt);

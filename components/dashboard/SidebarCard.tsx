@@ -3,31 +3,7 @@
 import { motion } from 'framer-motion'
 import { Lightbulb, Info, Award, TrendingUp } from 'lucide-react'
 
-interface TipsCardProps {
-  tip: string
-}
 
-export function TipsCard({ tip }: TipsCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.6 }}
-      className="bg-white rounded-xl p-4 sm:p-5 lg:p-6 border border-[#2F5D50]/10"
-    >
-      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-        <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-[#E07A5F]/10 flex items-center justify-center flex-shrink-0">
-          <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-[#E07A5F]" strokeWidth={2} />
-        </div>
-        <h3 className="text-base sm:text-lg font-semibold text-[#1F2933]">Tips Hari Ini</h3>
-      </div>
-
-      <p className="text-xs sm:text-sm text-[#1F2933]/70 leading-relaxed">
-        {tip}
-      </p>
-    </motion.div>
-  )
-}
 
 interface InfoCardProps {
   title: string

@@ -1,17 +1,61 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CheckCircle2, Circle } from 'lucide-react'
+import { CheckCircle2, Circle, Clock } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 interface ProgressItem {
   label: string
   completed: boolean
   current?: boolean
+  locked?: boolean
+  unlockTime?: string
 }
 
 interface ProgressCardProps {
   items: ProgressItem[]
   percentage: number
+}
+
+function TimeUntilUnlock({ unlockTime }: { unlockTime: string }) {
+  const [timeLeft, setTimeLeft] = useState('')
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime()
+      const unlock = new Date(unlockTime).getTime()
+      const difference = unlock - now
+
+      if (difference <= 0) {
+        setTimeLeft('Tersedia sekarang')
+        return
+      }
+
+      const hours = Math.floor(difference / (1000 * 60 * 60))
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+
+      if (hours > 24) {
+        const days = Math.floor(hours / 24)
+        setTimeLeft(`${days} hari lagi`)
+      } else if (hours > 0) {
+        setTimeLeft(`${hours} jam ${minutes} menit lagi`)
+      } else {
+        setTimeLeft(`${minutes} menit lagi`)
+      }
+    }
+
+    calculateTimeLeft()
+    const interval = setInterval(calculateTimeLeft, 60000) // Update every minute
+
+    return () => clearInterval(interval)
+  }, [unlockTime])
+
+  return (
+    <span className="ml-1 sm:ml-2 text-[10px] sm:text-xs text-[#E07A5F] flex items-center gap-1">
+      <Clock className="w-3 h-3" />
+      {timeLeft}
+    </span>
+  )
 }
 
 export function ProgressCard({ items, percentage }: ProgressCardProps) {
@@ -59,18 +103,23 @@ export function ProgressCard({ items, percentage }: ProgressCardProps) {
             ) : (
               <Circle className="w-4 h-4 sm:w-5 sm:h-5 text-[#1F2933]/20 flex-shrink-0" strokeWidth={2} />
             )}
-            <span className={`text-xs sm:text-sm lg:text-base ${
+            <div className={`flex-1 text-xs sm:text-sm lg:text-base ${
               item.completed 
                 ? 'text-[#1F2933]' 
                 : item.current 
                 ? 'text-[#1F2933] font-medium' 
                 : 'text-[#1F2933]/40'
             }`}>
-              {item.label}
-              {item.current && (
-                <span className="ml-1 sm:ml-2 text-[10px] sm:text-xs text-[#E07A5F]">(sedang dipelajari)</span>
-              )}
-            </span>
+              <div className="flex items-center flex-wrap gap-1">
+                <span>{item.label}</span>
+                {item.current && (
+                  <span className="text-[10px] sm:text-xs text-[#E07A5F]">(sedang dipelajari)</span>
+                )}
+                {item.locked && item.unlockTime && (
+                  <TimeUntilUnlock unlockTime={item.unlockTime} />
+                )}
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>

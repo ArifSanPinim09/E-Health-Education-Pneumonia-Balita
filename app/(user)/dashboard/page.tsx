@@ -6,7 +6,7 @@ import { GreetingCard } from '@/components/dashboard/GreetingCard'
 import { OverviewCards } from '@/components/dashboard/OverviewCards'
 import { ProgressCard } from '@/components/dashboard/ProgressOverviewCard'
 import { ContinueLearningCard } from '@/components/dashboard/ContinueLearningCard'
-import { TipsCard, InfoCard, DetailedStatsCard } from '@/components/dashboard/SidebarCard'
+import { InfoCard, DetailedStatsCard } from '@/components/dashboard/SidebarCard'
 import { UserNavbar } from '@/components/user/UserNavbar'
 import GeminiChatBot from '@/components/chat/GeminiChatBot'
 import { motion } from 'framer-motion'
@@ -193,27 +193,37 @@ export default function DashboardPage() {
                   { 
                     label: 'Session 1', 
                     completed: progress.sessions[0]?.completed || false,
-                    current: progress.pre_test_completed && !progress.sessions[0]?.completed && progress.sessions[0]?.is_unlocked
+                    current: progress.pre_test_completed && !progress.sessions[0]?.completed && progress.sessions[0]?.is_unlocked,
+                    locked: !progress.sessions[0]?.is_unlocked,
+                    unlockTime: progress.sessions[0]?.unlocked_at
                   },
                   { 
                     label: 'Session 2', 
                     completed: progress.sessions[1]?.completed || false,
-                    current: progress.sessions[0]?.completed && !progress.sessions[1]?.completed && progress.sessions[1]?.is_unlocked
+                    current: progress.sessions[0]?.completed && !progress.sessions[1]?.completed && progress.sessions[1]?.is_unlocked,
+                    locked: !progress.sessions[1]?.is_unlocked,
+                    unlockTime: progress.sessions[1]?.unlocked_at
                   },
                   { 
                     label: 'Session 3', 
                     completed: progress.sessions[2]?.completed || false,
-                    current: progress.sessions[1]?.completed && !progress.sessions[2]?.completed && progress.sessions[2]?.is_unlocked
+                    current: progress.sessions[1]?.completed && !progress.sessions[2]?.completed && progress.sessions[2]?.is_unlocked,
+                    locked: !progress.sessions[2]?.is_unlocked,
+                    unlockTime: progress.sessions[2]?.unlocked_at
                   },
                   { 
                     label: 'Session 4', 
                     completed: progress.sessions[3]?.completed || false,
-                    current: progress.sessions[2]?.completed && !progress.sessions[3]?.completed && progress.sessions[3]?.is_unlocked
+                    current: progress.sessions[2]?.completed && !progress.sessions[3]?.completed && progress.sessions[3]?.is_unlocked,
+                    locked: !progress.sessions[3]?.is_unlocked,
+                    unlockTime: progress.sessions[3]?.unlocked_at
                   },
                   { 
                     label: 'Session 5', 
                     completed: progress.sessions[4]?.completed || false,
-                    current: progress.sessions[3]?.completed && !progress.sessions[4]?.completed && progress.sessions[4]?.is_unlocked
+                    current: progress.sessions[3]?.completed && !progress.sessions[4]?.completed && progress.sessions[4]?.is_unlocked,
+                    locked: !progress.sessions[4]?.is_unlocked,
+                    unlockTime: progress.sessions[4]?.unlocked_at
                   },
                   { 
                     label: 'Post Test', 
@@ -363,9 +373,6 @@ export default function DashboardPage() {
                 preTestCompleted={progress.pre_test_completed}
                 postTestCompleted={progress.post_test_completed}
               />
-
-              {/* Tips */}
-              <TipsCard tip={getTipsMessage()} />
 
               {/* Info */}
               <InfoCard

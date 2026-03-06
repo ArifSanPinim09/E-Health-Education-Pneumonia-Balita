@@ -10,6 +10,14 @@ interface Message {
   timestamp: Date;
 }
 
+const TEMPLATE_QUESTIONS = [
+  'Apa itu pneumonia pada balita?',
+  'Apa saja gejala pneumonia?',
+  'Bagaimana cara mencegah pneumonia?',
+  'Kapan harus ke dokter?',
+  'Apa komplikasi pneumonia?',
+];
+
 export default function GeminiChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -21,6 +29,7 @@ export default function GeminiChatBot() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -38,18 +47,20 @@ export default function GeminiChatBot() {
     }
   }, [isOpen]);
 
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (messageText?: string) => {
+    const textToSend = messageText || input.trim();
+    if (!textToSend || isLoading) return;
 
     const userMessage: Message = {
       role: 'user',
-      content: input.trim(),
+      content: textToSend,
       timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
+    setShowTemplates(false);
 
     try {
       const response = await fetch('/api/chat/gemini', {
@@ -85,6 +96,10 @@ export default function GeminiChatBot() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleTemplateClick = (question: string) => {
+    sendMessage(question);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -159,6 +174,25 @@ export default function GeminiChatBot() {
                 </div>
               </div>
             ))}
+
+            {/* Template Questions */}
+            {showTemplates && messages.length === 1 && !isLoading && (
+              <div className="space-y-2">
+                <p className="text-xs text-[#1F2933]/60 text-center mb-3">
+                  Atau pilih pertanyaan berikut:
+                </p>
+                {TEMPLATE_QUESTIONS.map((question, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTemplateClick(question)}
+                    className="w-full text-left px-4 py-2.5 bg-white hover:bg-[#2F5D50]/5 border border-[#2F5D50]/20 hover:border-[#2F5D50]/40 rounded-lg transition-all text-sm text-[#1F2933] hover:text-[#2F5D50]"
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-white text-[#1F2933] rounded-lg px-4 py-3 border border-[#2F5D50]/10">
@@ -183,7 +217,7 @@ export default function GeminiChatBot() {
                 className="flex-1 px-4 py-2 border border-[#2F5D50]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] disabled:bg-[#F4F7F5] disabled:cursor-not-allowed text-sm"
               />
               <Button
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={!input.trim() || isLoading}
                 className="w-10 h-10 rounded-lg bg-[#2F5D50] hover:bg-[#2F5D50]/90 disabled:opacity-50 disabled:cursor-not-allowed p-0"
               >
