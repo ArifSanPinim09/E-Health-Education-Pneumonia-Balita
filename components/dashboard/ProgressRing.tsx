@@ -1,72 +1,72 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { TrendingUp } from 'lucide-react'
+import { TrendingUp, CheckCircle2 } from 'lucide-react'
 
 interface ProgressRingProps {
   percentage: number
 }
 
 export function ProgressRing({ percentage }: ProgressRingProps) {
-  const radius = 60
+  const radius = 70
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (percentage / 100) * circumference
 
-  // Determine color based on progress
+  // Health UI Color System - konsisten dengan design doc
   const getProgressColor = () => {
-    if (percentage < 30) return { from: '#EF4444', to: '#DC2626' } // Red
-    if (percentage < 60) return { from: '#F59E0B', to: '#D97706' } // Orange
-    if (percentage < 90) return { from: '#3B82F6', to: '#2563EB' } // Blue
-    return { from: '#10B981', to: '#059669' } // Green
+    if (percentage < 30) return { from: '#F59E0B', to: '#D97706' } // Warning Amber
+    if (percentage < 60) return { from: '#38BDF8', to: '#2563EB' } // Sky to Primary Blue
+    if (percentage < 90) return { from: '#2563EB', to: '#1D4ED8' } // Primary Blue
+    return { from: '#22C55E', to: '#16A34A' } // Success Green
   }
 
   const colors = getProgressColor()
 
   const getMotivationalText = () => {
-    if (percentage === 0) return 'Mulai!'
-    if (percentage < 30) return 'Bagus!'
-    if (percentage < 60) return 'Semangat!'
-    if (percentage < 90) return 'Hampir!'
-    if (percentage < 100) return 'Sedikit lagi!'
+    if (percentage === 0) return 'Mulai Sekarang'
+    if (percentage < 30) return 'Langkah Awal'
+    if (percentage < 60) return 'Terus Semangat'
+    if (percentage < 90) return 'Hampir Selesai'
+    if (percentage < 100) return 'Sedikit Lagi'
     return 'Sempurna!'
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6 }}
       className="flex flex-col items-center justify-center"
     >
       <div className="relative">
         <svg 
-          width="144" 
-          height="144" 
-          viewBox="0 0 144 144" 
+          width="160" 
+          height="160" 
+          viewBox="0 0 160 160" 
           className="transform -rotate-90"
         >
           {/* Background circle */}
           <circle
-            cx="72"
-            cy="72"
+            cx="80"
+            cy="80"
             r={radius}
             fill="none"
             stroke="#E5E7EB"
-            strokeWidth="10"
+            strokeWidth="12"
           />
           {/* Animated progress circle */}
           <motion.circle
-            cx="72"
-            cy="72"
+            cx="80"
+            cy="80"
             r={radius}
             fill="none"
             stroke={`url(#gradient-${percentage})`}
-            strokeWidth="10"
+            strokeWidth="12"
             strokeLinecap="round"
             strokeDasharray={circumference}
             initial={{ strokeDashoffset: circumference }}
             animate={{ strokeDashoffset }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{ duration: 1.8, ease: "easeInOut", delay: 0.2 }}
           />
           <defs>
             <linearGradient id={`gradient-${percentage}`} x1="0%" y1="0%" x2="100%" y2="100%">
@@ -80,34 +80,40 @@ export function ProgressRing({ percentage }: ProgressRingProps) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
           className="absolute inset-0 flex flex-col items-center justify-center"
         >
           <motion.div
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+            animate={{ scale: [1, 1.03, 1] }}
+            transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1.5 }}
             className="text-center"
           >
-            <div className="text-3xl font-bold text-gray-900 mb-0.5">{percentage}%</div>
-            <div className="flex items-center gap-1 justify-center">
-              <TrendingUp className="w-3 h-3 text-gray-500" />
-              <div className="text-xs text-gray-500 font-medium">{getMotivationalText()}</div>
+            <div className="text-4xl font-semibold text-gray-900 mb-1">{percentage}%</div>
+            <div className="flex items-center gap-1.5 justify-center">
+              {percentage === 100 ? (
+                <CheckCircle2 className="w-4 h-4 text-green-600" />
+              ) : (
+                <TrendingUp className="w-4 h-4 text-gray-500" />
+              )}
+              <div className="text-xs text-gray-600 font-medium">{getMotivationalText()}</div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Decorative dots */}
+        {/* Decorative dots - Soft Health Modern */}
         {percentage > 0 && (
           <>
             <motion.div
-              className="absolute top-0 left-1/2 w-2.5 h-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full -ml-1.25"
-              animate={{ scale: [1, 1.3, 1] }}
+              className="absolute top-0 left-1/2 w-3 h-3 bg-gradient-to-br from-blue-500 to-sky-400 rounded-full shadow-sm"
+              style={{ marginLeft: '-6px' }}
+              animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
             {percentage === 100 && (
               <motion.div
-                className="absolute top-1/2 right-0 w-2.5 h-2.5 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full -mr-1.25 -mt-1.25"
-                animate={{ scale: [1, 1.3, 1] }}
+                className="absolute top-1/2 right-0 w-3 h-3 bg-gradient-to-br from-green-500 to-emerald-400 rounded-full shadow-sm"
+                style={{ marginRight: '-6px', marginTop: '-6px' }}
+                animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
               />
             )}
