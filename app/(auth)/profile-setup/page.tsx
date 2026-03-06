@@ -180,7 +180,7 @@ export default function ProfileSetupPage() {
                   type="button"
                   onClick={handleBack}
                   disabled={isSubmitting}
-                  className="flex-1 h-11 sm:h-12 inline-flex items-center justify-center px-6 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-[#F4F7F5] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
+                  className="w-full sm:flex-1 h-12 inline-flex items-center justify-center px-6 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-[#F4F7F5] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
                 >
                   <ChevronLeft className="w-5 h-5 mr-2" strokeWidth={2} />
                   Kembali
@@ -191,7 +191,7 @@ export default function ProfileSetupPage() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="flex-1 h-11 sm:h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 text-base"
+                  className="w-full sm:flex-1 h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 text-base"
                 >
                   Lanjutkan
                   <ChevronRight className="w-5 h-5 ml-2" strokeWidth={2} />
@@ -200,7 +200,7 @@ export default function ProfileSetupPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 h-11 sm:h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
+                  className="w-full sm:flex-1 h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
                 >
                   {isSubmitting ? (
                     <>

@@ -21,8 +21,8 @@ export function StepIndicator({ currentStep, totalSteps, steps }: StepIndicatorP
   }
 
   return (
-    <div className="mb-8 pb-8 border-b border-[#2F5D50]/10">
-      <div className="flex items-center justify-between gap-4">
+    <div className="mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-[#2F5D50]/10">
+      <div className="flex items-center justify-center gap-2 sm:gap-4">
         {steps.map((step, index) => {
           const stepNumber = index + 1
           const isCompleted = stepNumber < currentStep
@@ -30,15 +30,15 @@ export function StepIndicator({ currentStep, totalSteps, steps }: StepIndicatorP
           const isActive = stepNumber <= currentStep
           
           return (
-            <div key={stepNumber} className="flex items-center flex-1">
+            <div key={stepNumber} className="flex items-center">
               {/* Step Icon */}
-              <div className="flex items-center gap-3 flex-1">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className={`
-                    w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center transition-all duration-300
+                    w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center transition-all duration-300 flex-shrink-0
                     ${isActive ? 'bg-[#2F5D50] text-white' : 'bg-[#2F5D50]/10 text-[#2F5D50]/50'}
                   `}
                 >
@@ -51,16 +51,16 @@ export function StepIndicator({ currentStep, totalSteps, steps }: StepIndicatorP
                 
                 {/* Step Label - Hidden on mobile */}
                 <div className="hidden sm:block">
-                  <p className={`text-sm font-medium transition-colors ${isCurrent ? 'text-[#2F5D50]' : 'text-[#1F2933]/50'}`}>
+                  <p className={`text-sm font-medium transition-colors whitespace-nowrap ${isCurrent ? 'text-[#2F5D50]' : 'text-[#1F2933]/50'}`}>
                     Langkah {stepNumber}
                   </p>
-                  <p className="text-xs text-[#1F2933]/50">{step.label}</p>
+                  <p className="text-xs text-[#1F2933]/50 whitespace-nowrap">{step.label}</p>
                 </div>
               </div>
               
               {/* Progress Line */}
               {index < totalSteps - 1 && (
-                <div className="flex-1 mx-2 sm:mx-4 lg:mx-6">
+                <div className="w-16 sm:w-24 lg:w-32 mx-2 sm:mx-4">
                   <div className="h-1 bg-[#2F5D50]/10 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: '0%' }}
@@ -77,7 +77,7 @@ export function StepIndicator({ currentStep, totalSteps, steps }: StepIndicatorP
       </div>
 
       {/* Mobile Step Labels */}
-      <div className="flex sm:hidden justify-between mt-4 text-xs">
+      <div className="flex sm:hidden justify-center gap-8 mt-3 text-xs">
         {steps.map((step, index) => {
           const stepNumber = index + 1
           const isCurrent = stepNumber === currentStep
