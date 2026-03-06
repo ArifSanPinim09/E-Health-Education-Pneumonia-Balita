@@ -270,7 +270,7 @@ export default function DashboardPage() {
                 className="bg-white rounded-2xl p-6 border border-[#E2E8F0]"
               >
                 <h2 className="text-xl font-semibold text-[#1F2933] mb-4">
-                  Program Selesai 🎉
+                  Program Selesai
                 </h2>
                 <p className="text-sm text-[#1F2933]/70 mb-6">
                   Selamat! Anda telah menyelesaikan seluruh program pembelajaran pneumonia balita.
@@ -296,6 +296,54 @@ export default function DashboardPage() {
                 </Link>
               </motion.div>
             ) : null}
+
+            {/* Completed Sessions - Can be accessed again */}
+            {progress.pre_test_completed && progress.sessions.some(s => s.completed) && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.6 }}
+                className="bg-white rounded-2xl p-6 border border-[#E2E8F0]"
+              >
+                <h2 className="text-xl font-semibold text-[#1F2933] mb-4">
+                  Sesi yang Telah Dipelajari
+                </h2>
+                <p className="text-sm text-[#1F2933]/70 mb-4">
+                  Anda dapat mengakses kembali materi yang sudah dipelajari kapan saja
+                </p>
+                <div className="space-y-2">
+                  {progress.sessions.map((session, index) => 
+                    session.completed ? (
+                      <motion.div
+                        key={session.day}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
+                        className="flex items-center justify-between py-2"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center">
+                            <span className="text-sm font-semibold text-[#2F5D50]">
+                              {session.day}
+                            </span>
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium text-[#1F2933]">
+                              {SESSION_TITLES[session.day - 1]}
+                            </p>
+                          </div>
+                        </div>
+                        <Link href={`/session/${session.day}`}>
+                          <span className="text-sm font-medium text-[#2F5D50] hover:text-[#274E43] hover:underline cursor-pointer transition-all">
+                            Pelajari Lagi
+                          </span>
+                        </Link>
+                      </motion.div>
+                    ) : null
+                  )}
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* Sidebar - 1 column */}
