@@ -47,10 +47,10 @@ export function startUserGuide() {
         }
       },
       {
-        element: '#session-cards',
+        element: '#progress-card',
         popover: {
-          title: '📚 Sesi Pembelajaran',
-          description: 'Setelah menyelesaikan Pre-Test, Anda dapat memulai sesi pembelajaran. Setiap sesi berisi materi penting tentang pneumonia pada balita yang akan terbuka secara bertahap.',
+          title: '📚 Sesi Pembelajaran Bertahap',
+          description: 'Setelah Pre-Test, Anda akan belajar melalui 5 sesi. Setiap sesi berisi materi penting tentang pneumonia balita. Sesi akan terbuka secara bertahap agar Anda dapat memahami materi dengan lebih efektif.',
           side: "left",
           align: 'start'
         }
