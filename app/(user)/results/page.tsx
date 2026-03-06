@@ -69,6 +69,22 @@ export default function ResultsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [showCelebration, setShowCelebration] = useState(false)
+  const [profile, setProfile] = useState<{ mother: { name: string } } | null>(null)
+
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const response = await fetch('/api/profile/get')
+        if (response.ok) {
+          const data = await response.json()
+          setProfile(data)
+        }
+      } catch (err) {
+        console.error('Failed to fetch profile:', err)
+      }
+    }
+    fetchProfile()
+  }, [])
 
   useEffect(() => {
     async function fetchResults() {
@@ -159,24 +175,6 @@ export default function ResultsPage() {
   }
 
   const achievement = getAchievementLevel()
-
-  // Get profile for navbar
-  const [profile, setProfile] = useState<{ mother: { name: string } } | null>(null)
-
-  useEffect(() => {
-    async function fetchProfile() {
-      try {
-        const response = await fetch('/api/profile/get')
-        if (response.ok) {
-          const data = await response.json()
-          setProfile(data)
-        }
-      } catch (err) {
-        console.error('Failed to fetch profile:', err)
-      }
-    }
-    fetchProfile()
-  }, [])
 
   return (
     <>
