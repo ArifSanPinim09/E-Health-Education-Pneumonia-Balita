@@ -7,10 +7,10 @@ import { OverviewCards } from '@/components/dashboard/OverviewCards'
 import { ProgressCard } from '@/components/dashboard/ProgressOverviewCard'
 import { ContinueLearningCard } from '@/components/dashboard/ContinueLearningCard'
 import { TipsCard, InfoCard, DetailedStatsCard } from '@/components/dashboard/SidebarCard'
+import { UserMenu } from '@/components/dashboard/UserMenu'
 import GeminiChatBot from '@/components/chat/GeminiChatBot'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ProgressRing } from '@/components/dashboard/ProgressRing'
 
 interface SessionStatus {
   day: number
@@ -167,6 +167,11 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-[#F4F7F5]">
       {/* Container with max-width */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        
+        {/* Top Bar with User Menu */}
+        <div className="flex items-center justify-end mb-4 sm:mb-6">
+          <UserMenu userName={profile.mother.name} />
+        </div>
         
         {/* Greeting */}
         <GreetingCard 

@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
+import { useRouter, usePathname } from 'next/navigation';
 
 export function Navbar() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,19 +24,19 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const supabase = createClient();
-    
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user);
+    checkAuth();
+  }, [pathname]);
+
+  const checkAuth = async () => {
+    try {
+      const response = await fetch('/api/profile/get');
+      setIsAuthenticated(response.ok);
+    } catch (error) {
+      setIsAuthenticated(false);
+    } finally {
       setLoading(false);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
+    }
+  };
 
   return (
     <motion.nav
@@ -80,17 +82,17 @@ export function Navbar() {
             </Link>
             
             {!loading && (
-              user ? (
+              isAuthenticated ? (
                 <Link
                   href="/dashboard"
-                  className="px-6 py-2.5 bg-[#2F5D50] text-white text-sm font-medium rounded-lg hover:bg-[#2F5D50]/90 transition-colors"
+                  className="px-6 py-2.5 bg-[#2F5D50] text-white text-sm font-medium rounded-lg hover:bg-[#274E43] transition-colors"
                 >
                   Dashboard
                 </Link>
               ) : (
                 <Link
                   href="/login"
-                  className="px-6 py-2.5 bg-[#2F5D50] text-white text-sm font-medium rounded-lg hover:bg-[#2F5D50]/90 transition-colors"
+                  className="px-6 py-2.5 bg-[#2F5D50] text-white text-sm font-medium rounded-lg hover:bg-[#274E43] transition-colors"
                 >
                   Masuk
                 </Link>
@@ -140,10 +142,10 @@ export function Navbar() {
                 Data
               </Link>
               {!loading && (
-                user ? (
+                isAuthenticated ? (
                   <Link
                     href="/dashboard"
-                    className="block px-4 py-3 bg-[#2F5D50] text-white text-center font-medium rounded-lg hover:bg-[#2F5D50]/90 transition-colors"
+                    className="block px-4 py-3 bg-[#2F5D50] text-white text-center font-medium rounded-lg hover:bg-[#274E43] transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Dashboard
@@ -151,7 +153,7 @@ export function Navbar() {
                 ) : (
                   <Link
                     href="/login"
-                    className="block px-4 py-3 bg-[#2F5D50] text-white text-center font-medium rounded-lg hover:bg-[#2F5D50]/90 transition-colors"
+                    className="block px-4 py-3 bg-[#2F5D50] text-white text-center font-medium rounded-lg hover:bg-[#274E43] transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Masuk
