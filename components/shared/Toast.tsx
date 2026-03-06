@@ -18,26 +18,26 @@ interface ToastProps {
 const toastConfig = {
   success: {
     icon: CheckCircle2,
-    bgColor: 'from-green-500 to-emerald-600',
-    borderColor: 'border-green-300',
+    bgColor: 'from-[#58CC02] to-[#58A700]',
+    borderColor: 'border-[#58CC02]/30',
     textColor: 'text-white',
   },
   error: {
     icon: XCircle,
-    bgColor: 'from-red-500 to-rose-600',
+    bgColor: 'from-[#FF4B4B] to-[#CC0000]',
     borderColor: 'border-red-300',
     textColor: 'text-white',
   },
   warning: {
     icon: AlertCircle,
-    bgColor: 'from-amber-500 to-orange-600',
-    borderColor: 'border-amber-300',
+    bgColor: 'from-[#FF9600] to-[#FF7A00]',
+    borderColor: 'border-[#FF9600]/30',
     textColor: 'text-white',
   },
   info: {
     icon: Info,
-    bgColor: 'from-blue-500 to-indigo-600',
-    borderColor: 'border-blue-300',
+    bgColor: 'from-[#1CB0F6] to-[#1890D6]',
+    borderColor: 'border-[#1CB0F6]/30',
     textColor: 'text-white',
   },
 }
@@ -67,28 +67,33 @@ export default function Toast({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, y: -50, scale: 0.95 }}
+          initial={{ opacity: 0, y: -50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20, scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           className="fixed top-4 right-4 z-50 max-w-md w-full sm:w-auto"
         >
           <div
-            className={`bg-gradient-to-r ${config.bgColor} ${config.textColor} rounded-xl shadow-2xl border-2 ${config.borderColor} overflow-hidden`}
+            className={`bg-gradient-to-r ${config.bgColor} ${config.textColor} rounded-2xl shadow-2xl border-2 ${config.borderColor} overflow-hidden`}
           >
-            <div className="p-4 flex items-start gap-3">
-              <div className="flex-shrink-0">
+            <div className="p-5 flex items-start gap-4">
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="flex-shrink-0 bg-white/20 rounded-full p-2"
+              >
                 <Icon className="w-6 h-6" />
-              </div>
+              </motion.div>
               <div className="flex-1 min-w-0">
                 {title && (
-                  <h4 className="font-bold text-base mb-1">{title}</h4>
+                  <h4 className="font-bold text-lg mb-1">{title}</h4>
                 )}
                 <p className="text-sm leading-relaxed">{message}</p>
               </div>
               <button
                 onClick={onClose}
-                className="flex-shrink-0 hover:bg-white/20 rounded-lg p-1 transition-colors"
+                className="flex-shrink-0 hover:bg-white/20 rounded-full p-1.5 transition-colors"
                 aria-label="Tutup"
               >
                 <X className="w-5 h-5" />
@@ -100,7 +105,7 @@ export default function Toast({
                 initial={{ width: '100%' }}
                 animate={{ width: '0%' }}
                 transition={{ duration: duration / 1000, ease: 'linear' }}
-                className="h-1 bg-white/30"
+                className="h-1.5 bg-white/40 rounded-full"
               />
             )}
           </div>
