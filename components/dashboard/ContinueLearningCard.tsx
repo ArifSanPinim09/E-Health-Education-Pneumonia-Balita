@@ -1,54 +1,49 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ArrowRight, Clock } from 'lucide-react'
 import Link from 'next/link'
 
-interface ContinueSessionProps {
+interface ContinueLearningCardProps {
   sessionNumber: number
   sessionTitle: string
   estimatedTime?: string
   href: string
 }
 
-export function ContinueSession({ 
+export function ContinueLearningCard({ 
   sessionNumber, 
   sessionTitle, 
-  estimatedTime = '±5 menit',
+  estimatedTime = '5 menit',
   href
-}: ContinueSessionProps) {
+}: ContinueLearningCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25, delay: 0.2 }}
-      className="space-y-6"
+      transition={{ duration: 0.3, delay: 0.5 }}
+      className="bg-white rounded-2xl p-6 border border-[#E2E8F0]"
     >
-      {/* Section Header */}
-      <div className="space-y-3">
-        <h2 className="text-2xl sm:text-3xl font-serif text-[#1F2933]">
-          Lanjutkan Pembelajaran
-        </h2>
-        <div className="h-px bg-[#2F5D50]/20 max-w-md"></div>
-      </div>
+      <h2 className="text-xl font-semibold text-[#1F2933] mb-4">
+        Lanjutkan Pembelajaran
+      </h2>
 
-      {/* Session Info - No Card, Editorial Layout */}
       <div className="space-y-4">
-        <div className="space-y-2">
-          <div className="text-lg text-[#1F2933]/70">
-            Session {sessionNumber}
-          </div>
-          <h3 className="text-xl sm:text-2xl font-medium text-[#1F2933]">
+        <div>
+          <div className="text-sm text-[#1F2933]/60 mb-1">Session {sessionNumber}</div>
+          <h3 className="text-lg font-semibold text-[#1F2933] mb-2">
             {sessionTitle}
           </h3>
-          <p className="text-[#1F2933]/60">
-            Durasi belajar {estimatedTime}
-          </p>
+          <div className="flex items-center gap-2 text-sm text-[#1F2933]/60">
+            <Clock className="w-4 h-4" />
+            <span>Durasi: {estimatedTime}</span>
+          </div>
         </div>
 
-        {/* CTA Button - Minimal Style */}
         <Link href={href}>
-          <button className="px-8 py-3 border-2 border-[#2F5D50] text-[#2F5D50] font-medium rounded-lg hover:bg-[#2F5D50] hover:text-white transition-all">
-            Mulai Sesi
+          <button className="w-full bg-[#2F5D50] text-white py-3 px-4 rounded-xl font-medium hover:bg-[#2F5D50]/90 transition-all flex items-center justify-center gap-2 group">
+            <span>Lanjutkan Belajar</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </Link>
       </div>

@@ -23,21 +23,15 @@ export function GreetingCard({ userName, currentDay }: GreetingCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25 }}
-      className="space-y-6"
+      transition={{ duration: 0.3 }}
+      className="mb-8"
     >
-      {/* Editorial Welcome - No Card */}
-      <div className="space-y-3">
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#1F2933] leading-tight">
-          {greeting}, {userName}
-        </h1>
-        <p className="text-lg sm:text-xl text-[#1F2933]/70 font-light leading-relaxed max-w-3xl">
-          Anda sedang berada di hari ke-{currentDay} program edukasi pneumonia balita.
-        </p>
-      </div>
-
-      {/* Divider */}
-      <div className="h-px bg-[#2F5D50]/20 max-w-md"></div>
+      <h1 className="text-3xl sm:text-4xl font-semibold text-[#1F2933] mb-2">
+        {greeting}, {userName} 👋
+      </h1>
+      <p className="text-base text-[#1F2933]/60">
+        Anda sedang berada di hari ke-{currentDay} Program Edukasi Pneumonia Balita
+      </p>
     </motion.div>
   )
 }
