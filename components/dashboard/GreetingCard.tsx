@@ -24,12 +24,12 @@ export function GreetingCard({ userName, currentDay }: GreetingCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="mb-8"
+      className="mb-6 sm:mb-8"
     >
-      <h1 className="text-3xl sm:text-4xl font-semibold text-[#1F2933] mb-2">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif text-[#1F2933] mb-2">
         {greeting}, {userName} 👋
       </h1>
-      <p className="text-base text-[#1F2933]/60">
+      <p className="text-sm sm:text-base text-[#1F2933]/60">
         Anda sedang berada di hari ke-{currentDay} Program Edukasi Pneumonia Balita
       </p>
     </motion.div>

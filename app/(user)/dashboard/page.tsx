@@ -104,27 +104,40 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Memuat dashboard...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-[#F4F7F5]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center"
+        >
+          <div className="relative">
+            <div className="animate-spin rounded-full h-12 w-12 border-3 border-[#2F5D50]/20 border-t-[#2F5D50] mx-auto mb-4"></div>
+          </div>
+          <p className="text-[#1F2933]/70 text-sm">Memuat dashboard...</p>
+        </motion.div>
       </div>
     )
   }
 
   if (error || !profile || !progress) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white">
-        <div className="text-center">
-          <p className="text-red-600 mb-4">{error || 'Gagal memuat data'}</p>
+      <div className="min-h-screen flex items-center justify-center bg-[#F4F7F5] p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center max-w-md"
+        >
+          <div className="w-14 h-14 bg-[#E07A5F]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl">⚠</span>
+          </div>
+          <p className="text-[#E07A5F] text-sm mb-4">{error || 'Gagal memuat data'}</p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="h-11 px-6 bg-[#2F5D50] text-white text-sm font-medium rounded-lg hover:bg-[#274E43] transition-colors"
           >
             Coba Lagi
           </button>
-        </div>
+        </motion.div>
       </div>
     )
   }
@@ -151,9 +164,9 @@ export default function DashboardPage() {
     return '-'
   }
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-[#F4F7F5]">
       {/* Container with max-width */}
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         
         {/* Greeting */}
         <GreetingCard 
@@ -170,10 +183,10 @@ export default function DashboardPage() {
         />
 
         {/* Main Grid Layout: 2fr 1fr */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           
           {/* Main Content - 2 columns */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             
             {/* Progress Card */}
             <ProgressCard
@@ -223,16 +236,16 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="bg-white rounded-2xl p-6 border border-[#E2E8F0]"
+                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
               >
-                <h2 className="text-xl font-semibold text-[#1F2933] mb-4">
+                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
                   Mulai Program
                 </h2>
-                <p className="text-sm text-[#1F2933]/70 mb-4">
+                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
                   Ukur pengetahuan awal Anda tentang pneumonia balita sebelum memulai pembelajaran
                 </p>
                 <Link href="/pre-test">
-                  <button className="w-full bg-[#2F5D50] text-white py-3 px-4 rounded-xl font-medium hover:bg-[#2F5D50]/90 transition-all">
+                  <button className="w-full bg-[#2F5D50] text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-medium hover:bg-[#274E43] transition-all">
                     Mulai Pre-Test
                   </button>
                 </Link>
@@ -248,16 +261,16 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="bg-white rounded-2xl p-6 border border-[#E2E8F0]"
+                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
               >
-                <h2 className="text-xl font-semibold text-[#1F2933] mb-4">
+                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
                   Saatnya Evaluasi
                 </h2>
-                <p className="text-sm text-[#1F2933]/70 mb-4">
+                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
                   Ukur peningkatan pemahaman Anda setelah menyelesaikan semua sesi pembelajaran
                 </p>
                 <Link href="/post-test">
-                  <button className="w-full bg-[#2F5D50] text-white py-3 px-4 rounded-xl font-medium hover:bg-[#2F5D50]/90 transition-all">
+                  <button className="w-full bg-[#2F5D50] text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-medium hover:bg-[#274E43] transition-all">
                     Mulai Post-Test
                   </button>
                 </Link>
@@ -267,30 +280,30 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="bg-white rounded-2xl p-6 border border-[#E2E8F0]"
+                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
               >
-                <h2 className="text-xl font-semibold text-[#1F2933] mb-4">
+                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
                   Program Selesai
                 </h2>
-                <p className="text-sm text-[#1F2933]/70 mb-6">
+                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-4 sm:mb-6 leading-relaxed">
                   Selamat! Anda telah menyelesaikan seluruh program pembelajaran pneumonia balita.
                 </p>
                 
                 {/* Score Comparison */}
-                <div className="flex items-center justify-center gap-8 mb-6 p-4 bg-[#F8FAFC] rounded-xl">
+                <div className="flex items-center justify-center gap-4 sm:gap-8 mb-4 sm:mb-6 p-3 sm:p-4 bg-[#F4F7F5] rounded-lg">
                   <div className="text-center">
                     <div className="text-xs text-[#1F2933]/60 mb-1">Pre-Test</div>
-                    <div className="text-3xl font-semibold text-[#1F2933]">{progress.pre_test_score || 0}</div>
+                    <div className="text-2xl sm:text-3xl font-semibold text-[#1F2933]">{progress.pre_test_score || 0}</div>
                   </div>
-                  <div className="text-2xl text-[#1F2933]/40">→</div>
+                  <div className="text-xl sm:text-2xl text-[#1F2933]/40">→</div>
                   <div className="text-center">
                     <div className="text-xs text-[#1F2933]/60 mb-1">Post-Test</div>
-                    <div className="text-3xl font-semibold text-[#2F5D50]">{progress.post_test_score || 0}</div>
+                    <div className="text-2xl sm:text-3xl font-semibold text-[#2F5D50]">{progress.post_test_score || 0}</div>
                   </div>
                 </div>
 
                 <Link href="/results">
-                  <button className="w-full py-3 px-4 border-2 border-[#2F5D50] text-[#2F5D50] rounded-xl font-medium hover:bg-[#2F5D50] hover:text-white transition-all">
+                  <button className="w-full py-2.5 sm:py-3 px-4 border-2 border-[#2F5D50] text-[#2F5D50] rounded-lg text-sm font-medium hover:bg-[#2F5D50] hover:text-white transition-all">
                     Lihat Hasil Lengkap
                   </button>
                 </Link>
@@ -303,12 +316,12 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.6 }}
-                className="bg-white rounded-2xl p-6 border border-[#E2E8F0]"
+                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
               >
-                <h2 className="text-xl font-semibold text-[#1F2933] mb-4">
+                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
                   Sesi yang Telah Dipelajari
                 </h2>
-                <p className="text-sm text-[#1F2933]/70 mb-4">
+                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
                   Anda dapat mengakses kembali materi yang sudah dipelajari kapan saja
                 </p>
                 <div className="space-y-2">
@@ -321,20 +334,20 @@ export default function DashboardPage() {
                         transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
                         className="flex items-center justify-between py-2"
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center">
-                            <span className="text-sm font-semibold text-[#2F5D50]">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span className="text-xs sm:text-sm font-semibold text-[#2F5D50]">
                               {session.day}
                             </span>
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-[#1F2933]">
+                            <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                               {SESSION_TITLES[session.day - 1]}
                             </p>
                           </div>
                         </div>
                         <Link href={`/session/${session.day}`}>
-                          <span className="text-sm font-medium text-[#2F5D50] hover:text-[#274E43] hover:underline cursor-pointer transition-all">
+                          <span className="text-xs sm:text-sm font-medium text-[#2F5D50] hover:text-[#274E43] hover:underline cursor-pointer transition-all whitespace-nowrap">
                             Pelajari Lagi
                           </span>
                         </Link>
@@ -347,7 +360,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Sidebar - 1 column */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Detailed Stats */}
             <DetailedStatsCard
               preTestScore={progress.pre_test_score}

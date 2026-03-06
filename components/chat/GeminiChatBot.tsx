@@ -98,11 +98,6 @@ export default function GeminiChatBot() {
     <>
       {/* Floating Button */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-        {!isOpen && (
-          <div className="bg-[#2F5D50] text-white px-4 py-2 rounded-lg shadow-sm text-sm font-medium whitespace-nowrap">
-            Tanya AI tentang Pneumonia
-          </div>
-        )}
         
         <button
           onClick={() => setIsOpen(!isOpen)}
