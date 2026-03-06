@@ -8,6 +8,22 @@
   max-width: 360px;
 }
 
+/* Highlight pulse animation untuk menarik perhatian */
+@keyframes highlight-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(47, 93, 80, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(47, 93, 80, 0);
+    transform: scale(1.02);
+  }
+}
+
+.highlight-pulse {
+  animation: highlight-pulse 1s ease-in-out 3;
+}
+
 .driver-popover-title {
   font-size: 18px;
   font-weight: 600;

@@ -103,9 +103,23 @@ export default function SessionPage() {
       }
 
       setShowCompletionModal(true);
+      
+      // Simpan flag untuk menampilkan celebration modal di dashboard
+      if (day === 1) {
+        localStorage.setItem('show_session1_celebration', JSON.stringify({
+          day: day,
+          timestamp: new Date().toISOString()
+        }))
+      } else {
+        localStorage.setItem('show_session_celebration', JSON.stringify({
+          day: day,
+          timestamp: new Date().toISOString()
+        }))
+      }
+      
       setTimeout(() => {
-        router.push('/dashboard');
-      }, 3000);
+        router.push('/dashboard')
+      }, 3000)
     } catch (err) {
       console.error('Error completing session:', err);
       alert(err instanceof Error ? err.message : 'Gagal menyelesaikan sesi');

@@ -131,6 +131,12 @@ export default function PreTestPage() {
         3000
       )
 
+      // Simpan flag untuk menampilkan celebration modal di dashboard
+      localStorage.setItem('show_pretest_celebration', JSON.stringify({
+        score: data.score,
+        timestamp: new Date().toISOString()
+      }))
+
       setTimeout(() => {
         router.push('/dashboard')
       }, 3000)

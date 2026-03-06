@@ -47,10 +47,10 @@ export function startUserGuide() {
         }
       },
       {
-        element: '#session-unlock',
+        element: '#session-cards',
         popover: {
-          title: '🔓 Sesi Bertahap',
-          description: 'Sesi pembelajaran akan terbuka secara bertahap. Hal ini bertujuan agar Anda dapat memahami materi secara lebih efektif dan tidak terburu-buru.',
+          title: '📚 Sesi Pembelajaran',
+          description: 'Setelah menyelesaikan Pre-Test, Anda dapat memulai sesi pembelajaran. Setiap sesi berisi materi penting tentang pneumonia pada balita yang akan terbuka secara bertahap.',
           side: "left",
           align: 'start'
         }
@@ -69,6 +69,20 @@ export function startUserGuide() {
       // Simpan bahwa user sudah melihat guide
       localStorage.setItem('guide_seen', 'true')
       driverObj.destroy()
+      
+      // Setelah guide selesai, ajak user untuk mulai Pre-Test
+      setTimeout(() => {
+        const pretestButton = document.querySelector('#pretest-button')
+        if (pretestButton) {
+          pretestButton.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          
+          // Tambahkan highlight effect
+          pretestButton.classList.add('highlight-pulse')
+          setTimeout(() => {
+            pretestButton.classList.remove('highlight-pulse')
+          }, 3000)
+        }
+      }, 500)
     }
   })
 

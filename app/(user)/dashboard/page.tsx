@@ -13,6 +13,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { startUserGuide, shouldShowGuide } from '@/lib/userGuide'
 import '@/styles/driver-custom.css'
+import { CelebrationModal } from '@/components/dashboard/CelebrationModal'
 
 interface SessionStatus {
   day: number
@@ -57,6 +58,9 @@ export default function DashboardPage() {
   const [profile, setProfile] = useState<ProfileData | null>(null)
   const [progress, setProgress] = useState<ProgressData | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [showCelebration, setShowCelebration] = useState(false)
+  const [celebrationType, setCelebrationType] = useState<'pretest' | 'session1' | 'session' | 'posttest'>('pretest')
+  const [celebrationData, setCelebrationData] = useState<any>(null)
 
   useEffect(() => {
     async function fetchData() {
@@ -102,6 +106,56 @@ export default function DashboardPage() {
       return () => clearTimeout(timer)
     }
   }, [loading, profile, progress])
+
+  // Check for celebration modals
+  useEffect(() => {
+    if (!loading && progress) {
+      // Check Pre-Test celebration
+      const pretestData = localStorage.getItem('show_pretest_celebration')
+      if (pretestData) {
+        const data = JSON.parse(pretestData)
+        setCelebrationType('pretest')
+        setCelebrationData(data)
+        setShowCelebration(true)
+        localStorage.removeItem('show_pretest_celebration')
+        return
+      }
+
+      // Check Session 1 celebration
+      const session1Data = localStorage.getItem('show_session1_celebration')
+      if (session1Data) {
+        const data = JSON.parse(session1Data)
+        const nextSession = progress.sessions.find(s => s.day === 2)
+        setCelebrationType('session1')
+        setCelebrationData({
+          ...data,
+          nextSessionDay: 2,
+          nextSessionTitle: SESSION_TITLES[1],
+          unlockTime: nextSession?.unlocked_at
+        })
+        setShowCelebration(true)
+        localStorage.removeItem('show_session1_celebration')
+        return
+      }
+
+      // Check other session celebration
+      const sessionData = localStorage.getItem('show_session_celebration')
+      if (sessionData) {
+        const data = JSON.parse(sessionData)
+        const nextSession = progress.sessions.find(s => s.day === data.day + 1)
+        setCelebrationType('session')
+        setCelebrationData({
+          ...data,
+          nextSessionDay: data.day + 1,
+          nextSessionTitle: SESSION_TITLES[data.day],
+          unlockTime: nextSession?.unlocked_at
+        })
+        setShowCelebration(true)
+        localStorage.removeItem('show_session_celebration')
+        return
+      }
+    }
+  }, [loading, progress])
 
   if (loading) {
     return (
@@ -253,7 +307,9 @@ export default function DashboardPage() {
               </div>
               
               {/* Session unlock indicator untuk guide */}
-              <div id="session-unlock" className="hidden"></div>
+              {!progress.pre_test_completed && (
+                <div id="session-cards" className="hidden"></div>
+              )}
 
               {/* Continue Learning / Next Action */}
               {!progress.pre_test_completed ? (
@@ -339,6 +395,7 @@ export default function DashboardPage() {
               {/* Completed Sessions - Can be accessed again */}
               {progress.pre_test_completed && progress.sessions.some(s => s.completed) && (
                 <motion.div
+                  id="session-cards"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.6 }}
@@ -409,6 +466,17 @@ export default function DashboardPage() {
 
       {/* Gemini Chatbot - Fixed Bottom Right */}
       <GeminiChatBot />
+
+      {/* Celebration Modal */}
+      <CelebrationModal
+        isOpen={showCelebration}
+        onClose={() => setShowCelebration(false)}
+        type={celebrationType}
+        score={celebrationData?.score}
+        nextSessionDay={celebrationData?.nextSessionDay}
+        nextSessionTitle={celebrationData?.nextSessionTitle}
+        unlockTime={celebrationData?.unlockTime}
+      />
     </>
   ) 
 }
