@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, TrendingUp, Award, CheckCircle } from 'lucide-react'
+import { UserNavbar } from '@/components/user/UserNavbar'
 
 interface ResultsData {
   preScore: number
@@ -159,8 +160,30 @@ export default function ResultsPage() {
 
   const achievement = getAchievementLevel()
 
+  // Get profile for navbar
+  const [profile, setProfile] = useState<{ mother: { name: string } } | null>(null)
+
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const response = await fetch('/api/profile/get')
+        if (response.ok) {
+          const data = await response.json()
+          setProfile(data)
+        }
+      } catch (err) {
+        console.error('Failed to fetch profile:', err)
+      }
+    }
+    fetchProfile()
+  }, [])
+
   return (
-    <div className="min-h-screen bg-[#F4F7F5] px-4 sm:px-6 lg:px-8 py-10 relative overflow-hidden">
+    <>
+      {/* Navbar */}
+      {profile && <UserNavbar userName={profile.mother.name} />}
+      
+      <div className="min-h-screen bg-[#F4F7F5] px-4 sm:px-6 lg:px-8 py-10 pt-24 sm:pt-28 relative overflow-hidden">
       {/* Celebration Animations */}
       <AnimatePresence>
         {showCelebration && improvement >= 0 && (
@@ -377,5 +400,6 @@ export default function ResultsPage() {
         </motion.div>
       </div>
     </div>
+    </>
   )
 }

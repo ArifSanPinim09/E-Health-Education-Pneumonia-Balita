@@ -97,7 +97,7 @@ export default function GeminiChatBot() {
   return (
     <>
       {/* Floating Button */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end gap-3">
         
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -109,7 +109,7 @@ export default function GeminiChatBot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-28 right-6 z-50 w-96 h-[600px] bg-white rounded-lg shadow-sm flex flex-col overflow-hidden border border-[#2F5D50]/20">
+        <div className="fixed bottom-4 left-4 right-4 sm:bottom-28 sm:left-auto sm:right-6 z-50 w-auto sm:w-96 h-[calc(100vh-2rem)] sm:h-[600px] bg-white rounded-lg shadow-sm flex flex-col overflow-hidden border border-[#2F5D50]/20">
           {/* Header */}
           <div className="bg-[#2F5D50] p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">

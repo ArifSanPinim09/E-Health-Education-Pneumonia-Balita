@@ -7,7 +7,7 @@ import { OverviewCards } from '@/components/dashboard/OverviewCards'
 import { ProgressCard } from '@/components/dashboard/ProgressOverviewCard'
 import { ContinueLearningCard } from '@/components/dashboard/ContinueLearningCard'
 import { TipsCard, InfoCard, DetailedStatsCard } from '@/components/dashboard/SidebarCard'
-import { UserMenu } from '@/components/dashboard/UserMenu'
+import { UserNavbar } from '@/components/user/UserNavbar'
 import GeminiChatBot from '@/components/chat/GeminiChatBot'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -90,18 +90,6 @@ export default function DashboardPage() {
     fetchData()
   }, [router])
 
-  const handleSessionUnlock = async () => {
-    try {
-      const progressRes = await fetch('/api/progress/get')
-      if (progressRes.ok) {
-        const progressData = await progressRes.json()
-        setProgress(progressData.data)
-      }
-    } catch (err) {
-      console.error('Failed to refresh progress:', err)
-    }
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F4F7F5]">
@@ -163,233 +151,234 @@ export default function DashboardPage() {
     if (progress.post_test_completed) return 'Selesai'
     return '-'
   }
+  
   return (
-    <div className="min-h-screen bg-[#F4F7F5]">
-      {/* Container with max-width */}
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        
-        {/* Top Bar with User Menu */}
-        <div className="flex items-center justify-end mb-4 sm:mb-6">
-          <UserMenu userName={profile.mother.name} />
-        </div>
-        
-        {/* Greeting */}
-        <GreetingCard 
-          userName={profile.mother.name} 
-          currentDay={progress.pre_test_completed ? completedSessions + 1 : 0}
-        />
-
-        {/* Overview Cards */}
-        <OverviewCards
-          progressPercentage={progress.overall_percentage}
-          currentSession={getCurrentSessionName()}
-          completedCount={progress.completed_activities}
-          totalCount={progress.total_activities}
-        />
-
-        {/* Main Grid Layout: 2fr 1fr */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+    <>
+      {/* Navbar */}
+      <UserNavbar userName={profile.mother.name} />
+      
+      <div className="min-h-screen bg-[#F4F7F5] pt-16 sm:pt-20">
+        {/* Container with max-width */}
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
           
-          {/* Main Content - 2 columns */}
-          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          {/* Greeting */}
+          <GreetingCard 
+            userName={profile.mother.name} 
+            currentDay={progress.pre_test_completed ? completedSessions + 1 : 0}
+          />
+
+          {/* Overview Cards */}
+          <OverviewCards
+            progressPercentage={progress.overall_percentage}
+            currentSession={getCurrentSessionName()}
+            completedCount={progress.completed_activities}
+            totalCount={progress.total_activities}
+          />
+
+          {/* Main Grid Layout: 2fr 1fr */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             
-            {/* Progress Card */}
-            <ProgressCard
-              percentage={progress.overall_percentage}
-              items={[
-                { 
-                  label: 'Pre Test', 
-                  completed: progress.pre_test_completed,
-                  current: !progress.pre_test_completed
-                },
-                { 
-                  label: 'Session 1', 
-                  completed: progress.sessions[0]?.completed || false,
-                  current: progress.pre_test_completed && !progress.sessions[0]?.completed && progress.sessions[0]?.is_unlocked
-                },
-                { 
-                  label: 'Session 2', 
-                  completed: progress.sessions[1]?.completed || false,
-                  current: progress.sessions[0]?.completed && !progress.sessions[1]?.completed && progress.sessions[1]?.is_unlocked
-                },
-                { 
-                  label: 'Session 3', 
-                  completed: progress.sessions[2]?.completed || false,
-                  current: progress.sessions[1]?.completed && !progress.sessions[2]?.completed && progress.sessions[2]?.is_unlocked
-                },
-                { 
-                  label: 'Session 4', 
-                  completed: progress.sessions[3]?.completed || false,
-                  current: progress.sessions[2]?.completed && !progress.sessions[3]?.completed && progress.sessions[3]?.is_unlocked
-                },
-                { 
-                  label: 'Session 5', 
-                  completed: progress.sessions[4]?.completed || false,
-                  current: progress.sessions[3]?.completed && !progress.sessions[4]?.completed && progress.sessions[4]?.is_unlocked
-                },
-                { 
-                  label: 'Post Test', 
-                  completed: progress.post_test_completed,
-                  current: allSessionsCompleted && !progress.post_test_completed
-                }
-              ]}
-            />
-
-            {/* Continue Learning / Next Action */}
-            {!progress.pre_test_completed ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.5 }}
-                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
-              >
-                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
-                  Mulai Program
-                </h2>
-                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
-                  Ukur pengetahuan awal Anda tentang pneumonia balita sebelum memulai pembelajaran
-                </p>
-                <Link href="/pre-test">
-                  <button className="w-full bg-[#2F5D50] text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-medium hover:bg-[#274E43] transition-all">
-                    Mulai Pre-Test
-                  </button>
-                </Link>
-              </motion.div>
-            ) : nextSession ? (
-              <ContinueLearningCard
-                sessionNumber={nextSession.day}
-                sessionTitle={SESSION_TITLES[nextSession.day - 1]}
-                href={`/session/${nextSession.day}`}
+            {/* Main Content - 2 columns */}
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+              
+              {/* Progress Card */}
+              <ProgressCard
+                percentage={progress.overall_percentage}
+                items={[
+                  { 
+                    label: 'Pre Test', 
+                    completed: progress.pre_test_completed,
+                    current: !progress.pre_test_completed
+                  },
+                  { 
+                    label: 'Session 1', 
+                    completed: progress.sessions[0]?.completed || false,
+                    current: progress.pre_test_completed && !progress.sessions[0]?.completed && progress.sessions[0]?.is_unlocked
+                  },
+                  { 
+                    label: 'Session 2', 
+                    completed: progress.sessions[1]?.completed || false,
+                    current: progress.sessions[0]?.completed && !progress.sessions[1]?.completed && progress.sessions[1]?.is_unlocked
+                  },
+                  { 
+                    label: 'Session 3', 
+                    completed: progress.sessions[2]?.completed || false,
+                    current: progress.sessions[1]?.completed && !progress.sessions[2]?.completed && progress.sessions[2]?.is_unlocked
+                  },
+                  { 
+                    label: 'Session 4', 
+                    completed: progress.sessions[3]?.completed || false,
+                    current: progress.sessions[2]?.completed && !progress.sessions[3]?.completed && progress.sessions[3]?.is_unlocked
+                  },
+                  { 
+                    label: 'Session 5', 
+                    completed: progress.sessions[4]?.completed || false,
+                    current: progress.sessions[3]?.completed && !progress.sessions[4]?.completed && progress.sessions[4]?.is_unlocked
+                  },
+                  { 
+                    label: 'Post Test', 
+                    completed: progress.post_test_completed,
+                    current: allSessionsCompleted && !progress.post_test_completed
+                  }
+                ]}
               />
-            ) : allSessionsCompleted && !progress.post_test_completed ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.5 }}
-                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
-              >
-                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
-                  Saatnya Evaluasi
-                </h2>
-                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
-                  Ukur peningkatan pemahaman Anda setelah menyelesaikan semua sesi pembelajaran
-                </p>
-                <Link href="/post-test">
-                  <button className="w-full bg-[#2F5D50] text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-medium hover:bg-[#274E43] transition-all">
-                    Mulai Post-Test
-                  </button>
-                </Link>
-              </motion.div>
-            ) : progress.post_test_completed ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.5 }}
-                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
-              >
-                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
-                  Program Selesai
-                </h2>
-                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-4 sm:mb-6 leading-relaxed">
-                  Selamat! Anda telah menyelesaikan seluruh program pembelajaran pneumonia balita.
-                </p>
-                
-                {/* Score Comparison */}
-                <div className="flex items-center justify-center gap-4 sm:gap-8 mb-4 sm:mb-6 p-3 sm:p-4 bg-[#F4F7F5] rounded-lg">
-                  <div className="text-center">
-                    <div className="text-xs text-[#1F2933]/60 mb-1">Pre-Test</div>
-                    <div className="text-2xl sm:text-3xl font-semibold text-[#1F2933]">{progress.pre_test_score || 0}</div>
-                  </div>
-                  <div className="text-xl sm:text-2xl text-[#1F2933]/40">→</div>
-                  <div className="text-center">
-                    <div className="text-xs text-[#1F2933]/60 mb-1">Post-Test</div>
-                    <div className="text-2xl sm:text-3xl font-semibold text-[#2F5D50]">{progress.post_test_score || 0}</div>
-                  </div>
-                </div>
 
-                <Link href="/results">
-                  <button className="w-full py-2.5 sm:py-3 px-4 border-2 border-[#2F5D50] text-[#2F5D50] rounded-lg text-sm font-medium hover:bg-[#2F5D50] hover:text-white transition-all">
-                    Lihat Hasil Lengkap
-                  </button>
-                </Link>
-              </motion.div>
-            ) : null}
+              {/* Continue Learning / Next Action */}
+              {!progress.pre_test_completed ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                  className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
+                >
+                  <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
+                    Mulai Program
+                  </h2>
+                  <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
+                    Ukur pengetahuan awal Anda tentang pneumonia balita sebelum memulai pembelajaran
+                  </p>
+                  <Link href="/pre-test">
+                    <button className="w-full bg-[#2F5D50] text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-medium hover:bg-[#274E43] transition-all">
+                      Mulai Pre-Test
+                    </button>
+                  </Link>
+                </motion.div>
+              ) : nextSession ? (
+                <ContinueLearningCard
+                  sessionNumber={nextSession.day}
+                  sessionTitle={SESSION_TITLES[nextSession.day - 1]}
+                  href={`/session/${nextSession.day}`}
+                />
+              ) : allSessionsCompleted && !progress.post_test_completed ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                  className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
+                >
+                  <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
+                    Saatnya Evaluasi
+                  </h2>
+                  <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
+                    Ukur peningkatan pemahaman Anda setelah menyelesaikan semua sesi pembelajaran
+                  </p>
+                  <Link href="/post-test">
+                    <button className="w-full bg-[#2F5D50] text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-medium hover:bg-[#274E43] transition-all">
+                      Mulai Post-Test
+                    </button>
+                  </Link>
+                </motion.div>
+              ) : progress.post_test_completed ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                  className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
+                >
+                  <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
+                    Program Selesai
+                  </h2>
+                  <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-4 sm:mb-6 leading-relaxed">
+                    Selamat! Anda telah menyelesaikan seluruh program pembelajaran pneumonia balita.
+                  </p>
+                  
+                  {/* Score Comparison */}
+                  <div className="flex items-center justify-center gap-4 sm:gap-8 mb-4 sm:mb-6 p-3 sm:p-4 bg-[#F4F7F5] rounded-lg">
+                    <div className="text-center">
+                      <div className="text-xs text-[#1F2933]/60 mb-1">Pre-Test</div>
+                      <div className="text-2xl sm:text-3xl font-semibold text-[#1F2933]">{progress.pre_test_score || 0}</div>
+                    </div>
+                    <div className="text-xl sm:text-2xl text-[#1F2933]/40">→</div>
+                    <div className="text-center">
+                      <div className="text-xs text-[#1F2933]/60 mb-1">Post-Test</div>
+                      <div className="text-2xl sm:text-3xl font-semibold text-[#2F5D50]">{progress.post_test_score || 0}</div>
+                    </div>
+                  </div>
 
-            {/* Completed Sessions - Can be accessed again */}
-            {progress.pre_test_completed && progress.sessions.some(s => s.completed) && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.6 }}
-                className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
-              >
-                <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
-                  Sesi yang Telah Dipelajari
-                </h2>
-                <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
-                  Anda dapat mengakses kembali materi yang sudah dipelajari kapan saja
-                </p>
-                <div className="space-y-2">
-                  {progress.sessions.map((session, index) => 
-                    session.completed ? (
-                      <motion.div
-                        key={session.day}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
-                        className="flex items-center justify-between py-2"
-                      >
-                        <div className="flex items-center gap-2 sm:gap-3">
-                          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-xs sm:text-sm font-semibold text-[#2F5D50]">
-                              {session.day}
+                  <Link href="/results">
+                    <button className="w-full py-2.5 sm:py-3 px-4 border-2 border-[#2F5D50] text-[#2F5D50] rounded-lg text-sm font-medium hover:bg-[#2F5D50] hover:text-white transition-all">
+                      Lihat Hasil Lengkap
+                    </button>
+                  </Link>
+                </motion.div>
+              ) : null}
+
+              {/* Completed Sessions - Can be accessed again */}
+              {progress.pre_test_completed && progress.sessions.some(s => s.completed) && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                  className="bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10"
+                >
+                  <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2 sm:mb-3">
+                    Sesi yang Telah Dipelajari
+                  </h2>
+                  <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-3 sm:mb-4 leading-relaxed">
+                    Anda dapat mengakses kembali materi yang sudah dipelajari kapan saja
+                  </p>
+                  <div className="space-y-2">
+                    {progress.sessions.map((session, index) => 
+                      session.completed ? (
+                        <motion.div
+                          key={session.day}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
+                          className="flex items-center justify-between py-2"
+                        >
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                              <span className="text-xs sm:text-sm font-semibold text-[#2F5D50]">
+                                {session.day}
+                              </span>
+                            </div>
+                            <div>
+                              <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
+                                {SESSION_TITLES[session.day - 1]}
+                              </p>
+                            </div>
+                          </div>
+                          <Link href={`/session/${session.day}`}>
+                            <span className="text-xs sm:text-sm font-medium text-[#2F5D50] hover:text-[#274E43] hover:underline cursor-pointer transition-all whitespace-nowrap">
+                              Pelajari Lagi
                             </span>
-                          </div>
-                          <div>
-                            <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
-                              {SESSION_TITLES[session.day - 1]}
-                            </p>
-                          </div>
-                        </div>
-                        <Link href={`/session/${session.day}`}>
-                          <span className="text-xs sm:text-sm font-medium text-[#2F5D50] hover:text-[#274E43] hover:underline cursor-pointer transition-all whitespace-nowrap">
-                            Pelajari Lagi
-                          </span>
-                        </Link>
-                      </motion.div>
-                    ) : null
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </div>
+                          </Link>
+                        </motion.div>
+                      ) : null
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </div>
 
-          {/* Sidebar - 1 column */}
-          <div className="space-y-4 sm:space-y-6">
-            {/* Detailed Stats */}
-            <DetailedStatsCard
-              preTestScore={progress.pre_test_score}
-              postTestScore={progress.post_test_score}
-              completedSessions={completedSessions}
-              totalSessions={5}
-              preTestCompleted={progress.pre_test_completed}
-              postTestCompleted={progress.post_test_completed}
-            />
+            {/* Sidebar - 1 column */}
+            <div className="space-y-4 sm:space-y-6">
+              {/* Detailed Stats */}
+              <DetailedStatsCard
+                preTestScore={progress.pre_test_score}
+                postTestScore={progress.post_test_score}
+                completedSessions={completedSessions}
+                totalSessions={5}
+                preTestCompleted={progress.pre_test_completed}
+                postTestCompleted={progress.post_test_completed}
+              />
 
-            {/* Tips */}
-            <TipsCard tip={getTipsMessage()} />
+              {/* Tips */}
+              <TipsCard tip={getTipsMessage()} />
 
-            {/* Info */}
-            <InfoCard
-              title="Tahukah Anda?"
-              content="Pneumonia merupakan salah satu penyebab kematian terbesar pada balita yang sebenarnya dapat dicegah dengan edukasi dan penanganan tepat."
-            />
+              {/* Info */}
+              <InfoCard
+                title="Tahukah Anda?"
+                content="Pneumonia merupakan salah satu penyebab kematian terbesar pada balita yang sebenarnya dapat dicegah dengan edukasi dan penanganan tepat."
+              />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Gemini Chatbot - Fixed Bottom Right */}
       <GeminiChatBot />
-    </div>
+    </>
   ) 
 }

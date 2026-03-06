@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { ArrowLeft, User, Baby, MapPin, Phone, Briefcase, Calendar, Heart, LogOut } from 'lucide-react'
 import Link from 'next/link'
+import { UserNavbar } from '@/components/user/UserNavbar'
 
 interface ProfileData {
   mother: {
@@ -134,8 +135,12 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F4F7F5]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <>
+      {/* Navbar */}
+      <UserNavbar userName={profile.mother.name} />
+      
+      <div className="min-h-screen bg-[#F4F7F5] pt-16 sm:pt-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -332,7 +337,8 @@ export default function ProfilePage() {
             )}
           </button>
         </motion.div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
