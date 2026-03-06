@@ -112,7 +112,7 @@ export default function GeminiChatBot() {
   return (
     <>
       {/* Floating Button */}
-      <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end gap-3">
+      <div id="chatbot" className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end gap-3">
         
         <button
           onClick={() => setIsOpen(!isOpen)}

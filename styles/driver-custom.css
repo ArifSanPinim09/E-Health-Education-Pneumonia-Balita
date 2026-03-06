@@ -1,0 +1,104 @@
+/* Custom styling untuk Driver.js agar sesuai dengan tema aplikasi */
+
+.driver-popover {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(47, 93, 80, 0.15);
+  border: 1px solid rgba(47, 93, 80, 0.1);
+  max-width: 360px;
+}
+
+.driver-popover-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F2933;
+  margin-bottom: 8px;
+}
+
+.driver-popover-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(31, 41, 51, 0.8);
+}
+
+.driver-popover-progress-text {
+  font-size: 12px;
+  color: rgba(31, 41, 51, 0.6);
+  font-weight: 500;
+}
+
+.driver-popover-navigation-btns {
+  gap: 8px;
+}
+
+.driver-popover-next-btn,
+.driver-popover-prev-btn,
+.driver-popover-close-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.driver-popover-next-btn {
+  background: #2F5D50;
+  color: white;
+}
+
+.driver-popover-next-btn:hover {
+  background: #274E43;
+  transform: translateY(-1px);
+}
+
+.driver-popover-prev-btn {
+  background: rgba(47, 93, 80, 0.1);
+  color: #2F5D50;
+}
+
+.driver-popover-prev-btn:hover {
+  background: rgba(47, 93, 80, 0.15);
+}
+
+.driver-popover-close-btn {
+  background: transparent;
+  color: rgba(31, 41, 51, 0.6);
+  padding: 8px;
+}
+
+.driver-popover-close-btn:hover {
+  color: #1F2933;
+}
+
+/* Highlight overlay */
+.driver-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Active element highlight */
+.driver-active-element {
+  border-radius: 8px;
+}
+
+/* Arrow styling */
+.driver-popover-arrow {
+  border-color: white;
+}
+
+.driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: white;
+}
+
+.driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: white;
+}
+
+.driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: white;
+}
+
+.driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: white;
+}

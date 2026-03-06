@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, User, LogOut } from 'lucide-react'
+import { Menu, X, User, LogOut, HelpCircle } from 'lucide-react'
 import Link from 'next/link'
 import { UserMenu } from '@/components/dashboard/UserMenu'
+import { startUserGuide } from '@/lib/userGuide'
 
 interface UserNavbarProps {
   userName: string
@@ -84,6 +85,14 @@ export function UserNavbar({ userName }: UserNavbarProps) {
               Hasil
             </Link>
             
+            <button
+              onClick={() => startUserGuide()}
+              className="flex items-center gap-2 text-sm font-medium text-[#1F2933]/70 hover:text-[#2F5D50] transition-colors"
+            >
+              <HelpCircle className="w-4 h-4" />
+              Panduan
+            </button>
+            
             <UserMenu userName={userName} />
           </div>
 
@@ -144,6 +153,18 @@ export function UserNavbar({ userName }: UserNavbarProps) {
 
               {/* Divider */}
               <div className="border-t border-[#2F5D50]/10 my-2"></div>
+
+              {/* Guide Button */}
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  startUserGuide()
+                }}
+                className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[#1F2933] hover:bg-[#F4F7F5] rounded-lg transition-colors"
+              >
+                <HelpCircle className="w-4 h-4 text-[#2F5D50]" />
+                <span>Lihat Panduan</span>
+              </button>
 
               {/* Profile Link */}
               <Link

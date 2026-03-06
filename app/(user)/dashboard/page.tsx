@@ -11,6 +11,8 @@ import { UserNavbar } from '@/components/user/UserNavbar'
 import GeminiChatBot from '@/components/chat/GeminiChatBot'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { startUserGuide, shouldShowGuide } from '@/lib/userGuide'
+import '@/styles/driver-custom.css'
 
 interface SessionStatus {
   day: number
@@ -90,6 +92,17 @@ export default function DashboardPage() {
     fetchData()
   }, [router])
 
+  // Trigger user guide untuk first-time user
+  useEffect(() => {
+    if (!loading && profile && progress && shouldShowGuide()) {
+      // Delay sedikit agar UI sudah ter-render sempurna
+      const timer = setTimeout(() => {
+        startUserGuide()
+      }, 800)
+      return () => clearTimeout(timer)
+    }
+  }, [loading, profile, progress])
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F4F7F5]">
@@ -162,18 +175,22 @@ export default function DashboardPage() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
           
           {/* Greeting */}
-          <GreetingCard 
-            userName={profile.mother.name} 
-            currentDay={progress.pre_test_completed ? completedSessions + 1 : 0}
-          />
+          <div id="greeting-card">
+            <GreetingCard 
+              userName={profile.mother.name} 
+              currentDay={progress.pre_test_completed ? completedSessions + 1 : 0}
+            />
+          </div>
 
           {/* Overview Cards */}
-          <OverviewCards
-            progressPercentage={progress.overall_percentage}
-            currentSession={getCurrentSessionName()}
-            completedCount={progress.completed_activities}
-            totalCount={progress.total_activities}
-          />
+          <div id="overview-cards">
+            <OverviewCards
+              progressPercentage={progress.overall_percentage}
+              currentSession={getCurrentSessionName()}
+              completedCount={progress.completed_activities}
+              totalCount={progress.total_activities}
+            />
+          </div>
 
           {/* Main Grid Layout: 2fr 1fr */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
@@ -182,60 +199,66 @@ export default function DashboardPage() {
             <div className="lg:col-span-2 space-y-4 sm:space-y-6">
               
               {/* Progress Card */}
-              <ProgressCard
-                percentage={progress.overall_percentage}
-                items={[
-                  { 
-                    label: 'Pre Test', 
-                    completed: progress.pre_test_completed,
-                    current: !progress.pre_test_completed
-                  },
-                  { 
-                    label: 'Session 1', 
-                    completed: progress.sessions[0]?.completed || false,
-                    current: progress.pre_test_completed && !progress.sessions[0]?.completed && progress.sessions[0]?.is_unlocked,
-                    locked: !progress.sessions[0]?.is_unlocked,
-                    unlockTime: progress.sessions[0]?.unlocked_at
-                  },
-                  { 
-                    label: 'Session 2', 
-                    completed: progress.sessions[1]?.completed || false,
-                    current: progress.sessions[0]?.completed && !progress.sessions[1]?.completed && progress.sessions[1]?.is_unlocked,
-                    locked: !progress.sessions[1]?.is_unlocked,
-                    unlockTime: progress.sessions[1]?.unlocked_at
-                  },
-                  { 
-                    label: 'Session 3', 
-                    completed: progress.sessions[2]?.completed || false,
-                    current: progress.sessions[1]?.completed && !progress.sessions[2]?.completed && progress.sessions[2]?.is_unlocked,
-                    locked: !progress.sessions[2]?.is_unlocked,
-                    unlockTime: progress.sessions[2]?.unlocked_at
-                  },
-                  { 
-                    label: 'Session 4', 
-                    completed: progress.sessions[3]?.completed || false,
-                    current: progress.sessions[2]?.completed && !progress.sessions[3]?.completed && progress.sessions[3]?.is_unlocked,
-                    locked: !progress.sessions[3]?.is_unlocked,
-                    unlockTime: progress.sessions[3]?.unlocked_at
-                  },
-                  { 
-                    label: 'Session 5', 
-                    completed: progress.sessions[4]?.completed || false,
-                    current: progress.sessions[3]?.completed && !progress.sessions[4]?.completed && progress.sessions[4]?.is_unlocked,
-                    locked: !progress.sessions[4]?.is_unlocked,
-                    unlockTime: progress.sessions[4]?.unlocked_at
-                  },
-                  { 
-                    label: 'Post Test', 
-                    completed: progress.post_test_completed,
-                    current: allSessionsCompleted && !progress.post_test_completed
-                  }
-                ]}
-              />
+              <div id="progress-card">
+                <ProgressCard
+                  percentage={progress.overall_percentage}
+                  items={[
+                    { 
+                      label: 'Pre Test', 
+                      completed: progress.pre_test_completed,
+                      current: !progress.pre_test_completed
+                    },
+                    { 
+                      label: 'Session 1', 
+                      completed: progress.sessions[0]?.completed || false,
+                      current: progress.pre_test_completed && !progress.sessions[0]?.completed && progress.sessions[0]?.is_unlocked,
+                      locked: !progress.sessions[0]?.is_unlocked,
+                      unlockTime: progress.sessions[0]?.unlocked_at
+                    },
+                    { 
+                      label: 'Session 2', 
+                      completed: progress.sessions[1]?.completed || false,
+                      current: progress.sessions[0]?.completed && !progress.sessions[1]?.completed && progress.sessions[1]?.is_unlocked,
+                      locked: !progress.sessions[1]?.is_unlocked,
+                      unlockTime: progress.sessions[1]?.unlocked_at
+                    },
+                    { 
+                      label: 'Session 3', 
+                      completed: progress.sessions[2]?.completed || false,
+                      current: progress.sessions[1]?.completed && !progress.sessions[2]?.completed && progress.sessions[2]?.is_unlocked,
+                      locked: !progress.sessions[2]?.is_unlocked,
+                      unlockTime: progress.sessions[2]?.unlocked_at
+                    },
+                    { 
+                      label: 'Session 4', 
+                      completed: progress.sessions[3]?.completed || false,
+                      current: progress.sessions[2]?.completed && !progress.sessions[3]?.completed && progress.sessions[3]?.is_unlocked,
+                      locked: !progress.sessions[3]?.is_unlocked,
+                      unlockTime: progress.sessions[3]?.unlocked_at
+                    },
+                    { 
+                      label: 'Session 5', 
+                      completed: progress.sessions[4]?.completed || false,
+                      current: progress.sessions[3]?.completed && !progress.sessions[4]?.completed && progress.sessions[4]?.is_unlocked,
+                      locked: !progress.sessions[4]?.is_unlocked,
+                      unlockTime: progress.sessions[4]?.unlocked_at
+                    },
+                    { 
+                      label: 'Post Test', 
+                      completed: progress.post_test_completed,
+                      current: allSessionsCompleted && !progress.post_test_completed
+                    }
+                  ]}
+                />
+              </div>
+              
+              {/* Session unlock indicator untuk guide */}
+              <div id="session-unlock" className="hidden"></div>
 
               {/* Continue Learning / Next Action */}
               {!progress.pre_test_completed ? (
                 <motion.div
+                  id="pretest-button"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.5 }}
