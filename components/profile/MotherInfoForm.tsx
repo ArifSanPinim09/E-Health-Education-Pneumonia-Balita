@@ -58,7 +58,7 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
           type="text"
           {...register('mother.name')}
           placeholder="Masukkan nama lengkap"
-          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+          className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
         />
         {errors.mother?.name && (
           <p className="text-sm text-[#E07A5F] font-medium">
@@ -79,7 +79,7 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
             inputMode="numeric"
             {...register('mother.age', { valueAsNumber: true })}
             placeholder="Contoh: 30"
-            className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+            className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
           />
           {errors.mother?.age && (
             <p className="text-sm text-[#E07A5F] font-medium">
@@ -95,7 +95,7 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
           <select
             id="mother-religion"
             {...register('mother.religion')}
-            className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+            className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
           >
             <option value="">Pilih agama</option>
             {RELIGIONS.map((religion) => (
@@ -120,7 +120,7 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
         <select
           id="mother-occupation"
           {...register('mother.occupation')}
-          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+          className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
         >
           <option value="">Pilih pekerjaan</option>
           {OCCUPATIONS.map((occupation) => (
@@ -146,7 +146,7 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
           type="text"
           {...register('mother.address')}
           placeholder="Masukkan alamat lengkap"
-          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+          className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
         />
         {errors.mother?.address && (
           <p className="text-sm text-[#E07A5F] font-medium">
@@ -166,7 +166,7 @@ export function MotherInfoForm({ form }: MotherInfoFormProps) {
           inputMode="tel"
           {...register('mother.phone')}
           placeholder="Contoh: 081234567890"
-          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+          className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
         />
         {errors.mother?.phone && (
           <p className="text-sm text-[#E07A5F] font-medium">

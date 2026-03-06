@@ -34,7 +34,7 @@ export function ChildInfoForm({ form }: ChildInfoFormProps) {
           type="text"
           {...register('child.name')}
           placeholder="Masukkan nama lengkap anak"
-          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+          className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] placeholder:text-[#1F2933]/40 focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
         />
         {errors.child?.name && (
           <p className="text-sm text-[#E07A5F] font-medium">
@@ -53,7 +53,7 @@ export function ChildInfoForm({ form }: ChildInfoFormProps) {
           type="date"
           {...register('child.birth_date')}
           max={new Date().toISOString().split('T')[0]}
-          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+          className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
         />
         {errors.child?.birth_date && (
           <p className="text-sm text-[#E07A5F] font-medium">
@@ -70,7 +70,7 @@ export function ChildInfoForm({ form }: ChildInfoFormProps) {
         <select
           id="child-gender"
           {...register('child.gender')}
-          className="w-full h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
+          className="w-full h-11 sm:h-12 px-4 rounded-lg border border-[#2F5D50]/20 bg-white text-[#1F2933] focus:outline-none focus:ring-2 focus:ring-[#2F5D50]/30 focus:border-[#2F5D50] transition-all text-base"
         >
           <option value="">Pilih jenis kelamin</option>
           <option value="male">Laki-laki</option>

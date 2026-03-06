@@ -93,22 +93,22 @@ export default function ProfileSetupPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#F4F7F5] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="min-h-screen bg-[#F4F7F5] px-4 sm:px-6 lg:px-8 py-10 flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-[720px]"
+        className="w-full max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl"
       >
         {/* Card */}
-        <div className="bg-white rounded-xl p-6 sm:p-10 border border-[#2F5D50]/10">
+        <div className="bg-white rounded-xl p-6 sm:p-8 lg:p-10 border border-[#2F5D50]/10 shadow-sm hover:shadow-md transition-shadow">
           {/* Header */}
           <div className="mb-6 sm:mb-8">
             <motion.h1 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="text-[30px] sm:text-4xl font-serif text-[#1F2933] mb-2"
+              className="text-2xl sm:text-3xl lg:text-4xl font-serif text-[#1F2933] mb-2"
             >
               Lengkapi Profil
             </motion.h1>
@@ -116,7 +116,7 @@ export default function ProfileSetupPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              className="text-base text-[#6B7280] leading-relaxed"
+              className="text-sm sm:text-base text-[#6B7280] leading-relaxed max-w-xl"
             >
               Isi data diri Anda dan anak untuk melanjutkan pembelajaran
             </motion.p>
@@ -174,13 +174,13 @@ export default function ProfileSetupPage() {
             </AnimatePresence>
 
             {/* Navigation Buttons */}
-            <div className="mt-6 sm:mt-8 flex gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
               {currentStep === 2 && (
                 <button
                   type="button"
                   onClick={handleBack}
                   disabled={isSubmitting}
-                  className="flex-1 h-12 inline-flex items-center justify-center px-6 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-[#F4F7F5] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
+                  className="flex-1 h-11 sm:h-12 inline-flex items-center justify-center px-6 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-[#F4F7F5] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
                 >
                   <ChevronLeft className="w-5 h-5 mr-2" strokeWidth={2} />
                   Kembali
@@ -191,7 +191,7 @@ export default function ProfileSetupPage() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="flex-1 h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 text-base"
+                  className="flex-1 h-11 sm:h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 text-base"
                 >
                   Lanjutkan
                   <ChevronRight className="w-5 h-5 ml-2" strokeWidth={2} />
@@ -200,7 +200,7 @@ export default function ProfileSetupPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
+                  className="flex-1 h-11 sm:h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-base"
                 >
                   {isSubmitting ? (
                     <>
