@@ -6,7 +6,8 @@ import { GreetingCard } from '@/components/dashboard/GreetingCard'
 import { OverviewCards } from '@/components/dashboard/OverviewCards'
 import { ProgressCard } from '@/components/dashboard/ProgressOverviewCard'
 import { ContinueLearningCard } from '@/components/dashboard/ContinueLearningCard'
-import { ChildProfileCard, TipsCard, InfoCard } from '@/components/dashboard/SidebarCard'
+import { TipsCard, InfoCard, DetailedStatsCard } from '@/components/dashboard/SidebarCard'
+import GeminiChatBot from '@/components/chat/GeminiChatBot'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ProgressRing } from '@/components/dashboard/ProgressRing'
@@ -299,10 +300,14 @@ export default function DashboardPage() {
 
           {/* Sidebar - 1 column */}
           <div className="space-y-6">
-            {/* Child Profile */}
-            <ChildProfileCard
-              childName={profile.child?.name || 'Belum diisi'}
-              childAge={profile.child?.age ? `${profile.child.age} bulan` : 'Belum diisi'}
+            {/* Detailed Stats */}
+            <DetailedStatsCard
+              preTestScore={progress.pre_test_score}
+              postTestScore={progress.post_test_score}
+              completedSessions={completedSessions}
+              totalSessions={5}
+              preTestCompleted={progress.pre_test_completed}
+              postTestCompleted={progress.post_test_completed}
             />
 
             {/* Tips */}
@@ -316,6 +321,9 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* Gemini Chatbot - Fixed Bottom Right */}
+      <GeminiChatBot />
     </div>
   ) 
 }
