@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Send, Lightbulb, CheckCircle2 } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Send, CheckCircle, AlertCircle, Lightbulb } from 'lucide-react'
 import QuestionCard from '@/components/test/QuestionCard'
 import { Button } from '@/components/ui/button'
 import Toast from '@/components/shared/Toast'
@@ -29,14 +29,12 @@ export default function PostTestPage() {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false)
   const { toast, showSuccess, hideToast } = useToast()
 
-  // Fetch questions on mount
   useEffect(() => {
     fetchQuestions()
   }, [])
 
   const fetchQuestions = async () => {
     try {
-      // Use user-specific questions endpoint
       const response = await fetch('/api/questions')
 
       if (!response.ok) {
@@ -72,7 +70,6 @@ export default function PostTestPage() {
     newAnsweredQuestions.add(currentQuestionIndex)
     setAnsweredQuestions(newAnsweredQuestions)
 
-    // Auto-advance to next question after a short delay
     if (currentQuestionIndex < questions.length - 1) {
       setTimeout(() => {
         setCurrentQuestionIndex(currentQuestionIndex + 1)
@@ -97,13 +94,10 @@ export default function PostTestPage() {
   }
 
   const handleSubmit = async () => {
-    // Check if all questions are answered
     if (answeredQuestions.size < questions.length) {
       setError('Mohon jawab semua pertanyaan sebelum mengirim')
       return
     }
-
-    // Show confirmation dialog
     setShowConfirmDialog(true)
   }
 
@@ -113,7 +107,6 @@ export default function PostTestPage() {
     setError(null)
 
     try {
-      // No need to check token - middleware handles auth
       const response = await fetch('/api/test/submit-post', {
         method: 'POST',
         headers: {
@@ -132,14 +125,12 @@ export default function PostTestPage() {
         throw new Error(data.error || 'Gagal mengirim jawaban')
       }
 
-      // Show success message
       showSuccess(
         `${SUCCESS_MESSAGES.POST_TEST_COMPLETED} Skor Anda: ${data.score}/23`,
-        '🎉 Berhasil!',
+        'Berhasil!',
         2500
       )
 
-      // Redirect to results page after showing success message
       setTimeout(() => {
         router.push('/results')
       }, 2500)
@@ -153,10 +144,10 @@ export default function PostTestPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#F4F7F5] flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Memuat pertanyaan...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-2 border-[#2F5D50] border-t-transparent mx-auto mb-4"></div>
+          <p className="text-[#1F2933]/70 font-medium">Memuat pertanyaan...</p>
         </div>
       </div>
     )
@@ -164,11 +155,20 @@ export default function PostTestPage() {
 
   if (error && questions.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 max-w-md text-center">
-          <p className="text-red-600 mb-4">{error}</p>
-          <Button onClick={fetchQuestions}>Coba Lagi</Button>
-        </div>
+      <div className="min-h-screen bg-[#F4F7F5] flex items-center justify-center p-4">
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="bg-white rounded-lg shadow-sm border border-[#2F5D50]/10 p-8 max-w-md text-center"
+        >
+          <div className="w-16 h-16 bg-[#E07A5F]/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-8 h-8 text-[#E07A5F]" />
+          </div>
+          <p className="text-[#E07A5F] mb-6 font-medium">{error}</p>
+          <Button onClick={fetchQuestions} className="bg-[#2F5D50] hover:bg-[#274E43]">
+            Coba Lagi
+          </Button>
+        </motion.div>
       </div>
     )
   }
@@ -176,7 +176,7 @@ export default function PostTestPage() {
   const currentQuestion = questions[currentQuestionIndex]
 
   return (
-    <div className="min-h-screen bg-gray-50 py-4 px-4 sm:py-6">
+    <div className="min-h-screen bg-[#F4F7F5] px-4 sm:px-6 lg:px-8 py-10">
       <div className="max-w-3xl mx-auto">
         {/* Confirmation Dialog */}
         <AnimatePresence>
@@ -189,72 +189,94 @@ export default function PostTestPage() {
               onClick={() => setShowConfirmDialog(false)}
             >
               <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
+                initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ duration: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full"
+                className="bg-white rounded-lg shadow-sm border border-[#2F5D50]/10 p-8 max-w-md w-full"
               >
-                <div className="flex justify-center mb-4">
-                  <div className="bg-green-50 rounded-full p-4">
-                    <CheckCircle2 className="w-12 h-12 text-green-600" />
+                <div className="flex justify-center mb-6">
+                  <div className="bg-[#2F5D50]/10 rounded-lg p-4">
+                    <CheckCircle className="w-12 h-12 text-[#2F5D50]" strokeWidth={2} />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">
+                <h3 className="text-2xl font-serif text-[#1F2933] mb-3 text-center">
                   Kirim Jawaban?
                 </h3>
-                <p className="text-gray-600 text-center mb-6 text-sm">
+                <p className="text-[#1F2933]/70 text-center mb-8 leading-relaxed">
                   Pastikan semua jawaban sudah benar. Anda tidak dapat mengubahnya setelah dikirim.
                 </p>
                 <div className="flex gap-3">
-                  <Button
+                  <button
                     onClick={() => setShowConfirmDialog(false)}
-                    variant="outline"
-                    className="flex-1"
+                    className="flex-1 h-12 inline-flex items-center justify-center px-6 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-[#F4F7F5] transition-all duration-200"
                   >
                     Batal
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     onClick={confirmSubmit}
                     disabled={submitting}
-                    className="flex-1 bg-green-600 hover:bg-green-700"
+                    className="flex-1 h-12 inline-flex items-center justify-center px-6 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50"
                   >
-                    {submitting ? 'Mengirim...' : 'Ya, Kirim'}
-                  </Button>
+                    {submitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
+                        Mengirim...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 mr-2" strokeWidth={2} />
+                        Ya, Kirim
+                      </>
+                    )}
+                  </button>
                 </div>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Main Card - Unified */}
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mb-8"
+        >
+          <h1 className="text-3xl sm:text-4xl font-serif text-[#1F2933] mb-2">
+            Post-Test Pneumonia Balita
+          </h1>
+          <p className="text-[#1F2933]/70 leading-relaxed">
+            Jawab semua pertanyaan untuk menyelesaikan pembelajaran
+          </p>
+        </motion.div>
+
+        {/* Main Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="bg-white rounded-lg shadow-sm border border-[#2F5D50]/10 overflow-hidden"
         >
-          {/* Header Section */}
-          <div className="p-4 sm:p-6 border-b border-gray-100">
-            <div className="flex items-start justify-between gap-3 mb-3">
-              <div className="flex-1">
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
-                  Post-Test Pneumonia Balita
-                </h1>
-                <p className="text-sm text-gray-600">
-                  Jawab semua pertanyaan untuk menyelesaikan pembelajaran
-                </p>
+          {/* Tips Section */}
+          <div className="p-6 border-b border-[#2F5D50]/10">
+            <button
+              onClick={() => setShowTip(!showTip)}
+              className="w-full flex items-center justify-between text-left"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center">
+                  <Lightbulb className="w-5 h-5 text-[#2F5D50]" strokeWidth={2} />
+                </div>
+                <span className="text-base font-medium text-[#1F2933]">Tips Pengerjaan</span>
               </div>
-              <button
-                onClick={() => setShowTip(!showTip)}
-                className="flex-shrink-0 w-9 h-9 bg-green-50 hover:bg-green-100 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Tips Pengerjaan"
-              >
-                <Lightbulb className="w-5 h-5 text-green-600" />
-              </button>
-            </div>
+              <ChevronRight 
+                className={`w-5 h-5 text-[#1F2933]/40 transition-transform duration-200 ${showTip ? 'rotate-90' : ''}`} 
+                strokeWidth={2}
+              />
+            </button>
 
-            {/* Tips Section - Collapsible */}
             <AnimatePresence>
               {showTip && (
                 <motion.div
@@ -264,11 +286,8 @@ export default function PostTestPage() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mt-3">
-                    <div className="text-xs font-bold text-green-600 uppercase tracking-wide mb-1">
-                      Tips Pengerjaan
-                    </div>
-                    <p className="text-sm text-gray-700 leading-relaxed">
+                  <div className="mt-4 pt-4 border-t border-[#2F5D50]/10">
+                    <p className="text-sm text-[#1F2933]/70 leading-relaxed">
                       Ini adalah pertanyaan yang sama dengan Pre-Test. Jawab dengan pengetahuan yang telah Anda pelajari selama 5 hari. Hasil Anda akan dibandingkan untuk melihat peningkatan.
                     </p>
                   </div>
@@ -278,52 +297,50 @@ export default function PostTestPage() {
           </div>
 
           {/* Progress Section */}
-          <div className="px-4 sm:px-6 py-3 bg-gray-50 border-b border-gray-100">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium text-gray-600">
-                {answeredQuestions.size} / {questions.length} Terjawab
+          <div className="px-6 py-5 bg-[#F4F7F5] border-b border-[#2F5D50]/10">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium text-[#1F2933]/70">
+                Progress
               </span>
-              <span className="text-xs font-semibold text-green-600">
-                {Math.round((answeredQuestions.size / questions.length) * 100)}%
+              <span className="text-sm font-medium text-[#2F5D50]">
+                {answeredQuestions.size} / {questions.length}
               </span>
             </div>
-            <div className="relative w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+            <div className="relative w-full bg-[#2F5D50]/10 rounded-lg h-2 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${(answeredQuestions.size / questions.length) * 100}%` }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="absolute top-0 left-0 h-full bg-green-600 rounded-full"
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="absolute top-0 left-0 h-full bg-[#2F5D50] rounded-lg"
               />
             </div>
           </div>
 
           {/* Question Navigator */}
-          <div className="px-4 sm:px-6 py-3 border-b border-gray-100">
-            <div className="flex flex-wrap gap-1.5 justify-center">
+          <div className="px-6 py-4 border-b border-[#2F5D50]/10">
+            <div className="flex flex-wrap gap-2 justify-center">
               {Array.from({ length: questions.length }, (_, i) => {
                 const isAnswered = answeredQuestions.has(i)
                 const isCurrent = i === currentQuestionIndex
 
                 return (
-                  <motion.button
+                  <button
                     key={i}
                     onClick={() => handleNavigate(i)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     className={`
-                      w-7 h-7 rounded-lg flex items-center justify-center text-xs font-semibold transition-all
+                      w-9 h-9 rounded-lg flex items-center justify-center text-sm font-medium transition-all duration-200
                       ${
                         isCurrent
-                          ? 'bg-green-600 text-white ring-2 ring-green-300'
+                          ? 'bg-[#2F5D50] text-white shadow-sm'
                           : isAnswered
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                          ? 'bg-[#2F5D50]/20 text-[#2F5D50]'
+                          : 'bg-white text-[#1F2933]/40 border border-[#2F5D50]/20 hover:border-[#2F5D50]/40'
                       }
                     `}
                     aria-label={`Pertanyaan ${i + 1}`}
                   >
                     {i + 1}
-                  </motion.button>
+                  </button>
                 )
               })}
             </div>
@@ -331,13 +348,20 @@ export default function PostTestPage() {
 
           {/* Error Message */}
           {error && (
-            <div className="px-4 sm:px-6 py-3 bg-red-50 border-b border-red-100">
-              <p className="text-sm text-red-700">{error}</p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              className="px-6 py-4 bg-[#E07A5F]/10 border-b border-[#E07A5F]/30"
+            >
+              <div className="flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-[#E07A5F] flex-shrink-0 mt-0.5" strokeWidth={2} />
+                <p className="text-sm text-[#E07A5F] font-medium leading-relaxed">{error}</p>
+              </div>
+            </motion.div>
           )}
 
           {/* Question Content */}
-          <div className="p-4 sm:p-6">
+          <div className="p-6 sm:p-8">
             <AnimatePresence mode="wait">
               {currentQuestion && (
                 <QuestionCard
@@ -353,59 +377,55 @@ export default function PostTestPage() {
           </div>
 
           {/* Navigation Footer */}
-          <div className="px-4 sm:px-6 py-4 bg-gray-50 border-t border-gray-100">
-            <div className="flex justify-between items-center gap-3">
-              <Button
+          <div className="px-6 py-5 bg-[#F4F7F5] border-t border-[#2F5D50]/10">
+            <div className="flex justify-between items-center gap-4">
+              <button
                 onClick={handlePrevious}
                 disabled={currentQuestionIndex === 0}
-                variant="outline"
-                size="sm"
-                className="text-sm"
+                className="inline-flex items-center justify-center px-6 h-12 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
               >
-                <ChevronLeft size={16} />
-                <span className="hidden sm:inline ml-1">Sebelumnya</span>
-              </Button>
+                <ChevronLeft className="w-5 h-5 mr-1" strokeWidth={2} />
+                <span className="hidden sm:inline">Sebelumnya</span>
+              </button>
 
               {currentQuestionIndex === questions.length - 1 ? (
-                <Button
+                <button
                   onClick={handleSubmit}
                   disabled={submitting || answeredQuestions.size < questions.length}
-                  size="sm"
-                  className="bg-green-600 hover:bg-green-700 text-sm"
+                  className="inline-flex items-center justify-center px-6 h-12 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-white"></div>
-                      <span className="ml-2">Mengirim...</span>
+                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
+                      Mengirim...
                     </>
                   ) : (
                     <>
-                      <Send size={16} />
-                      <span className="ml-2">Kirim Jawaban</span>
+                      <Send className="w-5 h-5 mr-2" strokeWidth={2} />
+                      Kirim Jawaban
                     </>
                   )}
-                </Button>
+                </button>
               ) : (
-                <Button
+                <button
                   onClick={handleNext}
                   disabled={currentQuestionIndex === questions.length - 1}
-                  size="sm"
-                  className="text-sm"
+                  className="inline-flex items-center justify-center px-6 h-12 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50"
                 >
                   <span className="hidden sm:inline mr-1">Selanjutnya</span>
-                  <ChevronRight size={16} />
-                </Button>
+                  <ChevronRight className="w-5 h-5" strokeWidth={2} />
+                </button>
               )}
             </div>
 
-            {/* Submit Hint */}
+            {/* Completion Hint */}
             {answeredQuestions.size === questions.length && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-3 text-center"
+                className="mt-4 text-center"
               >
-                <p className="text-xs text-green-600 font-medium">
+                <p className="text-sm text-[#2F5D50] font-medium">
                   ✓ Semua pertanyaan telah dijawab
                 </p>
               </motion.div>

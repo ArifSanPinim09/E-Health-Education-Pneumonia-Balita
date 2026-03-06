@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Send, CheckCircle, AlertCircle, Lightbulb } from 'lucide-react'
 import QuestionCard from '@/components/test/QuestionCard'
 import { Button } from '@/components/ui/button'
 import Toast from '@/components/shared/Toast'
@@ -25,6 +25,7 @@ export default function PreTestPage() {
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showTip, setShowTip] = useState(false)
   const [showConfirmDialog, setShowConfirmDialog] = useState(false)
   const { toast, showSuccess, hideToast } = useToast()
 
@@ -197,7 +198,7 @@ export default function PreTestPage() {
               >
                 <div className="flex justify-center mb-6">
                   <div className="bg-[#2F5D50]/10 rounded-lg p-4">
-                    <CheckCircle className="w-12 h-12 text-[#2F5D50]" />
+                    <CheckCircle className="w-12 h-12 text-[#2F5D50]" strokeWidth={2} />
                   </div>
                 </div>
                 <h3 className="text-2xl font-serif text-[#1F2933] mb-3 text-center">
@@ -211,7 +212,7 @@ export default function PreTestPage() {
                     onClick={() => setShowConfirmDialog(false)}
                     className="flex-1 h-12 inline-flex items-center justify-center px-6 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-[#F4F7F5] transition-all duration-200"
                   >
-                    Periksa Lagi
+                    Batal
                   </button>
                   <button
                     onClick={confirmSubmit}
@@ -225,7 +226,7 @@ export default function PreTestPage() {
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5 mr-2" />
+                        <Send className="w-5 h-5 mr-2" strokeWidth={2} />
                         Ya, Kirim
                       </>
                     )}
@@ -240,6 +241,7 @@ export default function PreTestPage() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
           className="mb-8"
         >
           <h1 className="text-3xl sm:text-4xl font-serif text-[#1F2933] mb-2">
@@ -257,6 +259,43 @@ export default function PreTestPage() {
           transition={{ duration: 0.3, delay: 0.1 }}
           className="bg-white rounded-lg shadow-sm border border-[#2F5D50]/10 overflow-hidden"
         >
+          {/* Tips Section */}
+          <div className="p-6 border-b border-[#2F5D50]/10">
+            <button
+              onClick={() => setShowTip(!showTip)}
+              className="w-full flex items-center justify-between text-left"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center">
+                  <Lightbulb className="w-5 h-5 text-[#2F5D50]" strokeWidth={2} />
+                </div>
+                <span className="text-base font-medium text-[#1F2933]">Tips Pengerjaan</span>
+              </div>
+              <ChevronRight 
+                className={`w-5 h-5 text-[#1F2933]/40 transition-transform duration-200 ${showTip ? 'rotate-90' : ''}`} 
+                strokeWidth={2}
+              />
+            </button>
+
+            <AnimatePresence>
+              {showTip && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-4 pt-4 border-t border-[#2F5D50]/10">
+                    <p className="text-sm text-[#1F2933]/70 leading-relaxed">
+                      Jawab setiap pertanyaan dengan Benar atau Salah. Gunakan tombol navigasi atau klik nomor pertanyaan untuk berpindah. Tidak ada jawaban benar atau salah - ini untuk mengukur pengetahuan awal Anda.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {/* Progress Section */}
           <div className="px-6 py-5 bg-[#F4F7F5] border-b border-[#2F5D50]/10">
             <div className="flex items-center justify-between mb-3">
@@ -315,7 +354,7 @@ export default function PreTestPage() {
               className="px-6 py-4 bg-[#E07A5F]/10 border-b border-[#E07A5F]/30"
             >
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-[#E07A5F] flex-shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-[#E07A5F] flex-shrink-0 mt-0.5" strokeWidth={2} />
                 <p className="text-sm text-[#E07A5F] font-medium leading-relaxed">{error}</p>
               </div>
             </motion.div>
@@ -345,7 +384,7 @@ export default function PreTestPage() {
                 disabled={currentQuestionIndex === 0}
                 className="inline-flex items-center justify-center px-6 h-12 text-[#2F5D50] font-medium rounded-lg border-2 border-[#2F5D50]/30 hover:border-[#2F5D50] hover:bg-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
               >
-                <ChevronLeft className="w-5 h-5 mr-1" />
+                <ChevronLeft className="w-5 h-5 mr-1" strokeWidth={2} />
                 <span className="hidden sm:inline">Sebelumnya</span>
               </button>
 
@@ -362,7 +401,7 @@ export default function PreTestPage() {
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5 mr-2" />
+                      <Send className="w-5 h-5 mr-2" strokeWidth={2} />
                       Kirim Jawaban
                     </>
                   )}
@@ -374,7 +413,7 @@ export default function PreTestPage() {
                   className="inline-flex items-center justify-center px-6 h-12 bg-[#2F5D50] text-white font-medium rounded-lg hover:bg-[#274E43] transition-all duration-200 disabled:opacity-50"
                 >
                   <span className="hidden sm:inline mr-1">Selanjutnya</span>
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-5 h-5" strokeWidth={2} />
                 </button>
               )}
             </div>
@@ -392,18 +431,6 @@ export default function PreTestPage() {
               </motion.div>
             )}
           </div>
-        </motion.div>
-
-        {/* Info Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-center mt-6"
-        >
-          <p className="text-sm text-[#1F2933]/60 leading-relaxed">
-            Tidak ada jawaban benar atau salah — ini untuk mengukur pengetahuan awal Anda
-          </p>
         </motion.div>
       </div>
 
