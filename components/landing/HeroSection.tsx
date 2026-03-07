@@ -53,7 +53,7 @@ export function HeroSection() {
         >
           <div className="relative w-full h-full rounded-lg overflow-hidden shadow-sm">
             <img
-              src="/media/images/anak-demam.png.png"
+              src="/media/images/anak-demam.webp"
               alt="Dokumentasi kesehatan anak"
               className="w-full h-full object-cover"
             />
