@@ -34,8 +34,18 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
   // Check if video is from YouTube
   const youtubeEmbedUrl = type === 'video' ? getYouTubeEmbedUrl(mediaUrl) : null;
   
-  // Use YouTube embed URL if available, otherwise use Supabase storage
-  const fullMediaUrl = youtubeEmbedUrl || `${supabaseUrl}/storage/v1/object/public/media-assets/${mediaUrl}`;
+  // Determine the full media URL
+  let fullMediaUrl: string;
+  if (youtubeEmbedUrl) {
+    // Use YouTube embed URL for videos
+    fullMediaUrl = youtubeEmbedUrl;
+  } else if (mediaUrl.startsWith('/')) {
+    // Use local path for images starting with '/'
+    fullMediaUrl = mediaUrl;
+  } else {
+    // Use Supabase storage for other media
+    fullMediaUrl = `${supabaseUrl}/storage/v1/object/public/media-assets/${mediaUrl}`;
+  }
 
   if (type === 'image') {
     return (

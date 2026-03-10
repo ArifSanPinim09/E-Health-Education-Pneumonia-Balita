@@ -7,11 +7,8 @@ import {
   AlertTriangle, 
   Lightbulb, 
   TrendingUp, 
-  CheckCircle2, 
   Info,
-  BookOpen,
-  Heart,
-  Shield
+  BookOpen
 } from 'lucide-react';
 
 interface ContentRendererProps {
