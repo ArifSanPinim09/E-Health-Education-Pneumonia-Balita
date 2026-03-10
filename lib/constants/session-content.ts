@@ -50,7 +50,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Ilustrasi pneumonia pada balita',
-        media_url: 'images/gambar1.png',
+        media_url: 'public/media/images/gambar1.png',
         alt: 'Ilustrasi ibu merawat anak dengan pneumonia'
       },
       {
@@ -64,7 +64,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Diagram pneumonia dan bronkopneumonia',
-        media_url: 'images/gambar2.png',
+        media_url: 'public/media/images/gambar2.png',
         alt: 'Perbedaan pneumonia dan bronkopneumonia'
       },
       {
@@ -114,13 +114,13 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Anatomi sistem pernapasan balita',
-        media_url: 'images/gambar3.png',
+        media_url: 'public/media/images/gambar3.png',
         alt: 'Diagram lengkap sistem pernapasan balita'
       },
       {
         type: 'image',
         content: 'Perbandingan paru-paru normal vs pneumonia',
-        media_url: 'images/gambar4.png',
+        media_url: 'public/media/images/gambar4.png',
         alt: 'Perbedaan paru-paru balita normal vs pneumonia'
       },
       {
@@ -148,7 +148,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Mikroorganisme penyebab pneumonia',
-        media_url: 'images/gambar5.png',
+        media_url: 'public/media/images/gambar5.png',
         alt: 'Berbagai jenis virus dan bakteri penyebab pneumonia'
       },
       {
@@ -210,7 +210,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Infografis faktor risiko pneumonia',
-        media_url: 'images/gambar6.png',
+        media_url: 'public/media/images/gambar6.png',
         alt: 'Diagram faktor risiko pneumonia pada balita'
       },
       {
@@ -274,7 +274,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Tanda dan gejala pneumonia pada balita',
-        media_url: 'images/gambar7.png',
+        media_url: 'public/media/images/gambar7.png',
         alt: 'Ilustrasi tanda dan gejala pneumonia'
       },
       {
@@ -292,7 +292,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Klasifikasi pneumonia berdasarkan tingkat keparahan',
-        media_url: 'images/gambar8.png',
+        media_url: 'public/media/images/gambar8.png',
         alt: 'Diagram klasifikasi pneumonia'
       },
       {
@@ -302,7 +302,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Alur perjalanan penyakit pneumonia',
-        media_url: 'images/gambar9.png',
+        media_url: 'public/media/images/gambar9.png',
         alt: 'Flowchart perjalanan penyakit pneumonia pada balita'
       },
       {
@@ -349,7 +349,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Komplikasi pneumonia pada balita',
-        media_url: 'images/gambar10.png',
+        media_url: 'public/media/images/gambar10.png',
         alt: 'Ilustrasi berbagai komplikasi pneumonia'
       },
       {
@@ -419,7 +419,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Pemeriksaan laboratorium untuk pneumonia',
-        media_url: 'images/gambar11.png',
+        media_url: 'public/media/images/gambar11.png',
         alt: 'Ilustrasi berbagai pemeriksaan laboratorium'
       },
       {
@@ -478,7 +478,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Penatalaksanaan pneumonia pada balita',
-        media_url: 'images/gambar12.png',
+        media_url: 'public/media/images/gambar12.png',
         alt: 'Flowchart penatalaksanaan pneumonia'
       },
       {
@@ -554,7 +554,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Panduan deteksi dini pneumonia di rumah',
-        media_url: 'images/gambar13.png',
+        media_url: 'public/media/images/gambar13.png',
         alt: 'Infografis cara deteksi dini pneumonia'
       },
       {
@@ -648,7 +648,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Panduan perawatan balita dengan pneumonia',
-        media_url: 'images/gambar14.png',
+        media_url: 'public/media/images/gambar14.png',
         alt: 'Ilustrasi berbagai teknik perawatan balita'
       },
       {
@@ -663,7 +663,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Teknik hipnosis 5 jari',
-        media_url: 'images/gambar15.png',
+        media_url: 'public/media/images/gambar15.png',
         alt: 'Ilustrasi teknik hipnosis 5 jari untuk mengurangi kecemasan'
       },
       {
