@@ -20,7 +20,7 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
   let headingNumber = 0;
 
   return (
-    <article className="content-renderer max-w-4xl mx-auto">
+    <article className="content-renderer max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       {sections.map((section, index) => {
         // Increment heading number only for main heading type (without subtitle)
         if (section.type === 'heading' && !section.subtitle) {
@@ -32,35 +32,34 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 className={`
-                  ${section.subtitle ? 'px-6 sm:px-8 lg:px-10 pt-6 pb-3' : 'px-6 sm:px-8 lg:px-10 pt-12 pb-4 first:pt-8'}
-                  ${!section.subtitle ? 'border-l-4 border-[#2F5D50] bg-gradient-to-r from-[#F4F7F5] to-transparent' : ''}
+                  ${section.subtitle ? 'mt-6 mb-3' : 'mt-10 mb-4 first:mt-0'}
                 `}
               >
                 {!section.subtitle && (
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-[#2F5D50] to-[#1a3d35] text-white rounded-full text-sm font-bold shadow-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 bg-gradient-to-br from-[#2F5D50] to-[#1a3d35] text-white rounded-full text-xs sm:text-sm font-bold shadow-sm">
                       {headingNumber}
                     </div>
-                    <div className="h-px bg-gradient-to-r from-[#2F5D50] to-transparent flex-1"></div>
+                    <div className="h-px bg-gradient-to-r from-[#2F5D50]/30 to-transparent flex-1"></div>
                   </div>
                 )}
                 
                 <h2 className={`
                   ${section.subtitle 
-                    ? 'text-lg sm:text-xl font-semibold text-[#2F5D50] leading-tight' 
-                    : 'text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-[#1F2933] leading-tight'
+                    ? 'text-base sm:text-lg font-semibold text-[#2F5D50]' 
+                    : 'text-xl sm:text-2xl font-bold text-gray-900'
                   }
                 `}>
                   {section.content as string}
                 </h2>
                 
                 {section.subtitle && (
-                  <p className="text-sm text-[#6B7280] mt-1 italic">
+                  <p className="text-xs sm:text-sm text-gray-500 mt-1 italic">
                     {section.subtitle}
                   </p>
                 )}
@@ -71,13 +70,13 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-4"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-4"
               >
-                <p className="text-base sm:text-lg leading-relaxed text-[#374151] font-light tracking-wide">
+                <p className="text-sm sm:text-base leading-relaxed text-gray-700">
                   {section.content as string}
                 </p>
               </motion.div>
@@ -87,24 +86,24 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-4"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-4"
               >
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {(section.content as string[]).map((item, itemIndex) => (
                     <motion.li
                       key={itemIndex}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: itemIndex * 0.1, duration: 0.4 }}
-                      className="flex items-start gap-3 text-base sm:text-lg leading-relaxed text-[#374151]"
+                      transition={{ delay: itemIndex * 0.05, duration: 0.3 }}
+                      className="flex items-start gap-2 text-sm sm:text-base leading-relaxed text-gray-700"
                     >
-                      <div className="flex-shrink-0 w-2 h-2 bg-gradient-to-br from-[#2F5D50] to-[#1a3d35] rounded-full mt-3"></div>
-                      <span className="font-light tracking-wide">{item}</span>
+                      <div className="flex-shrink-0 w-1.5 h-1.5 bg-[#2F5D50] rounded-full mt-2"></div>
+                      <span>{item}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -115,24 +114,22 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-6"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-6"
               >
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
-                  <MediaEmbed
-                    type="image"
-                    mediaUrl={section.media_url!}
-                    alt={section.alt!}
-                  />
-                  {section.content && (
-                    <p className="text-sm text-[#6B7280] text-center mt-3 italic">
-                      {section.content as string}
-                    </p>
-                  )}
-                </div>
+                <MediaEmbed
+                  type="image"
+                  mediaUrl={section.media_url!}
+                  alt={section.alt!}
+                />
+                {section.content && (
+                  <p className="text-xs sm:text-sm text-gray-500 text-center mt-2 italic">
+                    {section.content as string}
+                  </p>
+                )}
               </motion.div>
             );
 
@@ -140,32 +137,22 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-6"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-8"
               >
-                <div className="bg-gradient-to-br from-[#2F5D50] to-[#1a3d35] rounded-xl shadow-lg p-4 sm:p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="flex items-center justify-center w-10 h-10 bg-white/20 rounded-full">
-                      <BookOpen className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-white font-semibold text-lg">Video Pembelajaran</h3>
-                  </div>
-                  <div className="bg-white rounded-lg overflow-hidden">
-                    <MediaEmbed
-                      type="video"
-                      mediaUrl={section.media_url!}
-                      alt={section.alt!}
-                    />
-                  </div>
-                  {section.content && (
-                    <p className="text-white/90 text-sm text-center mt-3">
-                      {section.content as string}
-                    </p>
-                  )}
-                </div>
+                <MediaEmbed
+                  type="video"
+                  mediaUrl={section.media_url!}
+                  alt={section.alt!}
+                />
+                {section.content && (
+                  <p className="text-xs sm:text-sm text-gray-600 text-center mt-2 font-medium">
+                    {section.content as string}
+                  </p>
+                )}
               </motion.div>
             );
 
@@ -173,16 +160,16 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-4"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-5"
               >
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-r-lg p-4 sm:p-6">
-                  <div className="flex items-start gap-3">
-                    <Info className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                    <p className="text-base sm:text-lg leading-relaxed text-blue-900 font-medium">
+                <div className="bg-blue-50 border-l-3 border-blue-400 rounded-r-lg p-3 sm:p-4">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm sm:text-base leading-relaxed text-blue-900">
                       {section.content as string}
                     </p>
                   </div>
@@ -194,16 +181,16 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-4"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-5"
               >
-                <div className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-400 rounded-r-lg p-4 sm:p-6">
-                  <div className="flex items-start gap-3">
-                    <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                    <p className="text-base sm:text-lg leading-relaxed text-red-900 font-medium">
+                <div className="bg-red-50 border-l-3 border-red-400 rounded-r-lg p-3 sm:p-4">
+                  <div className="flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm sm:text-base leading-relaxed text-red-900">
                       {section.content as string}
                     </p>
                   </div>
@@ -215,16 +202,16 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-4"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-5"
               >
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-400 rounded-r-lg p-4 sm:p-6">
-                  <div className="flex items-start gap-3">
-                    <Lightbulb className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                    <p className="text-base sm:text-lg leading-relaxed text-green-900 font-medium">
+                <div className="bg-green-50 border-l-3 border-green-400 rounded-r-lg p-3 sm:p-4">
+                  <div className="flex items-start gap-2">
+                    <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm sm:text-base leading-relaxed text-green-900">
                       {section.content as string}
                     </p>
                   </div>
@@ -236,33 +223,33 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="px-6 sm:px-8 lg:px-10 py-6"
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-6"
               >
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <TrendingUp className="w-6 h-6 text-[#2F5D50]" />
-                    <h3 className="text-lg font-semibold text-[#1F2933]">
+                <div className="bg-gray-50 rounded-lg p-4 sm:p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F5D50]" />
+                    <h3 className="text-sm sm:text-base font-semibold text-gray-900">
                       {section.content as string}
                     </h3>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {section.stats?.map((stat, statIndex) => (
                       <motion.div
                         key={statIndex}
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: statIndex * 0.1, duration: 0.4 }}
-                        className="text-center p-4 bg-gradient-to-br from-[#F4F7F5] to-white rounded-lg border border-gray-100"
+                        transition={{ delay: statIndex * 0.05, duration: 0.3 }}
+                        className="text-center p-3 bg-white rounded-lg border border-gray-200"
                       >
-                        <p className="text-2xl font-bold text-[#2F5D50] mb-1">
+                        <p className="text-lg sm:text-xl font-bold text-[#2F5D50] mb-0.5">
                           {stat.value}
                         </p>
-                        <p className="text-sm text-[#6B7280] font-medium">
+                        <p className="text-xs sm:text-sm text-gray-600">
                           {stat.label}
                         </p>
                       </motion.div>

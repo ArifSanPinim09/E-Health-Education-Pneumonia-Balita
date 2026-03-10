@@ -50,25 +50,25 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
   if (type === 'image') {
     return (
       <>
-        <div className="my-6 group">
+        <div className="my-8 group">
           <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="relative rounded-lg overflow-hidden bg-[#F4F7F5] cursor-pointer"
+            whileHover={{ scale: 1.005 }}
+            className="relative rounded-lg overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-shadow"
             onClick={() => setShowImageModal(true)}
           >
             {loading && (
-              <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="absolute inset-0 flex items-center justify-center z-10 bg-gray-50">
                 <div className="text-center">
-                  <Loader2 className="h-10 w-10 animate-spin text-[#2F5D50] mx-auto mb-2" />
-                  <p className="text-sm text-[#1F2933]/60">Memuat gambar...</p>
+                  <Loader2 className="h-8 w-8 animate-spin text-[#2F5D50] mx-auto mb-2" />
+                  <p className="text-xs text-gray-500">Memuat gambar...</p>
                 </div>
               </div>
             )}
             {error && (
-              <div className="bg-[#E07A5F]/10 border border-[#E07A5F]/30 rounded-lg p-8 text-center">
-                <div className="text-[#E07A5F] text-4xl mb-3">📷</div>
-                <p className="text-[#E07A5F] font-medium mb-1">Gagal memuat gambar</p>
-                <p className="text-[#E07A5F]/70 text-sm">Silakan refresh halaman</p>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                <div className="text-red-400 text-3xl mb-2">📷</div>
+                <p className="text-red-600 text-sm font-medium mb-1">Gagal memuat gambar</p>
+                <p className="text-red-500 text-xs">Silakan refresh halaman</p>
               </div>
             )}
             <div className="relative">
@@ -86,13 +86,13 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
                 }}
               />
               {/* Zoom overlay */}
-              <div className="absolute inset-0 bg-[#1F2933]/0 group-hover:bg-[#1F2933]/10 transition-all duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300 flex items-center justify-center rounded-lg">
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   whileHover={{ scale: 1, opacity: 1 }}
-                  className="bg-white/95 backdrop-blur-sm rounded-full p-2.5 shadow-lg"
+                  className="bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg"
                 >
-                  <ZoomIn className="w-5 h-5 text-[#1F2933]" />
+                  <ZoomIn className="w-4 h-4 text-gray-700" />
                 </motion.div>
               </div>
             </div>
@@ -101,8 +101,8 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-sm text-[#1F2933]/60 mt-3 text-center italic"
+            transition={{ delay: 0.2 }}
+            className="text-xs sm:text-sm text-gray-500 mt-2 text-center italic"
           >
             {alt}
           </motion.p>
@@ -115,14 +115,14 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-[#1F2933]/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
               onClick={() => setShowImageModal(false)}
             >
               <button
-                className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
+                className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-lg p-2 transition-colors"
                 onClick={() => setShowImageModal(false)}
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               </button>
               <motion.div
                 initial={{ scale: 0.95 }}
@@ -138,7 +138,7 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
                   height={1080}
                   className="rounded-lg w-full h-auto"
                 />
-                <p className="text-white text-center mt-4 text-sm">{alt}</p>
+                <p className="text-white text-center mt-3 text-sm">{alt}</p>
               </motion.div>
             </motion.div>
           )}
@@ -149,26 +149,26 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
 
   if (type === 'video') {
     return (
-      <div className="my-6">
+      <div className="my-8">
         {loading && (
-          <div className="flex items-center justify-center bg-[#F4F7F5] rounded-lg p-16">
+          <div className="flex items-center justify-center bg-gray-50 rounded-lg p-12">
             <div className="text-center">
-              <Loader2 className="h-10 w-10 animate-spin text-[#2F5D50] mx-auto mb-3" />
-              <p className="text-[#1F2933]/70 text-sm">Memuat video...</p>
+              <Loader2 className="h-8 w-8 animate-spin text-[#2F5D50] mx-auto mb-2" />
+              <p className="text-gray-500 text-xs">Memuat video...</p>
             </div>
           </div>
         )}
         {error && (
-          <div className="bg-[#E07A5F]/10 border border-[#E07A5F]/30 rounded-lg p-8 text-center">
-            <div className="text-[#E07A5F] text-4xl mb-3">🎥</div>
-            <p className="text-[#E07A5F] font-medium mb-1">Gagal memuat video</p>
-            <p className="text-[#E07A5F]/70 text-sm">Silakan refresh halaman atau coba lagi nanti</p>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+            <div className="text-red-400 text-3xl mb-2">🎥</div>
+            <p className="text-red-600 text-sm font-medium mb-1">Gagal memuat video</p>
+            <p className="text-red-500 text-xs">Silakan refresh halaman atau coba lagi nanti</p>
           </div>
         )}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: loading || error ? 0 : 1, scale: loading || error ? 0.98 : 1 }}
-          className={`relative rounded-lg overflow-hidden shadow-lg bg-[#1F2933] ${loading || error ? 'hidden' : ''}`}
+          className={`relative rounded-lg overflow-hidden shadow-md bg-gray-900 ${loading || error ? 'hidden' : ''}`}
         >
           {/* YouTube Embed */}
           <iframe
@@ -189,8 +189,8 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-sm text-[#1F2933]/60 mt-3 text-center italic"
+          transition={{ delay: 0.2 }}
+          className="text-xs sm:text-sm text-gray-500 mt-2 text-center italic"
         >
           🎥 {alt}
         </motion.p>
