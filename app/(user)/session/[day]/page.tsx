@@ -64,9 +64,17 @@ export default function SessionPage() {
         return;
       }
 
-      const data = await response.json();
-      if (!data.success || !data.unlocked) {
-        setError(data.error || 'Sesi belum dapat diakses');
+      const result = await response.json();
+      
+      if (!result.success) {
+        setError(result.error || 'Sesi belum dapat diakses');
+        setLoading(false);
+        return;
+      }
+
+      const sessionData = result.data;
+      if (!sessionData.unlocked) {
+        setError('Sesi masih terkunci. Silakan tunggu hingga waktu unlock.');
         setLoading(false);
         return;
       }
