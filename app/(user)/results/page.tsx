@@ -390,14 +390,14 @@ export default function ResultsPage() {
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => router.push('/post-test/review')}
-                className="flex-1 bg-[#2F5D50] text-white px-6 h-12 rounded-lg font-medium hover:bg-[#274E43] transition-all duration-200 flex items-center justify-center gap-2"
+                className="flex-1 bg-[#2F5D50] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#274E43] transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <CheckCircle className="w-5 h-5" strokeWidth={2} />
                 Review Jawaban Post-Test
               </button>
               <button
                 onClick={() => router.push('/dashboard')}
-                className="flex-1 border-2 border-[#2F5D50]/30 text-[#2F5D50] px-6 h-12 rounded-lg font-medium hover:border-[#2F5D50] hover:bg-white transition-all duration-200 flex items-center justify-center gap-2"
+                className="flex-1 border-2 border-[#2F5D50]/30 text-[#2F5D50] px-6 py-3 rounded-lg font-medium hover:border-[#2F5D50] hover:bg-white transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <ArrowLeft className="w-5 h-5" strokeWidth={2} />
                 Kembali ke Dashboard
