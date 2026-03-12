@@ -706,6 +706,12 @@ export const sessionContents: SessionContent[] = [
         content: 'Video tutorial menghitung frekuensi napas per menit. Ibu akan diminta menjawab dari video yang ditayangkan.'
       },
       {
+        type: 'video',
+        content: 'Video Tutorial Hitung Napas',
+        media_url: 'https://youtu.be/wlSbzDARbUc',
+        alt: 'Tutorial menghitung frekuensi napas pada balita'
+      },
+      {
         type: 'heading',
         content: 'Cek Retraksi',
         subtitle: 'Panduan Visual Deteksi Tarikan Dinding Dada'
@@ -715,14 +721,14 @@ export const sessionContents: SessionContent[] = [
         content: 'Panduan visual untuk melihat apakah ada tarikan dinding dada ke dalam (retraksi). Ibu akan diminta menjawab dari video yang ditayangkan.'
       },
       {
-        type: 'highlight',
-        content: 'Sesi ini bersifat interaktif. Silakan tonton video dengan seksama dan jawab pertanyaan yang muncul untuk menguji pemahaman Ibu.'
+        type: 'video',
+        content: 'Video Tutorial Cek Retraksi',
+        media_url: 'https://youtu.be/V5d1DxKDUHA',
+        alt: 'Panduan visual deteksi tarikan dinding dada pada balita'
       },
       {
-        type: 'video',
-        content: 'Video Tutorial Praktik Mandiri',
-        media_url: 'https://youtu.be/VIDEO_PRAKTIK_MANDIRI',
-        alt: 'Video tutorial praktik mandiri deteksi pneumonia'
+        type: 'highlight',
+        content: 'Sesi ini bersifat interaktif. Silakan tonton video dengan seksama dan jawab pertanyaan yang muncul untuk menguji pemahaman Ibu.'
       },
       {
         type: 'tip',
