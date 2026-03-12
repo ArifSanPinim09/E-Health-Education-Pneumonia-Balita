@@ -13,11 +13,11 @@ interface StatsCardProps {
 }
 
 const colorClasses = {
-  blue: 'from-blue-500/20 to-blue-600/20 border-blue-500/30',
-  green: 'from-green-500/20 to-green-600/20 border-green-500/30',
-  orange: 'from-orange-500/20 to-orange-600/20 border-orange-500/30',
-  purple: 'from-purple-500/20 to-purple-600/20 border-purple-500/30',
-  pink: 'from-pink-500/20 to-pink-600/20 border-pink-500/30',
+  blue: 'from-blue-500/10 to-blue-600/10 border-blue-500/20',
+  green: 'from-green-500/10 to-green-600/10 border-green-500/20',
+  orange: 'from-orange-500/10 to-orange-600/10 border-orange-500/20',
+  purple: 'from-purple-500/10 to-purple-600/10 border-purple-500/20',
+  pink: 'from-pink-500/10 to-pink-600/10 border-pink-500/20',
 }
 
 const iconColorClasses = {
@@ -26,6 +26,14 @@ const iconColorClasses = {
   orange: 'text-orange-600',
   purple: 'text-purple-600',
   pink: 'text-pink-600',
+}
+
+const iconBgClasses = {
+  blue: 'bg-blue-500/10',
+  green: 'bg-green-500/10',
+  orange: 'bg-orange-500/10',
+  purple: 'bg-purple-500/10',
+  pink: 'bg-pink-500/10',
 }
 
 export default function StatsCard({
@@ -41,18 +49,18 @@ export default function StatsCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative overflow-hidden rounded-2xl border bg-gradient-to-br ${colorClasses[color]} backdrop-blur-sm p-6`}
+      className={`relative overflow-hidden rounded-xl border bg-gradient-to-br ${colorClasses[color]} backdrop-blur-sm p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow bg-white`}
     >
-      <div className="flex items-start justify-between">
-        <div className="flex-1">
-          <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
-          <p className="text-3xl font-bold text-gray-900 mb-1">{value}</p>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <p className="text-xs sm:text-sm font-medium text-[#1F2933]/70 mb-1 truncate">{title}</p>
+          <p className="text-2xl sm:text-3xl font-bold text-[#1F2933] mb-1">{value}</p>
           {description && (
-            <p className="text-xs text-gray-500">{description}</p>
+            <p className="text-xs text-[#1F2933]/60 line-clamp-2">{description}</p>
           )}
         </div>
-        <div className={`p-3 rounded-xl bg-white/50 ${iconColorClasses[color]}`}>
-          <Icon className="w-6 h-6" />
+        <div className={`p-2.5 sm:p-3 rounded-lg ${iconBgClasses[color]} ${iconColorClasses[color]} flex-shrink-0`}>
+          <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
       </div>
     </motion.div>

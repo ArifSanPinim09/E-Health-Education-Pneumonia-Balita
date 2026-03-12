@@ -126,40 +126,40 @@ export default function RespondentTable({
       {/* Search and Filter */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1F2933]/40" />
           <input
             type="text"
             placeholder="Cari nama ibu, anak, atau email..."
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full pl-12 pr-4 py-3 min-h-[48px] bg-white border border-[#2F5D50]/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#2F5D50] focus:border-transparent"
           />
         </div>
         <div className="relative">
-          <Filter className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Filter className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1F2933]/40" />
           <select
             value={filterStatus}
             onChange={(e) => handleFilter(e.target.value)}
-            className="pl-12 pr-10 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none cursor-pointer min-w-[200px]"
+            className="pl-12 pr-10 py-3 min-h-[48px] bg-white border border-[#2F5D50]/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#2F5D50] focus:border-transparent appearance-none cursor-pointer min-w-[200px]"
           >
             <option value="all">Semua Status</option>
             <option value="completed">Selesai</option>
             <option value="in-progress">Berlangsung</option>
             <option value="not-started">Belum Mulai</option>
           </select>
-          <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+          <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1F2933]/40 pointer-events-none" />
         </div>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#2F5D50]/10">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-[#F4F7F5] border-b border-[#2F5D50]/10">
               <tr>
                 <th
                   onClick={() => handleSort('name')}
-                  className="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
+                  className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider cursor-pointer hover:bg-[#2F5D50]/5 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     Nama Ibu
@@ -171,21 +171,21 @@ export default function RespondentTable({
                       ))}
                   </div>
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider">
                   Nama Anak
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider">
                   Email
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider">
                   Pre-Test
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider">
                   Post-Test
                 </th>
                 <th
                   onClick={() => handleSort('progress')}
-                  className="px-6 py-4 text-center text-xs font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
+                  className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider cursor-pointer hover:bg-[#2F5D50]/5 transition-colors"
                 >
                   <div className="flex items-center justify-center gap-2">
                     Sesi
@@ -197,12 +197,12 @@ export default function RespondentTable({
                       ))}
                   </div>
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider">
                   Status
                 </th>
                 <th
                   onClick={() => handleSort('date')}
-                  className="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
+                  className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider cursor-pointer hover:bg-[#2F5D50]/5 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     Tanggal Daftar
@@ -214,15 +214,15 @@ export default function RespondentTable({
                       ))}
                   </div>
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-semibold text-[#1F2933]/70 uppercase tracking-wider">
                   Aksi
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-[#2F5D50]/10">
               {sortedRespondents.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={9} className="px-4 sm:px-6 py-12 text-center text-[#1F2933]/60 text-sm">
                     Tidak ada data responden
                   </td>
                 </tr>
@@ -233,25 +233,25 @@ export default function RespondentTable({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="hover:bg-gray-50 transition-colors"
+                    className="hover:bg-[#F4F7F5] transition-colors"
                   >
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <div className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {respondent.mother_name}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{respondent.child_name}</div>
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <div className="text-xs sm:text-sm text-[#1F2933]">{respondent.child_name}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-600">{respondent.email}</div>
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <div className="text-xs sm:text-sm text-[#1F2933]/70">{respondent.email}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
                       <span
-                        className={`text-sm font-medium ${
+                        className={`text-xs sm:text-sm font-medium ${
                           respondent.pre_test_score !== null
-                            ? 'text-gray-900'
-                            : 'text-gray-400'
+                            ? 'text-[#1F2933]'
+                            : 'text-[#1F2933]/40'
                         }`}
                       >
                         {respondent.pre_test_score !== null
@@ -259,12 +259,12 @@ export default function RespondentTable({
                           : '-'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
                       <span
-                        className={`text-sm font-medium ${
+                        className={`text-xs sm:text-sm font-medium ${
                           respondent.post_test_score !== null
-                            ? 'text-gray-900'
-                            : 'text-gray-400'
+                            ? 'text-[#1F2933]'
+                            : 'text-[#1F2933]/40'
                         }`}
                       >
                         {respondent.post_test_score !== null
@@ -272,26 +272,26 @@ export default function RespondentTable({
                           : '-'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center">
-                      <span className="text-sm font-medium text-gray-900">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
+                      <span className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {respondent.sessions_completed}/5
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
                       {getStatusBadge(respondent.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-600">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <div className="text-xs sm:text-sm text-[#1F2933]/70">
                         {formatDate(respondent.created_at)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
                       <button
                         onClick={() => setSelectedRespondent(respondent)}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 min-h-[40px] bg-[#2F5D50]/10 text-[#2F5D50] rounded-lg text-xs sm:text-sm font-medium hover:bg-[#2F5D50]/20 transition-all"
                       >
                         <Eye className="w-4 h-4" />
-                        Detail
+                        <span className="hidden sm:inline">Detail</span>
                       </button>
                     </td>
                   </motion.tr>
@@ -331,62 +331,62 @@ export default function RespondentTable({
               </div>
 
               {/* Modal Content */}
-              <div className="p-6 space-y-6">
+              <div className="p-4 sm:p-6 space-y-6">
                 {/* Mother Info */}
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <User className="w-5 h-5 text-blue-600" />
-                    <h4 className="text-lg font-bold text-gray-900">Data Ibu</h4>
+                    <User className="w-5 h-5 text-[#2F5D50]" />
+                    <h4 className="text-base sm:text-lg font-bold text-[#1F2933]">Data Ibu</h4>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 rounded-xl p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#F4F7F5] rounded-xl p-4">
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Nama</p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs text-[#1F2933]/60 mb-1">Nama</p>
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.mother_name}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Usia</p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs text-[#1F2933]/60 mb-1">Usia</p>
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.mother_age} tahun
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Agama</p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs text-[#1F2933]/60 mb-1">Agama</p>
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.mother_religion}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Pekerjaan</p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs text-[#1F2933]/60 mb-1">Pekerjaan</p>
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.mother_occupation}
                       </p>
                     </div>
                     <div className="md:col-span-2">
-                      <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
+                      <p className="text-xs text-[#1F2933]/60 mb-1 flex items-center gap-1">
                         <Mail className="w-3 h-3" />
                         Email
                       </p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.email}
                       </p>
                     </div>
                     <div className="md:col-span-2">
-                      <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
+                      <p className="text-xs text-[#1F2933]/60 mb-1 flex items-center gap-1">
                         <Phone className="w-3 h-3" />
                         Telepon
                       </p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.mother_phone}
                       </p>
                     </div>
                     <div className="md:col-span-2">
-                      <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
+                      <p className="text-xs text-[#1F2933]/60 mb-1 flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
                         Alamat
                       </p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.mother_address}
                       </p>
                     </div>
@@ -396,36 +396,36 @@ export default function RespondentTable({
                 {/* Child Info */}
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <Baby className="w-5 h-5 text-green-600" />
-                    <h4 className="text-lg font-bold text-gray-900">Data Anak</h4>
+                    <Baby className="w-5 h-5 text-[#10B981]" />
+                    <h4 className="text-base sm:text-lg font-bold text-[#1F2933]">Data Anak</h4>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 rounded-xl p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#F4F7F5] rounded-xl p-4">
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Nama</p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs text-[#1F2933]/60 mb-1">Nama</p>
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.child_name}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Jenis Kelamin</p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs text-[#1F2933]/60 mb-1">Jenis Kelamin</p>
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.child_gender === 'male'
                           ? 'Laki-laki'
                           : 'Perempuan'}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
+                      <p className="text-xs text-[#1F2933]/60 mb-1 flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
                         Tanggal Lahir
                       </p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {formatDate(selectedRespondent.child_birth_date)}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Usia</p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-xs text-[#1F2933]/60 mb-1">Usia</p>
+                      <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                         {selectedRespondent.child_age_years} tahun{' '}
                         {selectedRespondent.child_age_months} bulan{' '}
                         {selectedRespondent.child_age_days} hari
@@ -437,27 +437,27 @@ export default function RespondentTable({
                 {/* Progress Info */}
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <CheckCircle2 className="w-5 h-5 text-purple-600" />
-                    <h4 className="text-lg font-bold text-gray-900">Progress Pembelajaran</h4>
+                    <CheckCircle2 className="w-5 h-5 text-[#2563EB]" />
+                    <h4 className="text-base sm:text-lg font-bold text-[#1F2933]">Progress Pembelajaran</h4>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-purple-50 rounded-xl p-4 text-center">
+                    <div className="bg-purple-50 rounded-xl p-4 text-center border border-purple-100">
                       <p className="text-xs text-purple-600 mb-1">Pre-Test</p>
-                      <p className="text-2xl font-bold text-purple-900">
+                      <p className="text-xl sm:text-2xl font-bold text-purple-900">
                         {selectedRespondent.pre_test_score !== null
                           ? `${selectedRespondent.pre_test_score}/23`
                           : '-'}
                       </p>
                     </div>
-                    <div className="bg-blue-50 rounded-xl p-4 text-center">
+                    <div className="bg-blue-50 rounded-xl p-4 text-center border border-blue-100">
                       <p className="text-xs text-blue-600 mb-1">Sesi Selesai</p>
-                      <p className="text-2xl font-bold text-blue-900">
+                      <p className="text-xl sm:text-2xl font-bold text-blue-900">
                         {selectedRespondent.sessions_completed}/5
                       </p>
                     </div>
-                    <div className="bg-pink-50 rounded-xl p-4 text-center">
+                    <div className="bg-pink-50 rounded-xl p-4 text-center border border-pink-100">
                       <p className="text-xs text-pink-600 mb-1">Post-Test</p>
-                      <p className="text-2xl font-bold text-pink-900">
+                      <p className="text-xl sm:text-2xl font-bold text-pink-900">
                         {selectedRespondent.post_test_score !== null
                           ? `${selectedRespondent.post_test_score}/23`
                           : '-'}
@@ -467,14 +467,14 @@ export default function RespondentTable({
                 </div>
 
                 {/* Status */}
-                <div className="flex items-center justify-between bg-gray-50 rounded-xl p-4">
+                <div className="flex items-center justify-between bg-[#F4F7F5] rounded-xl p-4">
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">Status</p>
+                    <p className="text-xs text-[#1F2933]/60 mb-1">Status</p>
                     {getStatusBadge(selectedRespondent.status)}
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-gray-500 mb-1">Tanggal Daftar</p>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-xs text-[#1F2933]/60 mb-1">Tanggal Daftar</p>
+                    <p className="text-xs sm:text-sm font-medium text-[#1F2933]">
                       {formatDate(selectedRespondent.created_at)}
                     </p>
                   </div>

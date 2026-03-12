@@ -62,7 +62,7 @@ export function ExportButton() {
       <Button
         onClick={handleExport}
         disabled={isExporting}
-        className="bg-green-600 hover:bg-green-700 text-white"
+        className="bg-[#10B981] hover:bg-[#059669] text-white shadow-sm min-h-[48px]"
       >
         {isExporting ? (
           <>
@@ -78,7 +78,7 @@ export function ExportButton() {
       </Button>
       
       {error && (
-        <p className="text-sm text-red-600">
+        <p className="text-xs sm:text-sm text-[#E07A5F]">
           {error}
         </p>
       )}

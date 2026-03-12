@@ -79,48 +79,58 @@ export default function RespondentsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Memuat data...</p>
-        </div>
+      <div className="min-h-screen bg-[#F4F7F5] flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center"
+        >
+          <div className="relative">
+            <div className="animate-spin rounded-full h-12 w-12 border-3 border-[#2F5D50]/20 border-t-[#2F5D50] mx-auto mb-4"></div>
+          </div>
+          <p className="text-[#1F2933]/70 text-sm">Memuat data...</p>
+        </motion.div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <X className="w-8 h-8 text-red-600" />
+      <div className="min-h-screen bg-[#F4F7F5] flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-xl shadow-lg p-6 sm:p-8 max-w-md w-full text-center border border-[#2F5D50]/10"
+        >
+          <div className="w-14 h-14 bg-[#E07A5F]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <X className="w-7 h-7 text-[#E07A5F]" />
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Terjadi Kesalahan</h2>
-          <p className="text-gray-600 mb-6">{error}</p>
+          <h2 className="text-lg sm:text-xl font-semibold text-[#1F2933] mb-2">Terjadi Kesalahan</h2>
+          <p className="text-sm text-[#1F2933]/70 mb-6">{error}</p>
           <button
             onClick={fetchRespondents}
-            className="px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors"
+            className="min-h-[48px] px-6 py-3 bg-[#2F5D50] text-white rounded-lg text-sm font-medium hover:bg-[#274E43] transition-all shadow-sm"
           >
             Coba Lagi
           </button>
-        </div>
+        </motion.div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-[#F4F7F5]">
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content */}
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="lg:ml-64 p-4 sm:p-6 lg:p-8">
         {/* Mobile menu button */}
         <button
           onClick={() => setSidebarOpen(true)}
-          className="lg:hidden fixed top-4 right-4 z-50 p-3 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+          className="lg:hidden fixed top-4 right-4 z-50 min-h-[48px] min-w-[48px] p-3 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all border border-[#2F5D50]/10"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 text-[#1F2933]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -138,15 +148,17 @@ export default function RespondentsPage() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+            className="mb-6 sm:mb-8"
           >
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Data Responden</h2>
-              <p className="text-gray-600">
-                Kelola dan pantau data semua responden
-              </p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#1F2933] mb-2">Data Responden</h2>
+                <p className="text-sm text-[#1F2933]/70">
+                  Kelola dan pantau data semua responden
+                </p>
+              </div>
+              <ExportButton />
             </div>
-            <ExportButton />
           </motion.div>
 
           {/* Stats Summary */}
@@ -154,21 +166,21 @@ export default function RespondentsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 sm:mb-8"
           >
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <p className="text-sm text-gray-600 mb-1">Total Responden</p>
-              <p className="text-3xl font-bold text-gray-900">{respondents.length}</p>
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border border-[#2F5D50]/10">
+              <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-1">Total Responden</p>
+              <p className="text-2xl sm:text-3xl font-bold text-[#1F2933]">{respondents.length}</p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <p className="text-sm text-gray-600 mb-1">Sedang Berlangsung</p>
-              <p className="text-3xl font-bold text-blue-600">
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border border-[#2F5D50]/10">
+              <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-1">Sedang Berlangsung</p>
+              <p className="text-2xl sm:text-3xl font-bold text-[#2563EB]">
                 {respondents.filter((r) => r.status === 'in-progress').length}
               </p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <p className="text-sm text-gray-600 mb-1">Selesai</p>
-              <p className="text-3xl font-bold text-green-600">
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border border-[#2F5D50]/10">
+              <p className="text-xs sm:text-sm text-[#1F2933]/70 mb-1">Selesai</p>
+              <p className="text-2xl sm:text-3xl font-bold text-[#10B981]">
                 {respondents.filter((r) => r.status === 'completed').length}
               </p>
             </div>

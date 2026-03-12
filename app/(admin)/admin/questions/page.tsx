@@ -11,23 +11,23 @@ export default function AdminQuestionsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-[#F4F7F5]">
       {/* Sidebar */}
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-30">
+        <header className="bg-white/80 backdrop-blur-sm border-b border-[#2F5D50]/10 sticky top-0 z-30">
           <div className="px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => setSidebarOpen(true)}
-                  className="lg:hidden p-2 rounded-lg hover:bg-gray-100 fixed top-4 right-4 z-50 bg-white shadow-lg"
+                  className="lg:hidden min-h-[48px] min-w-[48px] p-2 rounded-lg hover:bg-[#F4F7F5] fixed top-4 right-4 z-50 bg-white shadow-lg border border-[#2F5D50]/10"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-6 h-6 text-[#1F2933]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -41,10 +41,10 @@ export default function AdminQuestionsPage() {
                   </svg>
                 </button>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-xl sm:text-2xl font-bold text-[#1F2933]">
                     Kelola Pertanyaan Kuis
                   </h1>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-xs sm:text-sm text-[#1F2933]/70 mt-1">
                     Manajemen pertanyaan untuk pre-test dan post-test
                   </p>
                 </div>
@@ -54,7 +54,7 @@ export default function AdminQuestionsPage() {
         </header>
 
         {/* Main content area */}
-        <main className="px-4 sm:px-6 lg:px-8 py-8">
+        <main className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
