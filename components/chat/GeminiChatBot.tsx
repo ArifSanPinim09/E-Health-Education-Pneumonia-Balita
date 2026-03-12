@@ -124,9 +124,9 @@ export default function GeminiChatBot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-4 left-4 right-4 sm:bottom-28 sm:left-auto sm:right-6 z-50 w-auto sm:w-96 h-[calc(100vh-2rem)] sm:h-[600px] bg-white rounded-lg shadow-sm flex flex-col overflow-hidden border border-[#2F5D50]/20">
+        <div className="fixed inset-0 sm:bottom-28 sm:left-auto sm:right-6 sm:top-auto z-50 sm:w-96 sm:h-[600px] bg-white sm:rounded-lg shadow-sm flex flex-col overflow-hidden border border-[#2F5D50]/20">
           {/* Header */}
-          <div className="bg-[#2F5D50] p-4 flex items-center justify-between">
+          <div className="bg-[#2F5D50] p-4 pt-6 sm:pt-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
@@ -138,7 +138,7 @@ export default function GeminiChatBot() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-colors p-2 -m-2"
             >
               <X className="w-5 h-5" />
             </button>

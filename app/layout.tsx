@@ -23,6 +23,11 @@ const lora = Lora({
 export const metadata: Metadata = {
   title: "E-Health Education Pneumonia Balita",
   description: "Platform edukasi kesehatan tentang pneumonia pada balita untuk ibu Indonesia",
+  icons: {
+    icon: '/logo.ico',
+    shortcut: '/logo.ico',
+    apple: '/logo.ico',
+  },
 };
 
 export default function RootLayout({
@@ -32,6 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
+      <head>
+        <link rel="icon" href="/logo.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/logo.ico" type="image/x-icon" />
+      </head>
       <body
         className={`${plusJakartaSans.variable} ${inter.variable} ${lora.variable} antialiased font-body`}
       >

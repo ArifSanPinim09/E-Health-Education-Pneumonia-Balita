@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, User, LogOut, HelpCircle } from 'lucide-react'
@@ -16,6 +16,26 @@ export function UserNavbar({ userName }: UserNavbarProps) {
   const router = useRouter()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [loggingOut, setLoggingOut] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Show navbar when scrolling up, hide when scrolling down
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
 
   const handleLogout = async () => {
     if (loggingOut) return
@@ -55,17 +75,15 @@ export function UserNavbar({ userName }: UserNavbarProps) {
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3 }}
       className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[#2F5D50]/10"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/dashboard" className="flex items-center space-x-2 sm:space-x-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#2F5D50] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm sm:text-lg">P</span>
-            </div>
-            <span className="font-medium text-base sm:text-lg text-[#1F2933]">
+          <Link href="/dashboard" className="flex items-center">
+            <span className="font-serif text-xl sm:text-2xl font-bold text-[#2F5D50] tracking-tight">
               Pneumonia Care
             </span>
           </Link>
