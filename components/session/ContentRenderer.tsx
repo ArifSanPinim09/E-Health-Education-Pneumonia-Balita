@@ -16,19 +16,36 @@ interface ContentRendererProps {
 }
 
 export default function ContentRenderer({ sections }: ContentRendererProps) {
-  // Count only main headings for numbering (without subtitle)
-  let headingNumber = 0;
+  // Helper function to format text with bold
+  const formatTextWithBold = (text: string) => {
+    // Split by colon to detect labels like "Virus:", "Bakteri:", etc.
+    const parts = text.split(':');
+    
+    if (parts.length > 1) {
+      // Check if first part looks like a label (short text before colon)
+      const label = parts[0].trim();
+      const content = parts.slice(1).join(':').trim();
+      
+      // If label is short (likely a category), make it bold
+      if (label.length < 50 && content.length > 0) {
+        return (
+          <>
+            <strong className="font-bold text-gray-900">{label}:</strong> {content}
+          </>
+        );
+      }
+    }
+    
+    return text;
+  };
 
   return (
     <article className="content-renderer max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       {sections.map((section, index) => {
-        // Increment heading number only for main heading type (without subtitle)
-        if (section.type === 'heading' && !section.subtitle) {
-          headingNumber++;
-        }
-
         switch (section.type) {
           case 'heading':
+            const level = section.level || 1;
+            
             return (
               <motion.div
                 key={index}
@@ -37,26 +54,32 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className={`
-                  ${section.subtitle ? 'mt-6 mb-3' : 'mt-10 mb-4 first:mt-0'}
+                  ${level === 1 ? 'mt-10 mb-4 first:mt-0' : level === 2 ? 'mt-8 mb-3' : 'mt-6 mb-2'}
                 `}
               >
-                {!section.subtitle && (
+                {level === 2 && (
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 bg-gradient-to-br from-[#2F5D50] to-[#1a3d35] text-white rounded-full text-xs sm:text-sm font-bold shadow-sm">
-                      {headingNumber}
-                    </div>
                     <div className="h-px bg-gradient-to-r from-[#2F5D50]/30 to-transparent flex-1"></div>
                   </div>
                 )}
                 
-                <h2 className={`
-                  ${section.subtitle 
-                    ? 'text-base sm:text-lg font-semibold text-[#2F5D50]' 
-                    : 'text-xl sm:text-2xl font-bold text-gray-900'
-                  }
-                `}>
-                  {section.content as string}
-                </h2>
+                {level === 1 && (
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                    {section.content as string}
+                  </h2>
+                )}
+                
+                {level === 2 && (
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#2F5D50]">
+                    {section.content as string}
+                  </h3>
+                )}
+                
+                {level === 3 && (
+                  <h4 className="text-base sm:text-lg font-semibold text-[#2F5D50]">
+                    {section.content as string}
+                  </h4>
+                )}
                 
                 {section.subtitle && (
                   <p className="text-xs sm:text-sm text-gray-500 mt-1 italic">
@@ -103,7 +126,7 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                       className="flex items-start gap-2 text-sm sm:text-base leading-relaxed text-gray-700"
                     >
                       <div className="flex-shrink-0 w-1.5 h-1.5 bg-[#2F5D50] rounded-full mt-2"></div>
-                      <span>{item}</span>
+                      <span>{formatTextWithBold(item)}</span>
                     </motion.li>
                   ))}
                 </ul>
