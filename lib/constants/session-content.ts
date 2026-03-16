@@ -2,7 +2,7 @@
 // All content in Indonesian language
 
 export interface ContentSection {
-  type: 'heading' | 'paragraph' | 'list' | 'image' | 'video' | 'highlight' | 'stats' | 'warning' | 'tip';
+  type: 'heading' | 'paragraph' | 'list' | 'image' | 'video' | 'highlight' | 'stats' | 'warning' | 'tip' | 'audio';
   content: string | string[];
   media_url?: string;
   alt?: string;
@@ -51,7 +51,13 @@ export const sessionContents: SessionContent[] = [
         type: 'image',
         content: 'Ilustrasi pneumonia pada balita',
         media_url: '/media/images/gambar1.png',
-        alt: 'Ilustrasi ibu merawat anak dengan pneumonia'
+        alt: 'Statistik dan data pneumonia pada balita di Indonesia'
+      },
+      {
+        type: 'audio',
+        content: 'Podcast Materi Sesi 1',
+        media_url: '/media/podcats/sesi1.m4a',
+        alt: 'Audio penjelasan lengkap materi sesi 1'
       },
       {
         type: 'heading',
@@ -210,14 +216,14 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Infografis faktor risiko pneumonia',
-        media_url: '/media/images/gambar6.png',
+        media_url: '/media/images/gambar7.png',
         alt: 'Diagram faktor risiko pneumonia pada balita'
       },
       {
         type: 'video',
-        content: 'Video Animasi Penyebab & Risiko',
-        media_url: 'https://youtu.be/5WTJz4Ejpng',
-        alt: 'Video animasi tentang penyebab dan faktor risiko pneumonia'
+        content: 'Video Animasi Materi Sesi 1',
+        media_url: 'https://youtu.be/f8vT9-eWpP8',
+        alt: 'Video animasi lengkap tentang latar belakang, pengertian, anatomi, penyebab dan faktor risiko pneumonia'
       }
     ]
   },
@@ -274,8 +280,14 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Tanda dan gejala pneumonia pada balita',
-        media_url: '/media/images/gambar7.png',
+        media_url: '/media/images/gambar8.png',
         alt: 'Ilustrasi tanda dan gejala pneumonia'
+      },
+      {
+        type: 'audio',
+        content: 'Podcast Materi Sesi 2',
+        media_url: '/media/podcats/sesi2.m4a',
+        alt: 'Audio penjelasan lengkap materi sesi 2'
       },
       {
         type: 'heading',
@@ -292,7 +304,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Klasifikasi pneumonia berdasarkan tingkat keparahan',
-        media_url: '/media/images/gambar8.png',
+        media_url: '/media/images/gambar9.png',
         alt: 'Diagram klasifikasi pneumonia'
       },
       {
@@ -302,7 +314,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Alur perjalanan penyakit pneumonia',
-        media_url: '/media/images/gambar9.png',
+        media_url: '/media/images/gambar10.png',
         alt: 'Flowchart perjalanan penyakit pneumonia pada balita'
       },
       {
@@ -349,7 +361,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Komplikasi pneumonia pada balita',
-        media_url: '/media/images/gambar10.png',
+        media_url: '/media/images/gambar11.png',
         alt: 'Ilustrasi berbagai komplikasi pneumonia'
       },
       {
@@ -419,7 +431,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Pemeriksaan laboratorium untuk pneumonia',
-        media_url: '/media/images/gambar11.png',
+        media_url: '/media/images/gambar12.png',
         alt: 'Ilustrasi berbagai pemeriksaan laboratorium'
       },
       {
@@ -478,8 +490,14 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Penatalaksanaan pneumonia pada balita',
-        media_url: '/media/images/gambar12.png',
+        media_url: '/media/images/gambar13.png',
         alt: 'Flowchart penatalaksanaan pneumonia'
+      },
+      {
+        type: 'audio',
+        content: 'Podcast Materi Sesi 3',
+        media_url: '/media/podcats/sesi3.m4a',
+        alt: 'Audio penjelasan lengkap materi sesi 3'
       },
       {
         type: 'heading',
@@ -554,7 +572,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Panduan deteksi dini pneumonia di rumah',
-        media_url: '/media/images/gambar13.png',
+        media_url: '/media/images/gambar14.png',
         alt: 'Infografis cara deteksi dini pneumonia'
       },
       {
@@ -648,7 +666,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'image',
         content: 'Panduan perawatan balita dengan pneumonia',
-        media_url: '/media/images/gambar14.png',
+        media_url: '/media/images/gambar16.png',
         alt: 'Ilustrasi berbagai teknik perawatan balita'
       },
       {
@@ -662,9 +680,15 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'image',
-        content: 'Teknik hipnosis 5 jari',
-        media_url: '/media/images/gambar15.png',
+        content: 'Teknik hipnosis 5 jari - Diagram',
+        media_url: '/media/images/gambar17.png',
         alt: 'Ilustrasi teknik hipnosis 5 jari untuk mengurangi kecemasan'
+      },
+      {
+        type: 'image',
+        content: 'Teknik hipnosis 5 jari - Panduan Lengkap',
+        media_url: '/media/images/gambar18.png',
+        alt: 'Panduan lengkap teknik hipnosis 5 jari'
       },
       {
         type: 'video',
@@ -677,6 +701,12 @@ export const sessionContents: SessionContent[] = [
         content: 'Video Hipnosis 5 Jari',
         media_url: 'https://youtu.be/5HCFGIjXLqY',
         alt: 'Video tutorial hipnosis 5 jari untuk mengurangi kecemasan'
+      },
+      {
+        type: 'audio',
+        content: 'Podcast Materi Sesi 3 - Mendalam',
+        media_url: '/media/podcats/sesi3 mendalam.m4a',
+        alt: 'Audio penjelasan mendalam materi sesi 3'
       }
     ]
   },
@@ -698,12 +728,12 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: 'Hitung Napas',
+        content: '1. Hitung Napas',
         subtitle: 'Tutorial Menghitung Frekuensi Napas'
       },
       {
         type: 'paragraph',
-        content: 'Video tutorial menghitung frekuensi napas per menit. Ibu akan diminta menjawab dari video yang ditayangkan.'
+        content: 'Video tutorial menghitung frekuensi napas per menit. Ibu akan diminta menjawab dari video yang ditayangkan. "Berapa jumlah frekuensi napas anak tersebut dalam 1 menit?"'
       },
       {
         type: 'video',
@@ -712,13 +742,25 @@ export const sessionContents: SessionContent[] = [
         alt: 'Tutorial menghitung frekuensi napas pada balita'
       },
       {
+        type: 'video',
+        content: 'Video Latihan Menghitung Frekuensi Napas',
+        media_url: 'https://youtu.be/0ujj7aJLZqI',
+        alt: 'Video latihan menghitung frekuensi napas - Jawaban: 65x/menit'
+      },
+      {
+        type: 'video',
+        content: 'Video Hasil Menghitung Frekuensi Napas',
+        media_url: 'https://youtu.be/gCwgaVa6B98',
+        alt: 'Video hasil dan pembahasan menghitung frekuensi napas'
+      },
+      {
         type: 'heading',
-        content: 'Cek Retraksi',
+        content: '2. Cek Retraksi',
         subtitle: 'Panduan Visual Deteksi Tarikan Dinding Dada'
       },
       {
         type: 'paragraph',
-        content: 'Panduan visual untuk melihat apakah ada tarikan dinding dada ke dalam (retraksi). Ibu akan diminta menjawab dari video yang ditayangkan.'
+        content: 'Panduan visual untuk melihat apakah ada tarikan dinding dada ke dalam (retraksi).'
       },
       {
         type: 'video',
@@ -727,12 +769,117 @@ export const sessionContents: SessionContent[] = [
         alt: 'Panduan visual deteksi tarikan dinding dada pada balita'
       },
       {
+        type: 'video',
+        content: 'Video Melihat Retraksi Dinding Dada',
+        media_url: 'https://youtu.be/49_rVCBIMpQ',
+        alt: 'Video praktik melihat retraksi dinding dada'
+      },
+      {
+        type: 'heading',
+        content: '3. Dengar Suara Napas',
+        subtitle: 'Mengenali Suara Napas Tambahan'
+      },
+      {
+        type: 'paragraph',
+        content: 'Belajar mendengarkan suara napas tambahan seperti "ngrok-ngrok" atau mengi.'
+      },
+      {
+        type: 'video',
+        content: 'Video Suara Napas Tambahan',
+        media_url: 'https://youtu.be/Xn9UBmgpCdA',
+        alt: 'Tutorial mendengarkan suara napas tambahan pada balita'
+      },
+      {
+        type: 'heading',
+        content: '4. Ukur Suhu Tubuh',
+        subtitle: 'Cara Mengukur Suhu dengan Termometer'
+      },
+      {
+        type: 'paragraph',
+        content: 'Panduan mengukur suhu tubuh anak dengan benar menggunakan termometer. Nilai normal: 36,5°C - 37,5°C. Demam jika suhu > 37,5°C.'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Mengukur Suhu Tubuh',
+        media_url: 'https://youtu.be/8kr4ZfdXPgk',
+        alt: 'Tutorial mengukur suhu tubuh balita dengan termometer'
+      },
+      {
+        type: 'heading',
+        content: '5. Ukur Saturasi Oksigen',
+        subtitle: 'Cara Menggunakan Oksimetri'
+      },
+      {
+        type: 'paragraph',
+        content: 'Menilai kadar oksigen di dalam pembuluh darah arteri. Nilai normal: 95-100%. Pneumonia berat jika < 92%.'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Saturasi Oksigen',
+        media_url: 'https://youtu.be/ze6QPbZh7SU',
+        alt: 'Tutorial mengukur saturasi oksigen dengan oksimetri'
+      },
+      {
+        type: 'heading',
+        content: '6. Kompres Air Hangat (Water Tepid Sponge)',
+        subtitle: 'Teknik Menurunkan Demam'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Kompres Air Hangat',
+        media_url: 'https://youtu.be/gYkH3fqWcGc',
+        alt: 'Tutorial teknik kompres air hangat untuk menurunkan demam'
+      },
+      {
+        type: 'heading',
+        content: '7. Inhalasi Aromaterapi Peppermint',
+        subtitle: 'Melegakan Saluran Napas'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Inhalasi Aromaterapi',
+        media_url: 'https://youtu.be/8f0aGb7iKA8',
+        alt: 'Tutorial inhalasi aromaterapi peppermint oil'
+      },
+      {
+        type: 'heading',
+        content: '8. Fisioterapi Dada',
+        subtitle: 'Membantu Mengeluarkan Dahak'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Fisioterapi Dada',
+        media_url: 'https://youtu.be/sx5PljkutwI',
+        alt: 'Tutorial fisioterapi dada untuk mengeluarkan dahak'
+      },
+      {
+        type: 'heading',
+        content: '9. Pemberian Obat Antibiotik',
+        subtitle: 'Cara Memberikan Obat dengan Benar'
+      },
+      {
+        type: 'paragraph',
+        content: 'Panduan memberikan obat antibiotik sesuai dosis (2,5 ml, 5 ml, atau 10 ml) dan tepat waktu (setiap 8 jam untuk jadwal 3x sehari). Antibiotik harus dihabiskan untuk membunuh bakteri sepenuhnya.'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Pemberian Obat',
+        media_url: 'https://youtu.be/mrW0wCaHO-g',
+        alt: 'Tutorial cara memberikan obat antibiotik pada balita'
+      },
+      {
         type: 'highlight',
-        content: 'Sesi ini bersifat interaktif. Silakan tonton video dengan seksama dan jawab pertanyaan yang muncul untuk menguji pemahaman Ibu.'
+        content: 'Sesi ini bersifat interaktif. Silakan tonton video dengan seksama dan praktikkan langkah-langkah yang ditunjukkan untuk menguji pemahaman Ibu.'
       },
       {
         type: 'tip',
-        content: 'Pastikan Ibu memahami setiap langkah dalam video sebelum melanjutkan ke sesi berikutnya.'
+        content: 'Pastikan Ibu memahami setiap langkah dalam video sebelum melanjutkan ke sesi berikutnya. Catat hasil pengukuran di buku kecil untuk dilaporkan ke tenaga kesehatan.'
+      },
+      {
+        type: 'image',
+        content: 'Panduan Praktik Mandiri',
+        media_url: '/media/images/gambar15.png',
+        alt: 'Infografis panduan praktik mandiri deteksi pneumonia'
       }
     ]
   },
@@ -774,7 +921,7 @@ export const sessionContents: SessionContent[] = [
         type: 'video',
         content: 'Video Review Materi Pneumonia Balita',
         media_url: 'https://youtu.be/Eh6EpZlw7u4',
-        alt: 'Video animasi review lengkap materi pneumonia balita'
+        alt: 'Video review lengkap materi pneumonia balita dari sesi 1-4'
       },
       {
         type: 'tip',

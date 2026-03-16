@@ -6,7 +6,7 @@ import { Loader2, ZoomIn, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface MediaEmbedProps {
-  type: 'image' | 'video';
+  type: 'image' | 'video' | 'audio';
   mediaUrl: string;
   alt: string;
 }
@@ -40,11 +40,49 @@ export default function MediaEmbed({ type, mediaUrl, alt }: MediaEmbedProps) {
     // Use YouTube embed URL for videos
     fullMediaUrl = youtubeEmbedUrl;
   } else if (mediaUrl.startsWith('/')) {
-    // Use local path for images starting with '/'
+    // Use local path for images and audio starting with '/'
     fullMediaUrl = mediaUrl;
   } else {
     // Use Supabase storage for other media
     fullMediaUrl = `${supabaseUrl}/storage/v1/object/public/media-assets/${mediaUrl}`;
+  }
+
+  if (type === 'audio') {
+    return (
+      <div className="my-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-gradient-to-br from-[#2F5D50]/5 to-[#2F5D50]/10 rounded-lg p-6 border border-[#2F5D50]/20"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div className="bg-[#2F5D50] rounded-full p-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-800">🎧 Podcast Materi</p>
+              <p className="text-xs text-gray-600">{alt}</p>
+            </div>
+          </div>
+          <audio
+            controls
+            className="w-full"
+            preload="metadata"
+            onError={() => setError(true)}
+          >
+            <source src={fullMediaUrl} type="audio/mp4" />
+            Browser Anda tidak mendukung pemutar audio.
+          </audio>
+          {error && (
+            <p className="text-red-500 text-xs mt-2 text-center">
+              Gagal memuat audio. Silakan refresh halaman.
+            </p>
+          )}
+        </motion.div>
+      </div>
+    );
   }
 
   if (type === 'image') {

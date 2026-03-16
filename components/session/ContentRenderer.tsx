@@ -156,6 +156,29 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
               </motion.div>
             );
 
+          case 'audio':
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-6"
+              >
+                <MediaEmbed
+                  type="audio"
+                  mediaUrl={section.media_url!}
+                  alt={section.alt!}
+                />
+                {section.content && (
+                  <p className="text-xs sm:text-sm text-gray-600 text-center mt-2 font-medium">
+                    {section.content as string}
+                  </p>
+                )}
+              </motion.div>
+            );
+
           case 'highlight':
             return (
               <motion.div
