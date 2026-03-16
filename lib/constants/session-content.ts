@@ -19,7 +19,7 @@ export interface SessionContent {
 }
 
 export const sessionContents: SessionContent[] = [
-  // Day 1: Latar belakang, Pengertian, Anatomi, Penyebab, Faktor Risiko
+  // SESI 1: Latar belakang, Pengertian, Anatomi Sistem Pernapasan, Penyebab, dan Faktor Risiko
   {
     day: 1,
     title: 'Latar Belakang, Pengertian, Anatomi Sistem Pernapasan, Penyebab, dan Faktor Risiko',
@@ -32,19 +32,26 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'Pneumonia adalah penyakit infeksi pada kantong udara (alveoli) di paru-paru. Penyakit ini merupakan penyebab kematian nomor satu pada balita di dunia, merenggut sekitar 739.000 jiwa pada tahun 2023, dan mayoritas menyerang usia 2–59 bulan.'
+        content: 'Pneumonia adalah penyakit infeksi akut yang menyerang sistem pernapasan bagian bawah di alveoli pada balita, terutama yang berusia 29 hari – 11 bulan. Pneumonia dan diare menyebabkan 29% balita meninggal dan 2 juta anak meninggal setiap tahunnya. Penyakit ini merupakan penyebab kematian nomor satu pada balita di dunia, merenggut sekitar 739.000 jiwa pada tahun 2023, dan mayoritas menyerang usia 2–59 bulan.'
       },
       {
-        type: 'stats',
-        content: 'Situasi di Indonesia dan Jawa Barat',
-        stats: [
-          { label: 'Nasional', value: '166.702 kasus (2022)' },
-          { label: 'Jawa Barat', value: '45% kasus (2023)' },
-          { label: 'Kota Tasikmalaya', value: 'Urutan ke-11 (53,6%)' }
-        ]
+        type: 'heading',
+        content: 'Situasi di Indonesia dan Jawa Barat'
       },
       {
-        type: 'warning',
+        type: 'paragraph',
+        content: 'Nasional: Menjadi penyebab utama kematian balita dengan 166.702 kasus pada 2022. Angka kematian pada bayi tiga kali lebih tinggi dibandingkan dengan kelompok usia 1–4 tahun.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Jawa Barat: Mengalami tren kenaikan kasus dari 44,90% (2022) menjadi 45% (2023).'
+      },
+      {
+        type: 'paragraph',
+        content: 'Kota Tasikmalaya: Berada di urutan ke-11 di Jawa Barat (53,6% kasus)'
+      },
+      {
+        type: 'paragraph',
         content: 'Deteksi dini dan perawatan yang tepat sangat penting untuk menurunkan angka kesakitan dan kematian.'
       },
       {
@@ -54,18 +61,20 @@ export const sessionContents: SessionContent[] = [
         alt: 'Statistik dan data pneumonia pada balita di Indonesia'
       },
       {
-        type: 'audio',
-        content: 'Podcast Materi Sesi 1',
-        media_url: '/media/podcats/sesi1.m4a',
-        alt: 'Audio penjelasan lengkap materi sesi 1'
-      },
-      {
         type: 'heading',
         content: 'Pengertian Pneumonia & Bronkopneumonia'
       },
       {
-        type: 'highlight',
-        content: 'Pneumonia adalah infeksi sistem pernapasan bawah. Bronkopneumonia secara spesifik adalah radang pada saluran bronkial dan alveoli (bagian terkecil paru-paru).'
+        type: 'heading',
+        content: 'Pengertian:'
+      },
+      {
+        type: 'paragraph',
+        content: 'Pneumonia merupakan penyakit infeksi akut pada paru-paru yang menyerang alveoli (kantong udara kecil) tempat yang sangat penting dimana terjadi pertukaran oksigen dan karbondioksida di dalam tubuh. Infeksi yang terjadi bisa pada satu atau kedua paru, yang akan mengganggu fungsi pernapasan, menyebabkan sesak napas terutama pada balita yang berusia lebih muda, 29 hari – 11 bulan (National Heart Lung and Blood Institute, 2023).'
+      },
+      {
+        type: 'paragraph',
+        content: 'Bronkopneumonia adalah salah satu jenis peradangan paru yang menyebakan terjadinya infeksi dan reaksi peradangan pada area bronkus (saluran udara) dan alveoli (kantong udara)'
       },
       {
         type: 'image',
@@ -75,47 +84,39 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: 'Anatomi Sistem Pernapasan'
-      },
-      {
-        type: 'paragraph',
-        content: 'Sistem pernapasan balita dirancang untuk pertukaran gas yang efisien — dari hidung hingga alveoli, setiap bagian memiliki peran penting dalam menjaga oksigenasi tubuh.'
+        content: 'ANATOMI SISTEM PERNAPASAN'
       },
       {
         type: 'heading',
-        content: 'Saluran Napas Atas',
-        subtitle: 'Penyaring dan Pengkondisi Udara'
+        content: 'Saluran Napas Atas (Pintu Masuk dan penyaring udara)'
       },
       {
         type: 'paragraph',
-        content: 'Saluran pernapasan atas terdiri dari: Hidung, faring, dan laring menyaring, menghangatkan, dan melembabkan udara sebelum masuk lebih dalam.'
+        content: 'Terdiri dari: hidung, tenggorokan (faring), kotak suara (laring) yang bekerja sebagai filter udara, yaitu menyaring debu, menghangatkan, dan melembabkan udara sebelum udara yang dihirup masuk ke paru-paru balita.'
       },
       {
         type: 'heading',
-        content: 'Saluran Napas Bawah',
-        subtitle: 'Jalur Menuju Pertukaran Gas'
+        content: 'Saluran Napas Bawah (Pipa udara)'
       },
       {
         type: 'paragraph',
-        content: 'Trakea bercabang menjadi bronkus kanan dan kiri, lalu ke bronkiolus hingga alveoli sebagai tempat pertukaran gas.'
+        content: 'Mulai dari tenggorokan, yaitu trakea bercabang menjadi bronkus kanan dan kiri, lalu ke bronkiolus hingga alveoli (kantong udara) sebagai tempat pertukaran gas. Alveoli itulah tempat terjadi pertukaran gas oksigen dan karbondioksida sehingga anak mempunya enekgi untuk beraktivitas.'
       },
       {
         type: 'heading',
-        content: 'Paru-paru Balita',
-        subtitle: 'Organ Utama Pernapasan'
+        content: 'Paru-paru Balita'
       },
       {
         type: 'paragraph',
-        content: 'Lobus kanan (3 lobus) dan lobus kiri (2 lobus), dilapisi pleura licin untuk memudahkan gerakan saat bernapas.'
+        content: 'Paru-paru balita terdiri atas dua bagian besar, yaitu paru-paru kanan yang mempunyai 3 bagian dan paru-paru kiri yang mempunyai 3 bagian. Terdapat selaput tipis yang membungkus kedua bagian paru, yang disebut dengan pleura, yang berfungsi agar paru-paru bisa mengembang dan mengempis dengan nyaman.'
       },
       {
         type: 'heading',
-        content: 'Mekanisme Pernapasan',
-        subtitle: 'Proses Aktif Bernapas'
+        content: 'Mekanisme Pernapasan'
       },
       {
         type: 'paragraph',
-        content: 'Diafragma dan otot dada bekerja aktif mengembang dan mengempis paru-paru yang elastis secara ritmis.'
+        content: 'Otot dada dan diafragma (pembatas antara paru dan perut) bekerja secara aktif dalam menarik dan mengeluarkan napas secara teratur. "Jika otot dada anak terlihat bekerja terlalu keras hingga tampak adanya tarikan dinding dada ke dalam, itu adalah tanda bahaya bahwa si kecil sedang kesulitan bernapas."'
       },
       {
         type: 'image',
@@ -124,16 +125,42 @@ export const sessionContents: SessionContent[] = [
         alt: 'Diagram lengkap sistem pernapasan balita'
       },
       {
+        type: 'heading',
+        content: 'Perbedaan paru-paru balita Normal VS Paru-paru balita pneumonia'
+      },
+      {
+        type: 'heading',
+        content: 'Paru-paru balita normal'
+      },
+      {
+        type: 'paragraph',
+        content: 'Kondisi alveoli (kantong udara) paru-paru sangat bersih dan lentur. Ketika anak bernapas, udara masuk dengan lancar tanpa hambatan melalui saluran pernapasan. Kantong udara terisi penuh dengan udara sehingga proses pertukaran gas terjadi dengan baik, sehingga tubuh dapat mengambil oksigen untuk disalurkan ke seluruh tubuh balita.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Hasilnya: balita bisa bernapas dengan baik, pergerakan dada teratur saat bernapas, dan tidak menunjukkan kelelahan saat anak bernapas.'
+      },
+      {
+        type: 'heading',
+        content: 'Paru-paru balita pneumonia'
+      },
+      {
+        type: 'paragraph',
+        content: 'Paru-paru balita pneumonia menunjukkan adanya kuman (bakteri dan virus) masuk dan menyerang alveoli (kantong udara).'
+      },
+      {
+        type: 'paragraph',
+        content: 'Infeksi yang terjadi mengakibatkan peradangan pada saluran pernapasan dan produksi dahak yang berlebih sehingga jalan udara menyempit. Alveoli (kantong udara) yang seharusnya terisi udara menjadi terisi cairan atau nanah akibat proses infeksi. Sehingga berdampak pada gangguan pertukaran gas, dampaknya oksigen sulit untuk masuk ke dalam darah, dan tubuh menjadi kekurangan oksigen.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Hasinya: Balita susah dalam bernapas, pergerakan dada tidak teratur, dan menunjukkan anak sesak napas'
+      },
+      {
         type: 'image',
         content: 'Perbandingan paru-paru normal vs pneumonia',
         media_url: '/media/images/gambar4.png',
         alt: 'Perbedaan paru-paru balita normal vs pneumonia'
-      },
-      {
-        type: 'video',
-        content: 'Video Animasi Materi Sesi 1',
-        media_url: 'https://youtu.be/f8vT9-eWpP8',
-        alt: 'Video animasi tentang pneumonia balita'
       },
       {
         type: 'heading',
@@ -158,13 +185,18 @@ export const sessionContents: SessionContent[] = [
         alt: 'Berbagai jenis virus dan bakteri penyebab pneumonia'
       },
       {
-        type: 'heading',
-        content: 'Faktor Risiko Kejadian Pneumonia'
+        type: 'image',
+        content: 'Mikroorganisme penyebab pneumonia (lanjutan)',
+        media_url: '/media/images/gambar6.png',
+        alt: 'Berbagai jenis virus dan bakteri penyebab pneumonia'
       },
       {
         type: 'heading',
-        content: '1. Faktor Risiko "Pasti" (Terbukti Secara Ilmiah)',
-        subtitle: 'Risiko Tinggi yang Sudah Terbukti'
+        content: 'Faktor Resiko kejadian Pneumonia'
+      },
+      {
+        type: 'heading',
+        content: '1. Faktor Risiko "Pasti" (Terbukti Secara Ilmiah)'
       },
       {
         type: 'list',
@@ -177,8 +209,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '2. Faktor Risiko "Mungkin Sekali"',
-        subtitle: 'Risiko Sedang yang Perlu Diwaspadai'
+        content: '2. Faktor Risiko "Mungkin Sekali"'
       },
       {
         type: 'list',
@@ -190,8 +221,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '3. Faktor Risiko "Mungkin"',
-        subtitle: 'Risiko Rendah yang Tetap Perlu Diperhatikan'
+        content: '3. Faktor Risiko "Mungkin"'
       },
       {
         type: 'list',
@@ -202,8 +232,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '4. Faktor Risiko Menurut Kemenkes RI',
-        subtitle: 'Perspektif Kebijakan Kesehatan Nasional'
+        content: '4. Faktor Risiko Menurut Kemenkes RI'
       },
       {
         type: 'list',
@@ -224,11 +253,17 @@ export const sessionContents: SessionContent[] = [
         content: 'Video Animasi Materi Sesi 1',
         media_url: 'https://youtu.be/f8vT9-eWpP8',
         alt: 'Video animasi lengkap tentang latar belakang, pengertian, anatomi, penyebab dan faktor risiko pneumonia'
+      },
+      {
+        type: 'audio',
+        content: 'Podcast Materi Sesi 1',
+        media_url: '/media/podcats/sesi1.m4a',
+        alt: 'Audio penjelasan lengkap materi sesi 1'
       }
     ]
   },
 
-  // Day 2: Tanda & Gejala, Klasifikasi, Perjalanan Penyakit
+  // SESI 2: Tanda & Gejala, Klasifikasi Pneumonia, dan Perjalanan Penyakit
   {
     day: 2,
     title: 'Tanda & Gejala, Klasifikasi Pneumonia, dan Perjalanan Penyakit',
@@ -237,7 +272,7 @@ export const sessionContents: SessionContent[] = [
     sections: [
       {
         type: 'heading',
-        content: 'Tanda dan Gejala'
+        content: 'TANDA DAN GEJALA'
       },
       {
         type: 'paragraph',
@@ -245,36 +280,38 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '1. Gejala Umum (Kunci Utama)',
-        subtitle: 'Tanda yang Paling Sering Muncul'
+        content: '1. Gejala Umum (Kunci Utama)'
+      },
+      {
+        type: 'paragraph',
+        content: 'Tanda yang paling sering muncul adalah:'
       },
       {
         type: 'list',
         content: [
           'Gangguan Pernapasan: Napas cepat (takipnea), tarikan dinding dada ke dalam (retraksi), dan napas cuping hidung',
-          'Suara Napas Tambahan: Terdengar suara crackles (seperti rontgen), wheezing (mengi), atau suara napas yang menurun',
-          'Kondisi Tubuh: Demam tinggi, menggigil, batuk (kering atau berdahak), serta nyeri pada dada, perut, atau leher',
+          'Suara Napas Tambahan: Terdengar suara crackles, wheezing (mengi), atau suara napas yang menurun',
+          'Kondisi Tubuh: Demam tinggi dengan suhu > 37,5 °C, menggigil, batuk (kering atau berdahak), serta nyeri pada dada, perut, atau leher',
           'Perubahan Perilaku: Anak tampak lemas (letargi), gelisah, sulit minum/menyusu, hingga warna kulit membiru (sianosis) karena kurang oksigen'
         ]
       },
       {
         type: 'heading',
-        content: '2. Tanda Bahaya yang Perlu Diwaspadai',
-        subtitle: 'Deteksi Dini untuk Orang Tua'
+        content: '3. Tanda Bahaya yang Perlu Diwaspadai'
       },
       {
-        type: 'highlight',
+        type: 'paragraph',
         content: 'Penelitian menunjukkan bahwa hampir 60% kasus pneumonia pada anak ditandai dengan dua hal utama yang bisa dilihat langsung oleh orang tua:'
       },
       {
         type: 'list',
         content: [
-          'Napas Cepat: Frekuensi napas yang melebihi batas normal sesuai usia',
+          'Napas Cepat: Frekuensi napas yang melebihi batas normal sesuai usia, yaitu untuk usia 2 – <12 bulan: ≥ 50x/menit; usia 12 bulan – <5 tahun: ≥ 40x/menit',
           'Tarikan Dinding Dada: Dada tampak mencekung ke dalam saat anak menarik napas'
         ]
       },
       {
-        type: 'warning',
+        type: 'paragraph',
         content: 'Catatan Penting: Deteksi dini pada tanda-tanda di atas sangat krusial karena pneumonia dapat berkembang cepat menjadi kondisi berat (toksemia) jika tidak segera ditangani.'
       },
       {
@@ -284,20 +321,14 @@ export const sessionContents: SessionContent[] = [
         alt: 'Ilustrasi tanda dan gejala pneumonia'
       },
       {
-        type: 'audio',
-        content: 'Podcast Materi Sesi 2',
-        media_url: '/media/podcats/sesi2.m4a',
-        alt: 'Audio penjelasan lengkap materi sesi 2'
-      },
-      {
         type: 'heading',
         content: 'Klasifikasi Pneumonia'
       },
       {
         type: 'list',
         content: [
-          'Pneumonia Berat: Ditandai dengan tarikan dinding dada ke dalam atau saturasi oksigen < 92%',
-          'Pneumonia: Ditandai dengan napas cepat (Usia 2-<12 bulan: ≥50x/menit; Usia 12 bulan-<5 tahun: ≥40x/menit)',
+          'Pneumonia berat: ditandai dengan tarikan dinding dada ke dalam atau saturasi oksigen < 92%',
+          'Pneumonia: Ditandai dengan napas cepat (Usia 2–<12 bulan: ≥50x/menit; Usia 12 bulan–<5 tahun: ≥40x/menit)',
           'Batuk Bukan Pneumonia: Hanya batuk pilek biasa tanpa napas cepat atau tarikan dinding dada'
         ]
       },
@@ -312,6 +343,58 @@ export const sessionContents: SessionContent[] = [
         content: 'Perjalanan Penyakit Pneumonia Balita'
       },
       {
+        type: 'heading',
+        content: 'Tahap ke-1 & 2 (Pintu Masuk Kuman)'
+      },
+      {
+        type: 'paragraph',
+        content: 'Tahap pertama diawali dengan masuknya kuman (bakteri dan virus) ke saluran pernapasan balita. Kuman tersebut masuk lewat udara atau percikan ludah saat orang sakit batuk.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Anak bisa mengalami pneumonia karena adanya penularan penyakit, hal tersebut disebabkan karena adanya faktor yang memudahkan kuman masuk diantaranya asap rokok, gizi anak yang kurang, atau pemberian imunisasi yang tidak lengkap'
+      },
+      {
+        type: 'paragraph',
+        content: 'Selain itu, sistem pertahanan tubuh balita dan saluran napas anak yang belum sempurna mengakibatkan kuman tersebut bisa masuk ke paru-paru bagian bawah, yaitu di kantong udara (alveoli).'
+      },
+      {
+        type: 'heading',
+        content: 'Tahap 3 & 4 ( Pertahanan di Paru-paru)'
+      },
+      {
+        type: 'paragraph',
+        content: 'Kuman yang masuk ke paru-paru bagian dalam, yaitu kantong udara (alveoli), akan memperbanyak diri/berkembang biak. Namun, tubuh anak melakukan perlawanan dengan mengaktifkan sistem imun (pertahanan tubuh) untuk menyerang kuman. Sehingga menyebabkan terjadinya peradangan atau perlukaan pada jaringan paru.'
+      },
+      {
+        type: 'heading',
+        content: 'Tahap 5 & 6 (Penumpukan cairan/ nanah)'
+      },
+      {
+        type: 'paragraph',
+        content: 'Proses peradangan yang terjadi menghasilkan nanah/lendir. Kantong udara (alveoli) yang seharusnya secara normal berisi udara bersih sekarang terisi penuh dengan lendir atau nanah, sehingga oksigen sulit masuk ke dalam darah dan udara kotor (karbondioksida) sulit untuk keluar.'
+      },
+      {
+        type: 'heading',
+        content: 'Tahap 7 (Gejala yang ditemukan)'
+      },
+      {
+        type: 'paragraph',
+        content: 'Tahap ini menunjukkan oksigen di dalam tubuh berkurang, di mana akan muncul gejala pada anak berupa demam tinggi, anak lemas, gelisah, dan tidak mau menyusu. Selain itu muncul batuk berdahak atau kering, ada suara napas tambahan karena penumpukan lendir di jalan napas seperti wheezing, ronkhi, pernapasan anak cepat, ada tarikan dinding dada kedalam, dan terdapat pernapasan cuping hidung yaitu hidung anak kembang kempis karena berusa keras untuk mendapatkan oksigen'
+      },
+      {
+        type: 'heading',
+        content: 'Tahap kritis (Toksemia)'
+      },
+      {
+        type: 'paragraph',
+        content: 'Apabila tanda dan gejala gangguan pernapasan pada balita tidak segera ditangani, maka kondisi anak menjadi sangat parah. Kondisi tersebut akan mengakibatkan infeksi yang terjadi menyebar ke seluruh tubuh (sepsis), sehingga mengakibatkan gagal napas yang akan mengancam nyawa.'
+      },
+      {
+        type: 'heading',
+        content: 'Komplikasi'
+      },
+      {
         type: 'image',
         content: 'Alur perjalanan penyakit pneumonia',
         media_url: '/media/images/gambar10.png',
@@ -319,12 +402,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: 'Komplikasi'
-      },
-      {
-        type: 'heading',
-        content: '1. Masalah pada Paru-Paru',
-        subtitle: 'Komplikasi Lokal di Organ Pernapasan'
+        content: '1. Masalah pada Paru-Paru'
       },
       {
         type: 'list',
@@ -336,8 +414,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '2. Masalah yang Menyebar ke Seluruh Tubuh',
-        subtitle: 'Komplikasi Sistemik'
+        content: '2. Masalah yang Menyebar ke Seluruh Tubuh'
       },
       {
         type: 'list',
@@ -348,8 +425,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '3. Tanda Khusus yang Perlu Diperhatikan (Menurut WHO)',
-        subtitle: 'Panduan Internasional'
+        content: '3. Tanda Khusus yang Perlu Diperhatikan (Menurut WHO)'
       },
       {
         type: 'list',
@@ -369,10 +445,17 @@ export const sessionContents: SessionContent[] = [
         content: 'Video Animasi Tanda & Gejala, Klasifikasi, dan Perjalanan Penyakit',
         media_url: 'https://youtu.be/RDH5Iy_7cYo',
         alt: 'Video animasi tentang tanda gejala dan klasifikasi pneumonia'
+      },
+      {
+        type: 'audio',
+        content: 'Podcast Materi Sesi 2',
+        media_url: '/media/podcats/sesi2.m4a',
+        alt: 'Audio penjelasan lengkap materi sesi 2'
       }
     ]
   },
-  // Day 3: Pemeriksaan, Penatalaksanaan, Deteksi Dini, Perawatan
+
+  // SESI 3: Pemeriksaan diagnostik, Penatalaksanaan, Deteksi dini, perawatan Pencegahan
   {
     day: 3,
     title: 'Pemeriksaan Diagnostik, Penatalaksanaan, Deteksi Dini, Perawatan Pencegahan',
@@ -385,17 +468,15 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: 'Cek Darah Lengkap',
-        subtitle: 'Mendeteksi Infeksi Bakteri'
+        content: 'Cek Darah Lengkap:'
       },
       {
         type: 'paragraph',
-        content: 'Tujuannya: Melihat jumlah sel darah putih. Jika tinggi, tandanya ada infeksi bakteri yang sedang menyerang tubuh.'
+        content: 'Tujuannya: Melihat jumlah sel darah putih. Jika nilai sel darah putih (leukosit) tinggi, tandanya ada infeksi bakteri yang sedang menyerang tubuh.'
       },
       {
         type: 'heading',
-        content: 'Cek Penanda Radang (CRP/LED)',
-        subtitle: 'Mengukur Tingkat Peradangan'
+        content: 'Cek Penanda Radang (CRP/LED):'
       },
       {
         type: 'paragraph',
@@ -403,30 +484,27 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: 'Cek Dahak (Sputum)',
-        subtitle: 'Identifikasi Jenis Kuman'
+        content: 'Cek Dahak (Sputum):'
       },
       {
         type: 'paragraph',
-        content: 'Tujuannya: Mencari tahu jenis kuman penyebabnya agar dokter bisa memberikan jenis antibiotik yang paling pas.'
+        content: 'Tujuannya: Mencari tahu jenis kuman penyebabnya agar dokter bisa memberikan jenis antibiotik yang paling sesuai dengan jenis kuman.'
       },
       {
         type: 'heading',
-        content: 'Cek Oksigen Darah (Gas Darah)',
-        subtitle: 'Evaluasi Fungsi Pernapasan'
+        content: 'Cek Oksigen Darah (Gas Darah):'
       },
       {
         type: 'paragraph',
-        content: 'Tujuannya: Dilakukan jika si Kecil sesak hebat, untuk memastikan apakah oksigen dalam darahnya masih cukup atau butuh bantuan alat napas.'
+        content: 'Tujuannya: Dilakukan jika si Kecil sesak berat, untuk memastikan apakah oksigen dalam darahnya masih cukup atau membutuhkan bantuan alat bantu napas.'
       },
       {
         type: 'heading',
-        content: 'Biakan Darah (Kultur)',
-        subtitle: 'Deteksi Penyebaran Infeksi'
+        content: 'Biakan Darah (Kultur):'
       },
       {
         type: 'paragraph',
-        content: 'Tujuannya: memastikan apakah kuman sudah menyebar dari paru-paru ke aliran darah (mencegah infeksi berat).'
+        content: 'Tujuannya: memastikan apakah kuman sudah menyebar dari paru-paru ke aliran darah yang bertujuan untuk mencegah infeksi berat.'
       },
       {
         type: 'image',
@@ -440,8 +518,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '1. Kapan Harus Dirawat di Rumah Sakit?',
-        subtitle: 'Kriteria Rawat Inap'
+        content: '1. Kapan harus dirawat di rumah sakit?'
       },
       {
         type: 'list',
@@ -452,40 +529,37 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '2. Perawatan Pendukung di Rumah/RS',
-        subtitle: 'Terapi Suportif'
+        content: '2. Perawatan Pendukung di Rumah/RS'
       },
       {
         type: 'list',
         content: [
-          'Cairan & Nutrisi: Pastikan anak tidak dehidrasi/ kekurangan cairan dan tetap makan agar kuat melawan kuman',
+          'Cairan & Nutrisi: Pastikan anak tidak dehidrasi/kekurangan cairan dan tetap makan agar kuat melawan kuman',
           'Bantuan Napas: Pemberian oksigen atau bantuan mengeluarkan dahak agar jalan napas lega'
         ]
       },
       {
         type: 'heading',
-        content: '3. Pemberian Antibiotik yang Tepat',
-        subtitle: 'Terapi Definitif'
+        content: '3. Pemberian Antibiotik yang Tepat'
       },
       {
         type: 'list',
         content: [
-          'Sesuai Umur: Jenis dan dosis antibiotik dibedakan antara bayi baru lahir, balita, hingga anak sekolah',
-          'Harus Tuntas: Obat biasanya diberikan selama 10–14 hari. Jangan berhenti sebelum waktunya, meski anak sudah tidak demam (minimal bebas demam 3 hari baru boleh evaluasi berhenti)'
+          'Sesuai umur: Jenis dan dosis antibiotik dibedakan antara bayi baru lahir, balita, dan anak sekolah',
+          'Harus Tuntas: Obat biasanya diberikan selama 10–14 hari. Jangan berhenti sebelum waktunya, meskipun anak sudah tidak demam (minimal bebas demam 3 hari baru boleh evaluasi berhenti)'
         ]
       },
       {
         type: 'heading',
-        content: '4. Pengobatan Khusus',
-        subtitle: 'Terapi Spesifik'
+        content: '4. Pengobatan Khusus'
       },
       {
         type: 'paragraph',
-        content: 'Dokter akan memilih jenis obat yang paling kuat berdasarkan jenis kuman penyebabnya (misalnya untuk kuman Stafilokokus atau M. pneumonia).'
+        content: 'Dokter akan memilih jenis obat yang paling efektif berdasarkan jenis kuman penyebabnya (misalnya untuk kuman stafilokokus atau M. pneumoniae).'
       },
       {
-        type: 'tip',
-        content: 'Penting untuk Ibu: Kunci kesembuhan adalah disiplin dosis dan menjaga asupan cairan si Kecil.'
+        type: 'paragraph',
+        content: 'Penting untuk Ibu: Kunci kesembuhan adalah disiplin dosis dan menjaga asupan cairan si Kecil. Apabila batuk > 2 minggu, lakukan pemeriksaan untuk Tuberculosis (TBC)'
       },
       {
         type: 'image',
@@ -494,17 +568,11 @@ export const sessionContents: SessionContent[] = [
         alt: 'Flowchart penatalaksanaan pneumonia'
       },
       {
-        type: 'audio',
-        content: 'Podcast Materi Sesi 3',
-        media_url: '/media/podcats/sesi3.m4a',
-        alt: 'Audio penjelasan lengkap materi sesi 3'
-      },
-      {
         type: 'heading',
         content: 'Deteksi Dini'
       },
       {
-        type: 'highlight',
+        type: 'heading',
         content: 'Cara Cepat Deteksi Pneumonia (Paru-Paru Basah) di Rumah'
       },
       {
@@ -513,12 +581,11 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: '1. LIHAT: Hitung Kecepatan Napas',
-        subtitle: 'Observasi Visual'
+        content: '1. LIHAT: Hitung Kecepatan Napas (Pengukuran frekuensi napas)'
       },
       {
         type: 'paragraph',
-        content: 'Buka baju si Kecil dan lihat dadanya saat ia tenang/tidur. Ia disebut napas cepat jika dalam 1 menit:'
+        content: 'Buka baju si Kecil dan lihat dadanya saat ia tenang/tidur. Balita disebut napas cepat jika dalam 1 menit:'
       },
       {
         type: 'list',
@@ -529,13 +596,41 @@ export const sessionContents: SessionContent[] = [
         ]
       },
       {
-        type: 'warning',
-        content: 'Waspada: Jika dada bagian bawah mencekung ke dalam setiap kali anak menarik napas.'
+        type: 'heading',
+        content: 'Prosedur:'
+      },
+      {
+        type: 'list',
+        content: [
+          'Menghitung pernafasan anak selama 1 menit dengan menggunakan arloji saat anak dalam keadaan tenang dan diam',
+          'Mengamati pergerakan nafas bagian dada atau perut',
+          'Melihat dan menunjukkan adanya tarikan dinding dada bagian bawah',
+          'Mendengar adanya bunyi nafas "grok-grok"'
+        ]
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Hitung Napas',
+        media_url: 'https://www.youtube.com/watch?v=wlSbzDARbUc',
+        alt: 'Tutorial menghitung frekuensi napas pada balita'
       },
       {
         type: 'heading',
-        content: '2. DENGAR: Suara Napas',
-        subtitle: 'Evaluasi Auditori'
+        content: 'LIHAT : Tarikan dinding dada kedalam'
+      },
+      {
+        type: 'paragraph',
+        content: 'Waspada: Jika dada bagian bawah mencekung ke dalam setiap kali anak menarik napas.'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Tarikan Dinding Dada',
+        media_url: 'https://youtu.be/V5d1DxKDUHA',
+        alt: 'Panduan visual deteksi tarikan dinding dada pada balita'
+      },
+      {
+        type: 'heading',
+        content: '3. DENGAR: Suara napas tambahan'
       },
       {
         type: 'paragraph',
@@ -549,31 +644,77 @@ export const sessionContents: SessionContent[] = [
         ]
       },
       {
+        type: 'video',
+        content: 'Video Suara Napas Tambahan',
+        media_url: 'https://youtu.be/Xn9UBmgpCdA',
+        alt: 'Tutorial mendengarkan suara napas tambahan pada balita'
+      },
+      {
         type: 'heading',
-        content: '3. PANTAU: Kondisi Tubuh',
-        subtitle: 'Monitoring Umum'
+        content: '4. Pantau: Kondisi suhu tubuh'
       },
       {
         type: 'paragraph',
-        content: 'Segera bawa ke dokter jika:'
+        content: 'Demam tinggi yang tidak turun-turun .'
+      },
+      {
+        type: 'paragraph',
+        content: 'Pastikan suhu tubuh anak menggunakan termometer dengan langkah sebagai berikut'
       },
       {
         type: 'list',
         content: [
-          'Demam tinggi yang tidak turun-turun',
-          'Malas minum/menyusu (karena capek bernapas)',
-          'Bibir atau kuku mulai membiru (Ini tanda bahaya darurat!)'
+          'Nyalakan thermometer dan pastikan bertulisan "LO" pada thermometer',
+          'Keringkan bagian ketiak anak hingga dapat dipastikan tidak mempengaruhi hasil pemeriksaan',
+          'Letakan ujung termometer pada ketiak anak',
+          'Diamkan hingga berbunyi "beep" dan lihat hasil pemeriksaan',
+          'Nilai Normal suhu tubuh (36,5 oC – 37, 5 oC)',
+          'Demam jika suhu > 37, 5 oC'
         ]
-      },
-      {
-        type: 'warning',
-        content: 'Intinya: Jika anak batuk disertai napas cepat atau dada mencekung, jangan tunggu besok. Segera bawa ke Puskesmas atau Rumah Sakit terdekat.'
       },
       {
         type: 'image',
         content: 'Panduan deteksi dini pneumonia di rumah',
         media_url: '/media/images/gambar14.png',
         alt: 'Infografis cara deteksi dini pneumonia'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Mengukur Suhu Tubuh',
+        media_url: 'https://youtu.be/8kr4ZfdXPgk',
+        alt: 'Tutorial mengukur suhu tubuh balita dengan termometer'
+      },
+      {
+        type: 'heading',
+        content: 'Pantau: Nilai Saturasi Oksigen'
+      },
+      {
+        type: 'paragraph',
+        content: 'Menilai kadar oksigen didalam pembuluh darah arteri'
+      },
+      {
+        type: 'paragraph',
+        content: 'Nilai Normal saturasi oksigen 95-100%, Pneumonia Berat apabila nilai Saturasi oksigen Adalah < 92%.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Meletakkkan oksimetri pada ibujari anak dan lihat hasil pengukuran'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Saturasi Oksigen',
+        media_url: 'https://youtu.be/ze6QPbZh7SU',
+        alt: 'Tutorial mengukur saturasi oksigen dengan oksimetri'
+      },
+      {
+        type: 'paragraph',
+        content: 'Intinya: Jika anak batuk disertai napas cepat atau dada mencekung, jangan tunggu besok. Segera bawa ke Puskesmas atau Rumah Sakit terdekat.'
+      },
+      {
+        type: 'image',
+        content: 'Panduan deteksi dini pneumonia',
+        media_url: '/media/images/gambar15.png',
+        alt: 'Infografis panduan deteksi dini pneumonia'
       },
       {
         type: 'heading',
@@ -585,58 +726,51 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: 'Pengukuran Frekuensi Napas',
-        subtitle: 'Monitoring Vital Sign'
-      },
-      {
-        type: 'paragraph',
-        content: 'Dihitung selama 1 menit saat anak tenang. Amati pergerakan dada/perut dan tanda napas cepat sesuai kriteria usia.'
-      },
-      {
-        type: 'heading',
-        content: 'Pengukuran Saturasi Oksigen',
-        subtitle: 'Evaluasi Oksigenasi'
-      },
-      {
-        type: 'paragraph',
-        content: 'Menggunakan oksimetri pada ibu jari anak untuk menilai kadar oksigen arteri (Normal: 95-100%).'
-      },
-      {
-        type: 'heading',
-        content: 'Penanganan Demam (Water Tepid Sponge)',
-        subtitle: 'Terapi Non-Farmakologi'
+        content: 'Penanganan Demam (Water Tepid Sponge)'
       },
       {
         type: 'paragraph',
         content: 'Teknik kompres air hangat untuk menurunkan suhu tubuh.'
       },
       {
-        type: 'list',
-        content: [
-          'Persiapan: Baskom air hangat, waslap, termometer, dan handuk',
-          'Prosedur: Ukur suhu awal, buka pakaian, lapisi tempat tidur dengan perlak, lalu letakkan waslap basah di ketiak dan lipatan paha selama 3-5 menit'
-        ]
-      },
-      {
-        type: 'heading',
-        content: 'Inhalasi Aromaterapi Peppermint Oil',
-        subtitle: 'Terapi Komplementer'
+        type: 'paragraph',
+        content: 'Persiapan: Baskom air hangat, waslap, termometer, dan handuk.'
       },
       {
         type: 'paragraph',
-        content: 'Tindakan non-farmakologi untuk mengatasi bersihan jalan napas yang tidak efektif.'
+        content: 'Prosedur: Ukur suhu awal, buka pakaian, lapisi tempat tidur dengan perlak, lalu letakkan waslap basah di ketiak dan lipatan paha selama 3-5 menit.'
       },
       {
-        type: 'list',
-        content: [
-          'Manfaat: Mengurangi sesak napas (dispnea), mengurangi peradangan, melegakan saluran napas, dan memberikan relaksasi',
-          'Cara: Gunakan diffuser (50ml air + 4-5 tetes minyak) dengan jarak 10-15 cm dari anak selama 10-15 menit'
-        ]
+        type: 'video',
+        content: 'Video Tutorial Kompres Air Hangat',
+        media_url: 'https://youtu.be/gYkH3fqWcGc',
+        alt: 'Tutorial teknik kompres air hangat untuk menurunkan demam'
       },
       {
         type: 'heading',
-        content: 'Fisioterapi Dada',
-        subtitle: 'Terapi Fisik'
+        content: 'Inhalasi Aromaterapi Peppermint Oil'
+      },
+      {
+        type: 'paragraph',
+        content: 'Tindakan nonfarmakologis untuk mengatasi bersihan jalan napas yang tidak efektif.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Manfaat: Mengurangi sesak napas (dispnea), mengurangi peradangan, melegakan saluran napas, dan memberikan relaksasi.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Cara: Gunakan diffuser (50 ml air + 4-5 tetes minyak) dengan jarak 10-15 cm dari anak selama 10-15 menit.'
+      },
+      {
+        type: 'video',
+        content: 'Video Tutorial Inhalasi Aromaterapi',
+        media_url: 'https://youtu.be/8f0aGb7iKA8',
+        alt: 'Tutorial inhalasi aromaterapi peppermint oil'
+      },
+      {
+        type: 'heading',
+        content: 'Fisioterapi Dada'
       },
       {
         type: 'paragraph',
@@ -647,20 +781,44 @@ export const sessionContents: SessionContent[] = [
         content: 'Teknik: Lakukan perkusi (ketukan dengan tangan ditangkupkan) selama 3-5 menit, dilanjutkan dengan vibrasi (getaran dengan posisi tangan rata) pada area paru yang mengalami penumpukan dahak.'
       },
       {
+        type: 'video',
+        content: 'Video Tutorial Fisioterapi Dada',
+        media_url: 'https://youtu.be/sx5PljkutwI',
+        alt: 'Tutorial fisioterapi dada untuk mengeluarkan dahak'
+      },
+      {
         type: 'heading',
-        content: 'Nutrisi dan Pengobatan',
-        subtitle: 'Dukungan Gizi dan Medis'
+        content: 'Nutrisi dan Pengobatan'
+      },
+      {
+        type: 'paragraph',
+        content: 'Nutrisi: Berikan ASI eksklusif hingga 6 bulan karena mengandung zat anti-infeksi. Untuk balita di atas 6 bulan, berikan diet tinggi energi tinggi protein (TETP) dengan tekstur lunak (Buah, susu, telur, ikan, kacang-kacangan).'
+      },
+      {
+        type: 'paragraph',
+        content: 'Catatan Diet: Kurangi karbohidrat untuk meminimalkan produksi CO2. Madu dapat diberikan untuk mengurangi batuk.'
+      },
+      {
+        type: 'paragraph',
+        content: 'Antibiotik: Harus diberikan sesuai dosis, tepat waktu (misalnya setiap 8 jam untuk jadwal 3x sehari), dan wajib dihabiskan untuk membunuh bakteri sepenuhnya.'
       },
       {
         type: 'list',
         content: [
-          'Nutrisi: Berikan ASI eksklusif hingga 6 bulan karena mengandung zat anti-infeksi. Untuk balita di atas 6 bulan, berikan diet Tinggi Energi Tinggi Protein (TETP) dengan tekstur lunak (Buah, Susu, Telur, Ikan, Kacang-kacangan)',
-          'Catatan Diet: Kurangi karbohidrat untuk meminimalkan produksi CO2. Madu dapat diberikan untuk mengurangi batuk',
-          'Antibiotik: Harus diberikan sesuai dosis, tepat waktu (misal setiap 8 jam untuk jadwal 3x sehari), dan wajib dihabiskan untuk membunuh bakteri sepenuhnya'
+          'Memberikan obat antibiotik sesuai dengan dosis yang ditentukan misalnya 2,5 ml, 5 ml, atau 10 ml',
+          'Memberikan obat tepat waktu sesuai jadwal misalnya 3x dalam 24 jam berarti setiap 8 jam obat diberikan',
+          'Contoh: pemberian ke-1 : jam 06.00, pemberian ke-2 : jam 14.00, pemberian ke-3 : jam 22.00',
+          'Antibiotik harus diberikan sampai habis untuk membunuh bakteri'
         ]
       },
       {
-        type: 'tip',
+        type: 'video',
+        content: 'Video Tutorial Pemberian Obat',
+        media_url: 'https://youtu.be/mrW0wCaHO-g',
+        alt: 'Tutorial cara memberikan obat antibiotik pada balita'
+      },
+      {
+        type: 'paragraph',
         content: 'Tips Penting: Selalu catat hasil hitung napas dan suhu tubuh si Kecil di buku kecil agar mudah dilaporkan saat berkonsultasi dengan bidan atau dokter.'
       },
       {
@@ -671,8 +829,7 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'heading',
-        content: 'Manajemen Psikologis bagi Ibu: Hipnosis 5 Jari',
-        subtitle: 'Dukungan Mental untuk Orang Tua'
+        content: 'Manajemen Psikologis bagi ibu: Hipnosis 5 Jari'
       },
       {
         type: 'paragraph',
@@ -704,6 +861,12 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'audio',
+        content: 'Podcast Materi Sesi 3',
+        media_url: '/media/podcats/sesi3.m4a',
+        alt: 'Audio penjelasan lengkap materi sesi 3'
+      },
+      {
+        type: 'audio',
         content: 'Podcast Materi Sesi 3 - Mendalam',
         media_url: '/media/podcats/sesi3 mendalam.m4a',
         alt: 'Audio penjelasan mendalam materi sesi 3'
@@ -711,7 +874,7 @@ export const sessionContents: SessionContent[] = [
     ]
   },
 
-  // Day 4: Praktik Mandiri
+  // SESI 4: PRAKTIK MANDIRI
   {
     day: 4,
     title: 'Praktik Mandiri',
@@ -720,43 +883,35 @@ export const sessionContents: SessionContent[] = [
     sections: [
       {
         type: 'heading',
-        content: 'Latihan Interaktif'
-      },
-      {
-        type: 'paragraph',
-        content: 'Pada sesi ini, Ibu akan belajar mempraktikkan cara mendeteksi pneumonia melalui video tutorial interaktif.'
+        content: 'PRAKTIK MANDIRI'
       },
       {
         type: 'heading',
-        content: '1. Hitung Napas',
-        subtitle: 'Tutorial Menghitung Frekuensi Napas'
+        content: 'Latihan Interaktif:'
+      },
+      {
+        type: 'heading',
+        content: 'Hitung Napas:'
       },
       {
         type: 'paragraph',
-        content: 'Video tutorial menghitung frekuensi napas per menit. Ibu akan diminta menjawab dari video yang ditayangkan. "Berapa jumlah frekuensi napas anak tersebut dalam 1 menit?"'
+        content: 'Video tutorial menghitung frekuensi napas per menit. Ibu akan diminta menjawab dari video yang ditayangkan. "Berapa jumlah frekuensi napas anak tersebut dalam 1 menit?" -> jawaban nya adalah 65/menit.'
       },
       {
         type: 'video',
-        content: 'Video Tutorial Hitung Napas',
-        media_url: 'https://youtu.be/wlSbzDARbUc',
-        alt: 'Tutorial menghitung frekuensi napas pada balita'
-      },
-      {
-        type: 'video',
-        content: 'Video Latihan Menghitung Frekuensi Napas',
+        content: 'Video latihan menghitung frekuensi nafas',
         media_url: 'https://youtu.be/0ujj7aJLZqI',
         alt: 'Video latihan menghitung frekuensi napas - Jawaban: 65x/menit'
       },
       {
         type: 'video',
-        content: 'Video Hasil Menghitung Frekuensi Napas',
+        content: 'Video hasil menghitung frekuensi nafas',
         media_url: 'https://youtu.be/gCwgaVa6B98',
         alt: 'Video hasil dan pembahasan menghitung frekuensi napas'
       },
       {
         type: 'heading',
-        content: '2. Cek Retraksi',
-        subtitle: 'Panduan Visual Deteksi Tarikan Dinding Dada'
+        content: 'Cek Retraksi:'
       },
       {
         type: 'paragraph',
@@ -764,127 +919,14 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'video',
-        content: 'Video Tutorial Cek Retraksi',
-        media_url: 'https://youtu.be/V5d1DxKDUHA',
-        alt: 'Panduan visual deteksi tarikan dinding dada pada balita'
-      },
-      {
-        type: 'video',
-        content: 'Video Melihat Retraksi Dinding Dada',
+        content: 'Video melihat retaksi dinding dada',
         media_url: 'https://youtu.be/49_rVCBIMpQ',
         alt: 'Video praktik melihat retraksi dinding dada'
-      },
-      {
-        type: 'heading',
-        content: '3. Dengar Suara Napas',
-        subtitle: 'Mengenali Suara Napas Tambahan'
-      },
-      {
-        type: 'paragraph',
-        content: 'Belajar mendengarkan suara napas tambahan seperti "ngrok-ngrok" atau mengi.'
-      },
-      {
-        type: 'video',
-        content: 'Video Suara Napas Tambahan',
-        media_url: 'https://youtu.be/Xn9UBmgpCdA',
-        alt: 'Tutorial mendengarkan suara napas tambahan pada balita'
-      },
-      {
-        type: 'heading',
-        content: '4. Ukur Suhu Tubuh',
-        subtitle: 'Cara Mengukur Suhu dengan Termometer'
-      },
-      {
-        type: 'paragraph',
-        content: 'Panduan mengukur suhu tubuh anak dengan benar menggunakan termometer. Nilai normal: 36,5°C - 37,5°C. Demam jika suhu > 37,5°C.'
-      },
-      {
-        type: 'video',
-        content: 'Video Tutorial Mengukur Suhu Tubuh',
-        media_url: 'https://youtu.be/8kr4ZfdXPgk',
-        alt: 'Tutorial mengukur suhu tubuh balita dengan termometer'
-      },
-      {
-        type: 'heading',
-        content: '5. Ukur Saturasi Oksigen',
-        subtitle: 'Cara Menggunakan Oksimetri'
-      },
-      {
-        type: 'paragraph',
-        content: 'Menilai kadar oksigen di dalam pembuluh darah arteri. Nilai normal: 95-100%. Pneumonia berat jika < 92%.'
-      },
-      {
-        type: 'video',
-        content: 'Video Tutorial Saturasi Oksigen',
-        media_url: 'https://youtu.be/ze6QPbZh7SU',
-        alt: 'Tutorial mengukur saturasi oksigen dengan oksimetri'
-      },
-      {
-        type: 'heading',
-        content: '6. Kompres Air Hangat (Water Tepid Sponge)',
-        subtitle: 'Teknik Menurunkan Demam'
-      },
-      {
-        type: 'video',
-        content: 'Video Tutorial Kompres Air Hangat',
-        media_url: 'https://youtu.be/gYkH3fqWcGc',
-        alt: 'Tutorial teknik kompres air hangat untuk menurunkan demam'
-      },
-      {
-        type: 'heading',
-        content: '7. Inhalasi Aromaterapi Peppermint',
-        subtitle: 'Melegakan Saluran Napas'
-      },
-      {
-        type: 'video',
-        content: 'Video Tutorial Inhalasi Aromaterapi',
-        media_url: 'https://youtu.be/8f0aGb7iKA8',
-        alt: 'Tutorial inhalasi aromaterapi peppermint oil'
-      },
-      {
-        type: 'heading',
-        content: '8. Fisioterapi Dada',
-        subtitle: 'Membantu Mengeluarkan Dahak'
-      },
-      {
-        type: 'video',
-        content: 'Video Tutorial Fisioterapi Dada',
-        media_url: 'https://youtu.be/sx5PljkutwI',
-        alt: 'Tutorial fisioterapi dada untuk mengeluarkan dahak'
-      },
-      {
-        type: 'heading',
-        content: '9. Pemberian Obat Antibiotik',
-        subtitle: 'Cara Memberikan Obat dengan Benar'
-      },
-      {
-        type: 'paragraph',
-        content: 'Panduan memberikan obat antibiotik sesuai dosis (2,5 ml, 5 ml, atau 10 ml) dan tepat waktu (setiap 8 jam untuk jadwal 3x sehari). Antibiotik harus dihabiskan untuk membunuh bakteri sepenuhnya.'
-      },
-      {
-        type: 'video',
-        content: 'Video Tutorial Pemberian Obat',
-        media_url: 'https://youtu.be/mrW0wCaHO-g',
-        alt: 'Tutorial cara memberikan obat antibiotik pada balita'
-      },
-      {
-        type: 'highlight',
-        content: 'Sesi ini bersifat interaktif. Silakan tonton video dengan seksama dan praktikkan langkah-langkah yang ditunjukkan untuk menguji pemahaman Ibu.'
-      },
-      {
-        type: 'tip',
-        content: 'Pastikan Ibu memahami setiap langkah dalam video sebelum melanjutkan ke sesi berikutnya. Catat hasil pengukuran di buku kecil untuk dilaporkan ke tenaga kesehatan.'
-      },
-      {
-        type: 'image',
-        content: 'Panduan Praktik Mandiri',
-        media_url: '/media/images/gambar15.png',
-        alt: 'Infografis panduan praktik mandiri deteksi pneumonia'
       }
     ]
   },
 
-  // Day 5: Review Materi
+  // SESI 5: Review seluruh materi dari hari 1-4
   {
     day: 5,
     title: 'Review Seluruh Materi',
@@ -893,29 +935,11 @@ export const sessionContents: SessionContent[] = [
     sections: [
       {
         type: 'heading',
-        content: 'Review Materi Hari 1-4'
+        content: 'Materi: Review seluruh materi dari hari 1-4'
       },
       {
         type: 'paragraph',
         content: 'Pada sesi terakhir ini, mari kita review kembali seluruh materi yang telah dipelajari dari hari 1 hingga hari 4.'
-      },
-      {
-        type: 'heading',
-        content: 'Rangkuman Pembelajaran',
-        subtitle: 'Poin-Poin Penting yang Telah Dipelajari'
-      },
-      {
-        type: 'list',
-        content: [
-          'Hari 1: Latar belakang, pengertian, anatomi sistem pernapasan, penyebab, dan faktor risiko pneumonia',
-          'Hari 2: Tanda & gejala, klasifikasi pneumonia, dan perjalanan penyakit',
-          'Hari 3: Pemeriksaan diagnostik, penatalaksanaan, deteksi dini, dan perawatan pencegahan',
-          'Hari 4: Praktik mandiri mengenali tanda pneumonia melalui latihan interaktif'
-        ]
-      },
-      {
-        type: 'highlight',
-        content: 'Setelah menyelesaikan review ini, Ibu akan dapat mengakses Post-Test untuk menguji pemahaman keseluruhan materi.'
       },
       {
         type: 'video',
@@ -924,7 +948,7 @@ export const sessionContents: SessionContent[] = [
         alt: 'Video review lengkap materi pneumonia balita dari sesi 1-4'
       },
       {
-        type: 'tip',
+        type: 'paragraph',
         content: 'Akses: Tombol Post-Test akan muncul jika semua sesi sebelumnya sudah ditandai "Selesai".'
       }
     ]
