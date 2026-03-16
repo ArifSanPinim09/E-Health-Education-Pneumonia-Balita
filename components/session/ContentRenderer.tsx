@@ -2,6 +2,7 @@
 
 import { ContentSection } from '@/lib/constants/session-content';
 import MediaEmbed from './MediaEmbed';
+import QuizInput from './QuizInput';
 import { motion } from 'framer-motion';
 import { 
   AlertTriangle, 
@@ -303,6 +304,17 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                   </div>
                 </div>
               </motion.div>
+            );
+
+          case 'quiz':
+            return (
+              <QuizInput
+                key={index}
+                question={section.quizData?.question || ''}
+                correctAnswer={section.quizData?.correctAnswer || 0}
+                unit={section.quizData?.unit}
+                feedback={section.quizData?.feedback}
+              />
             );
 
           default:

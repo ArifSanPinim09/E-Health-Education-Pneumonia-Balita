@@ -3,7 +3,7 @@
 // All content in Indonesian language
 
 export interface ContentSection {
-  type: 'heading' | 'paragraph' | 'list' | 'image' | 'video' | 'highlight' | 'stats' | 'warning' | 'tip' | 'audio' | 'table';
+  type: 'heading' | 'paragraph' | 'list' | 'image' | 'video' | 'highlight' | 'stats' | 'warning' | 'tip' | 'audio' | 'table' | 'quiz';
   content: string | string[];
   media_url?: string;
   alt?: string;
@@ -11,6 +11,15 @@ export interface ContentSection {
   level?: number; // 1 = main heading, 2 = sub-heading, 3 = sub-sub-heading
   stats?: { label: string; value: string; }[];
   tableData?: { headers: string[]; rows: string[][]; };
+  quizData?: {
+    question: string;
+    correctAnswer: number;
+    unit?: string;
+    feedback?: {
+      correct: string;
+      incorrect: string;
+    };
+  };
 }
 
 export interface SessionContent {
@@ -1028,17 +1037,26 @@ export const sessionContents: SessionContent[] = [
       },
       {
         type: 'paragraph',
-        content: 'Ibu diminta menjawab: "Berapa frekuensi napas anak dalam 1 menit?"'
-      },
-      {
-        type: 'highlight',
-        content: 'Jawaban: 65x/menit'
+        content: 'Tonton video berikut dengan seksama, kemudian jawab pertanyaan di bawahnya.'
       },
       {
         type: 'video',
         content: 'Video latihan menghitung',
         media_url: 'https://youtu.be/0ujj7aJLZqI',
         alt: 'Video latihan menghitung frekuensi napas - Jawaban: 65x/menit'
+      },
+      {
+        type: 'quiz',
+        content: 'Latihan Menghitung Frekuensi Napas',
+        quizData: {
+          question: 'Berapa frekuensi napas anak dalam 1 menit?',
+          correctAnswer: 65,
+          unit: 'x/menit',
+          feedback: {
+            correct: 'Benar! Frekuensi napas anak adalah 65x/menit. Ini menunjukkan napas cepat yang merupakan tanda pneumonia.',
+            incorrect: 'Jawaban kurang tepat. Coba hitung kembali dengan lebih teliti. Perhatikan setiap gerakan naik-turun dada anak.'
+          }
+        }
       },
       {
         type: 'video',
