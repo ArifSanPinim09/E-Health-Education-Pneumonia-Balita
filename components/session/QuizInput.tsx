@@ -46,11 +46,11 @@ export default function QuizInput({
       animate={{ opacity: 1, y: 0 }}
       className="my-6"
     >
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200 shadow-sm">
+      <div className="bg-[#2F5D50]/5 rounded-lg p-6 border border-[#2F5D50]/20 shadow-sm">
         {/* Question */}
         <div className="flex items-start gap-3 mb-4">
-          <div className="flex-shrink-0 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-            <AlertCircle className="w-5 h-5 text-white" />
+          <div className="flex-shrink-0 w-8 h-8 bg-[#2F5D50]/10 rounded-lg flex items-center justify-center">
+            <AlertCircle className="w-5 h-5 text-[#2F5D50]" />
           </div>
           <div className="flex-1">
             <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
@@ -73,7 +73,7 @@ export default function QuizInput({
                     value={userAnswer}
                     onChange={(e) => setUserAnswer(e.target.value)}
                     placeholder="Masukkan jawaban Anda"
-                    className="w-full px-4 py-3 text-base border-2 border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 h-12 text-base border border-[#2F5D50]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2F5D50] focus:border-transparent"
                     required
                     min="0"
                     max="200"
@@ -87,7 +87,7 @@ export default function QuizInput({
               </div>
               <button
                 type="submit"
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
+                className="px-6 h-12 bg-[#2F5D50] hover:bg-[#274E43] text-white font-medium rounded-lg transition-all shadow-sm"
               >
                 Periksa Jawaban
               </button>
@@ -102,10 +102,10 @@ export default function QuizInput({
               className="space-y-4"
             >
               {/* Result */}
-              <div className={`p-4 rounded-lg border-2 ${
+              <div className={`p-4 rounded-lg border ${
                 isCorrect 
-                  ? 'bg-green-50 border-green-300' 
-                  : 'bg-red-50 border-red-300'
+                  ? 'bg-green-50 border-green-200' 
+                  : 'bg-red-50 border-red-200'
               }`}>
                 <div className="flex items-start gap-3">
                   {isCorrect ? (
@@ -141,13 +141,13 @@ export default function QuizInput({
                 {!isCorrect && (
                   <button
                     onClick={handleReset}
-                    className="flex-1 px-4 py-2 bg-white border-2 border-blue-300 text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
+                    className="flex-1 px-4 h-12 bg-white border border-[#2F5D50]/20 text-[#2F5D50] font-medium rounded-lg hover:bg-[#2F5D50]/5 transition-all"
                   >
                     Coba Lagi
                   </button>
                 )}
                 {isCorrect && (
-                  <div className="flex-1 px-4 py-2 bg-green-100 border-2 border-green-300 text-green-800 font-semibold rounded-lg text-center">
+                  <div className="flex-1 px-4 h-12 bg-[#2F5D50]/10 border border-[#2F5D50]/20 text-[#2F5D50] font-medium rounded-lg flex items-center justify-center">
                     Jawaban Benar: {correctAnswer} {unit}
                   </div>
                 )}
