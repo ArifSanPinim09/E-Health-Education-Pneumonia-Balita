@@ -1061,7 +1061,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'video',
         content: 'Video hasil/jawaban',
-        media_url: 'https://youtu.be/gCwgaVa6B98',
+        media_url: 'https://youtu.be/v5J-ahiHO8g',
         alt: 'Video hasil dan pembahasan menghitung frekuensi napas'
       },
       {
@@ -1076,7 +1076,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'video',
         content: 'Video retraksi dinding dada',
-        media_url: 'https://youtu.be/49_rVCBIMpQ',
+        media_url: 'https://youtu.be/gYOkjtvHQ08',
         alt: 'Video praktik melihat retraksi dinding dada'
       }
     ]
