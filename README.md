@@ -1,4 +1,6 @@
-# E-Health Education Pneumonia Balita
+# ENIS-Pneumonia Care
+
+Early Notification & Intervention System for Pneumonia Care
 
 Platform edukasi kesehatan berbasis web untuk meningkatkan pengetahuan ibu tentang pneumonia pada balita melalui program pembelajaran 5 hari yang terstruktur.
 

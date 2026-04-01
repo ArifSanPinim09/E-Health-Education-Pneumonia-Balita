@@ -1,6 +1,6 @@
 /**
  * Indonesian Language Constants
- * Centralized text content for the E-Health Education Pneumonia Balita application
+ * Centralized text content for the ENIS-Pneumonia Care application
  */
 
 // ============================================================================
@@ -187,7 +187,7 @@ export const VALIDATION_MESSAGES = {
 // ============================================================================
 
 export const PAGE_TITLES = {
-  LANDING: 'E-Health Education Pneumonia Balita',
+  LANDING: 'ENIS-Pneumonia Care',
   LOGIN: 'Masuk',
   ADMIN_LOGIN: 'Login Admin',
   PROFILE_SETUP: 'Lengkapi Profil',

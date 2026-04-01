@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Admin Panel - E-Health Pneumonia Balita',
+  title: 'Admin Panel - ENIS-Pneumonia Care',
   description: 'Panel administrasi untuk mengelola data responden dan konten pembelajaran',
 }
 

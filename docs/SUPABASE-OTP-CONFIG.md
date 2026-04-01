@@ -33,14 +33,14 @@ Ganti template dengan ini:
 
 ### Subject:
 ```
-Kode OTP Anda - E-Health Education
+Kode OTP Anda - ENIS-Pneumonia Care
 ```
 
 ### Body (HTML):
 ```html
 <h2>Kode OTP Anda</h2>
 <p>Halo,</p>
-<p>Gunakan kode OTP berikut untuk login ke E-Health Education Pneumonia Balita:</p>
+<p>Gunakan kode OTP berikut untuk login ke ENIS-Pneumonia Care:</p>
 
 <div style="background-color: #f3f4f6; padding: 20px; text-align: center; margin: 20px 0; border-radius: 8px;">
   <h1 style="font-size: 36px; letter-spacing: 8px; margin: 0; color: #2563EB; font-family: monospace;">
@@ -53,7 +53,7 @@ Kode OTP Anda - E-Health Education
 
 <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
 <p style="color: #9ca3af; font-size: 12px;">
-  Email ini dikirim oleh E-Health Education Pneumonia Balita<br>
+  Email ini dikirim oleh ENIS-Pneumonia Care<br>
   Powered by Supabase
 </p>
 ```
@@ -92,7 +92,7 @@ Kode OTP: {{ .Token }}
 
 ### Body:
 ```html
-<h2>Login ke E-Health Education</h2>
+<h2>Login ke ENIS-Pneumonia Care</h2>
 <p>Kode OTP Anda adalah:</p>
 <h1 style="font-size: 48px; color: #2563EB; letter-spacing: 10px;">{{ .Token }}</h1>
 <p>Berlaku selama 60 menit.</p>
@@ -113,15 +113,15 @@ Untuk tampilan profesional:
   
   <!-- Header -->
   <div style="text-align: center; padding: 20px 0; border-bottom: 3px solid #2563EB;">
-    <h1 style="color: #2563EB; margin: 0;">E-Health Education</h1>
-    <p style="color: #6b7280; margin: 5px 0;">Pneumonia Balita</p>
+    <h1 style="color: #2563EB; margin: 0;">ENIS-Pneumonia Care</h1>
+    <p style="color: #6b7280; margin: 5px 0;">Early Notification & Intervention System</p>
   </div>
 
   <!-- Content -->
   <div style="padding: 30px 0;">
     <h2 style="color: #1f2937;">Kode OTP Anda</h2>
     <p style="color: #4b5563;">Halo,</p>
-    <p style="color: #4b5563;">Gunakan kode berikut untuk login ke aplikasi E-Health Education:</p>
+    <p style="color: #4b5563;">Gunakan kode berikut untuk login ke aplikasi ENIS-Pneumonia Care:</p>
     
     <!-- OTP Box -->
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
@@ -146,7 +146,7 @@ Untuk tampilan profesional:
   <!-- Footer -->
   <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; text-align: center;">
     <p style="color: #9ca3af; font-size: 12px; margin: 5px 0;">
-      © 2024 E-Health Education Pneumonia Balita
+      © 2024 ENIS-Pneumonia Care
     </p>
     <p style="color: #9ca3af; font-size: 12px; margin: 5px 0;">
       Email ini dikirim secara otomatis, mohon tidak membalas.

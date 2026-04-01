@@ -21,8 +21,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "E-Health Education Pneumonia Balita",
-  description: "Platform edukasi kesehatan tentang pneumonia pada balita untuk ibu Indonesia",
+  title: "ENIS-Pneumonia Care",
+  description: "Early Notification & Intervention System for Pneumonia Care - Platform edukasi kesehatan tentang pneumonia pada balita untuk ibu Indonesia",
   icons: {
     icon: '/logo.ico',
     shortcut: '/logo.ico',

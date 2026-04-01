@@ -2,7 +2,7 @@
 
 ## Overview
 
-The E-Health Education Pneumonia Balita application implements a dual authentication system:
+The ENIS-Pneumonia Care (Early Notification & Intervention System for Pneumonia Care) application implements a dual authentication system:
 - **User Authentication**: OTP-based email authentication with 30-day tokens
 - **Admin Authentication**: Email + password authentication with 7-day tokens
 

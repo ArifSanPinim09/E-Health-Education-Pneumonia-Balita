@@ -67,7 +67,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <span className="font-serif text-xl sm:text-2xl font-bold text-[#2F5D50] tracking-tight">
-              Pneumonia Care
+              ENIS-Pneumonia Care
             </span>
           </Link>
 

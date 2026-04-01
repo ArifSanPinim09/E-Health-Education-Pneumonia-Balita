@@ -55,7 +55,7 @@ export function CTASection() {
           className="mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 lg:pt-12 border-t border-white/20 text-center text-white/60 text-xs sm:text-sm"
         >
           <p>
-            © 2026 E-Health Education Pneumonia Balita
+            © 2026 ENIS-Pneumonia Care
           </p>
           <p className="mt-1.5 sm:mt-2">
             Program edukasi kesehatan berbasis penelitian untuk ibu Indonesia

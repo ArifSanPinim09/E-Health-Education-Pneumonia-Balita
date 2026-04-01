@@ -222,7 +222,7 @@ export default function LoginPage() {
             {/* Footer */}
             <div className="pt-6 md:pt-8 border-t border-[#2F5D50]/10 text-center">
               <p className="text-xs md:text-sm text-[#1F2933]/60 leading-relaxed">
-                © 2026 Pneumonia Care
+                © 2026 ENIS-Pneumonia Care
               </p>
               <p className="text-xs text-[#1F2933]/50 mt-1">
                 Program edukasi kesehatan untuk ibu Indonesia
