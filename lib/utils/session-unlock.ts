@@ -87,3 +87,37 @@ export async function unlockDay1Session(
 export function isAutoUnlockEnabled(): boolean {
   return process.env.AUTO_UNLOCK_ALL_SESSIONS === 'true'
 }
+
+/**
+ * Check apakah session sudah unlock berdasarkan unlocked_at timestamp
+ * Digunakan untuk countdown timer
+ */
+export function checkSessionUnlock(unlockedAt: string): {
+  unlocked: boolean
+  remainingMs: number
+  remainingHours: number
+  remainingMinutes: number
+} {
+  const now = new Date()
+  const unlockTime = new Date(unlockedAt)
+  const remainingMs = unlockTime.getTime() - now.getTime()
+
+  if (remainingMs <= 0) {
+    return {
+      unlocked: true,
+      remainingMs: 0,
+      remainingHours: 0,
+      remainingMinutes: 0,
+    }
+  }
+
+  const remainingHours = Math.floor(remainingMs / (1000 * 60 * 60))
+  const remainingMinutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60))
+
+  return {
+    unlocked: false,
+    remainingMs,
+    remainingHours,
+    remainingMinutes,
+  }
+}
