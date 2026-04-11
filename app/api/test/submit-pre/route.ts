@@ -5,6 +5,7 @@ import { verifyToken } from '@/lib/auth/jwt'
 import type { Database } from '@/lib/supabase/types'
 import { testSubmissionSchema } from '@/lib/validations/auth-schema'
 import { handleApiError, validateRequest, AppError, ErrorType, ERROR_MESSAGES } from '@/lib/utils/error-handler'
+import { isAutoUnlockEnabled, unlockAllSessions, unlockDay1Session } from '@/lib/utils/session-unlock'
 
 type QuizQuestion = Database['public']['Tables']['quiz_questions']['Row']
 
@@ -95,19 +96,25 @@ export async function POST(request: NextRequest) {
       throw submissionError
     }
 
-    // Unlock Day 1 session
-    const { error: sessionError } = await supabase
-      .from('session_progress')
-      .insert({
-        user_id: userId,
-        day: 1,
-        completed: false,
-        unlocked_at: new Date().toISOString(),
-      } as any)
-
-    if (sessionError) {
-      console.error('Error unlocking Day 1 session:', sessionError)
-      // Don't fail the request if session unlock fails
+    // Unlock sessions berdasarkan feature flag
+    const autoUnlockAll = isAutoUnlockEnabled()
+    
+    if (autoUnlockAll) {
+      // Mode FGD/Testing: Unlock semua sessions (Day 1-5)
+      console.log('🔓 AUTO_UNLOCK_ALL_SESSIONS enabled - unlocking all sessions')
+      const result = await unlockAllSessions(supabase, userId)
+      if (!result.success) {
+        console.error('Error unlocking all sessions:', result.error)
+        // Don't fail the request if session unlock fails
+      }
+    } else {
+      // Mode Normal: Unlock hanya Day 1
+      console.log('🔒 AUTO_UNLOCK_ALL_SESSIONS disabled - unlocking Day 1 only')
+      const result = await unlockDay1Session(supabase, userId)
+      if (!result.success) {
+        console.error('Error unlocking Day 1 session:', result.error)
+        // Don't fail the request if session unlock fails
+      }
     }
 
     return NextResponse.json({
