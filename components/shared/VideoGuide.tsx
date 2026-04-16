@@ -122,25 +122,25 @@ export function VideoGuide({ variant = 'landing', className = '' }: VideoGuidePr
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.3, delay: 0.4 }}
-      className={`bg-white rounded-xl p-4 sm:p-6 border border-[#2F5D50]/10 ${className}`}
+      className={`bg-white rounded-xl p-4 sm:p-5 border border-[#2F5D50]/10 ${className}`}
     >
       {/* Header */}
-      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-        <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-[#E07A5F]/10 flex items-center justify-center flex-shrink-0">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#E07A5F]/10 flex items-center justify-center flex-shrink-0">
           <Youtube className="w-4 h-4 sm:w-5 sm:h-5 text-[#E07A5F]" strokeWidth={2} />
         </div>
-        <div>
-          <h3 className="text-base sm:text-lg font-semibold text-[#1F2933]">
+        <div className="flex-1">
+          <h3 className="text-sm sm:text-base font-semibold text-[#1F2933]">
             Video Panduan
           </h3>
-          <p className="text-xs sm:text-sm text-[#1F2933]/60">
-            Pelajari cara menggunakan platform
+          <p className="text-xs text-[#1F2933]/60">
+            Tutorial penggunaan
           </p>
         </div>
       </div>
 
       {/* Video Container */}
-      <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-[#1F2933]/5 border border-[#2F5D50]/10">
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-[#1F2933]/5 border border-[#2F5D50]/10 mb-3">
         {!isPlaying ? (
           <>
             {/* Thumbnail */}
@@ -165,7 +165,7 @@ export function VideoGuide({ variant = 'landing', className = '' }: VideoGuidePr
             </button>
 
             {/* Duration Badge */}
-            <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#1F2933]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-white">
+            <div className="absolute bottom-2 right-2 bg-[#1F2933]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-white">
               Tutorial
             </div>
           </>
@@ -181,8 +181,8 @@ export function VideoGuide({ variant = 'landing', className = '' }: VideoGuidePr
       </div>
 
       {/* Description */}
-      <p className="text-xs sm:text-sm text-[#1F2933]/70 mt-3 sm:mt-4 leading-relaxed">
-        Tonton video ini untuk memahami cara menggunakan dashboard, mengerjakan test, dan mengakses materi pembelajaran dengan mudah.
+      <p className="text-xs text-[#1F2933]/70 leading-relaxed">
+        Tonton tutorial singkat untuk memahami cara menggunakan dashboard dan fitur-fitur platform
       </p>
     </motion.div>
   )

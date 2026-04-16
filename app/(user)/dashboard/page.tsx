@@ -247,17 +247,6 @@ export default function DashboardPage() {
             />
           </div>
 
-          {/* Video Guide Section */}
-          <motion.div
-            id="video-panduan"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            className="mb-6 sm:mb-8"
-          >
-            <VideoGuide variant="dashboard" />
-          </motion.div>
-
           {/* Main Grid Layout: 2fr 1fr */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             
@@ -465,6 +454,16 @@ export default function DashboardPage() {
                 preTestCompleted={progress.pre_test_completed}
                 postTestCompleted={progress.post_test_completed}
               />
+
+              {/* Video Guide - Moved to Sidebar */}
+              <motion.div
+                id="video-panduan"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+              >
+                <VideoGuide variant="dashboard" />
+              </motion.div>
 
               {/* Info */}
               <InfoCard
