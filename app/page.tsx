@@ -4,6 +4,7 @@ import { HowItWorksSection } from '@/components/landing/HowItWorksSection';
 import { BenefitsSection } from '@/components/landing/BenefitsSection';
 import { StatisticsSection } from '@/components/landing/StatisticsSection';
 import { CTASection } from '@/components/landing/CTASection';
+import { VideoGuide } from '@/components/shared/VideoGuide';
 import GeminiChatBot from '@/components/chat/GeminiChatBot';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
         <StatisticsSection />
         <BenefitsSection />
         <HowItWorksSection />
+        <VideoGuide variant="landing" />
         <CTASection />
       </main>
       <GeminiChatBot />

@@ -64,6 +64,13 @@ export function UserNavbar({ userName }: UserNavbarProps) {
     }
   }
 
+  const handleScrollToVideo = () => {
+    const videoSection = document.getElementById('video-panduan')
+    if (videoSection) {
+      videoSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
+
   const getInitials = (name: string) => {
     const names = name.split(' ')
     if (names.length >= 2) {
@@ -104,11 +111,11 @@ export function UserNavbar({ userName }: UserNavbarProps) {
             </Link>
             
             <button
-              onClick={() => startUserGuide()}
+              onClick={handleScrollToVideo}
               className="flex items-center gap-2 text-sm font-medium text-[#1F2933]/70 hover:text-[#2F5D50] transition-colors"
             >
               <HelpCircle className="w-4 h-4" />
-              Panduan
+              Video Panduan
             </button>
             
             <UserMenu userName={userName} />
@@ -172,16 +179,16 @@ export function UserNavbar({ userName }: UserNavbarProps) {
               {/* Divider */}
               <div className="border-t border-[#2F5D50]/10 my-2"></div>
 
-              {/* Guide Button */}
+              {/* Video Panduan Button */}
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false)
-                  startUserGuide()
+                  setTimeout(() => handleScrollToVideo(), 300)
                 }}
                 className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[#1F2933] hover:bg-[#F4F7F5] rounded-lg transition-colors"
               >
                 <HelpCircle className="w-4 h-4 text-[#2F5D50]" />
-                <span>Lihat Panduan</span>
+                <span>Video Panduan</span>
               </button>
 
               {/* Profile Link */}

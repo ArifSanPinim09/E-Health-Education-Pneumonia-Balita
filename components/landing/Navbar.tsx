@@ -86,6 +86,12 @@ export function Navbar() {
               Manfaat
             </Link>
             <Link 
+              href="#panduan" 
+              className="text-sm font-medium text-[#1F2933]/70 hover:text-[#2F5D50] transition-colors"
+            >
+              Panduan
+            </Link>
+            <Link 
               href="#statistics" 
               className="text-sm font-medium text-[#1F2933]/70 hover:text-[#2F5D50] transition-colors"
             >
@@ -144,6 +150,13 @@ export function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Manfaat
+              </Link>
+              <Link
+                href="#panduan"
+                className="block px-4 py-2 text-[#1F2933]/70 hover:text-[#2F5D50] hover:bg-[#F4F7F5] rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Panduan
               </Link>
               <Link
                 href="#statistics"

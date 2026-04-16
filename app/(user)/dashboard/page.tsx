@@ -9,6 +9,7 @@ import { ContinueLearningCard } from '@/components/dashboard/ContinueLearningCar
 import { InfoCard, DetailedStatsCard } from '@/components/dashboard/SidebarCard'
 import { UserNavbar } from '@/components/user/UserNavbar'
 import GeminiChatBot from '@/components/chat/GeminiChatBot'
+import { VideoGuide } from '@/components/shared/VideoGuide'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { startUserGuide, shouldShowGuide } from '@/lib/userGuide'
@@ -245,6 +246,17 @@ export default function DashboardPage() {
               totalCount={progress.total_activities}
             />
           </div>
+
+          {/* Video Guide Section */}
+          <motion.div
+            id="video-panduan"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+            className="mb-6 sm:mb-8"
+          >
+            <VideoGuide variant="dashboard" />
+          </motion.div>
 
           {/* Main Grid Layout: 2fr 1fr */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
