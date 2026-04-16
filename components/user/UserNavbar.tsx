@@ -117,6 +117,14 @@ export function UserNavbar({ userName }: UserNavbarProps) {
               <HelpCircle className="w-4 h-4" />
               Video Panduan
             </button>
+
+            <button
+              onClick={() => startUserGuide()}
+              className="flex items-center gap-2 text-sm font-medium text-[#1F2933]/70 hover:text-[#2F5D50] transition-colors"
+            >
+              <HelpCircle className="w-4 h-4" />
+              Panduan Interaktif
+            </button>
             
             <UserMenu userName={userName} />
           </div>
@@ -189,6 +197,18 @@ export function UserNavbar({ userName }: UserNavbarProps) {
               >
                 <HelpCircle className="w-4 h-4 text-[#2F5D50]" />
                 <span>Video Panduan</span>
+              </button>
+
+              {/* Panduan Interaktif Button */}
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  startUserGuide()
+                }}
+                className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[#1F2933] hover:bg-[#F4F7F5] rounded-lg transition-colors"
+              >
+                <HelpCircle className="w-4 h-4 text-[#2F5D50]" />
+                <span>Panduan Interaktif</span>
               </button>
 
               {/* Profile Link */}

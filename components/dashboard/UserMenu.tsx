@@ -3,9 +3,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, LogOut, ChevronDown, HelpCircle } from 'lucide-react'
+import { User, LogOut, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
-import { startUserGuide } from '@/lib/userGuide'
 
 interface UserMenuProps {
   userName: string
@@ -116,17 +115,6 @@ export function UserMenu({ userName }: UserMenuProps) {
                 <User className="w-4 h-4 text-[#2F5D50]" />
                 <span>Lihat Profil</span>
               </Link>
-
-              <button
-                onClick={() => {
-                  setIsOpen(false)
-                  startUserGuide()
-                }}
-                className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[#1F2933] hover:bg-[#F4F7F5] transition-colors"
-              >
-                <HelpCircle className="w-4 h-4 text-[#2F5D50]" />
-                <span>Panduan Interaktif</span>
-              </button>
 
               <button
                 onClick={handleLogout}
