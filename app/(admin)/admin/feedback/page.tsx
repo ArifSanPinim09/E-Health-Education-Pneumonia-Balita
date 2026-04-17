@@ -67,6 +67,11 @@ export default function AdminFeedbackPage() {
 
       setFeedbackList(data.data || [])
       setStats(data.stats)
+      
+      // Show message if table doesn't exist
+      if (data.message) {
+        console.log('Setup message:', data.message)
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Terjadi kesalahan')
     } finally {
