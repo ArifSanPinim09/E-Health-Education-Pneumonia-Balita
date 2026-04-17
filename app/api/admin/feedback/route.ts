@@ -55,13 +55,10 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Get all feedback with user profile information
+    // Get all feedback first
     const { data: feedbackList, error: feedbackError } = await supabase
       .from('user_feedback')
-      .select(`
-        *,
-        mother_profiles(name, phone)
-      `)
+      .select('*')
       .order('created_at', { ascending: false })
 
     if (feedbackError) {
@@ -87,23 +84,65 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // If no feedback data, return empty
+    if (!feedbackList || feedbackList.length === 0) {
+      return NextResponse.json({
+        success: true,
+        data: [],
+        stats: {
+          total_feedback: 0,
+          average_rating: 0,
+          rating_distribution: { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 },
+        },
+      })
+    }
+
+    // Get user IDs from feedback
+    const userIds = feedbackList.map((f: any) => f.user_id)
+
+    // Get mother profiles for these users
+    const { data: motherProfiles, error: profileError } = await supabase
+      .from('mother_profiles')
+      .select('user_id, name, phone')
+      .in('user_id', userIds)
+
+    if (profileError) {
+      console.error('Error fetching mother profiles:', profileError)
+      // Continue without profile data
+    }
+
+    // Merge feedback with profile data
+    const feedbackWithProfiles = feedbackList.map((feedback: any) => {
+      const profile = motherProfiles?.find((p: any) => p.user_id === feedback.user_id)
+      return {
+        ...feedback,
+        mother_profiles: profile ? {
+          name: profile.name,
+          phone: profile.phone
+        } : {
+          name: 'Unknown User',
+          phone: '-'
+        }
+      }
+    })
+
     // Calculate statistics
-    const totalFeedback = feedbackList?.length || 0
-    const averageRating = totalFeedback > 0 && feedbackList
-      ? (feedbackList.reduce((sum: number, f: any) => sum + f.overall_rating, 0) / totalFeedback).toFixed(2)
+    const totalFeedback = feedbackWithProfiles?.length || 0
+    const averageRating = totalFeedback > 0 && feedbackWithProfiles
+      ? (feedbackWithProfiles.reduce((sum: number, f: any) => sum + f.overall_rating, 0) / totalFeedback).toFixed(2)
       : 0
 
     const ratingDistribution = {
-      5: feedbackList?.filter((f: any) => f.overall_rating === 5).length || 0,
-      4: feedbackList?.filter((f: any) => f.overall_rating === 4).length || 0,
-      3: feedbackList?.filter((f: any) => f.overall_rating === 3).length || 0,
-      2: feedbackList?.filter((f: any) => f.overall_rating === 2).length || 0,
-      1: feedbackList?.filter((f: any) => f.overall_rating === 1).length || 0,
+      5: feedbackWithProfiles?.filter((f: any) => f.overall_rating === 5).length || 0,
+      4: feedbackWithProfiles?.filter((f: any) => f.overall_rating === 4).length || 0,
+      3: feedbackWithProfiles?.filter((f: any) => f.overall_rating === 3).length || 0,
+      2: feedbackWithProfiles?.filter((f: any) => f.overall_rating === 2).length || 0,
+      1: feedbackWithProfiles?.filter((f: any) => f.overall_rating === 1).length || 0,
     }
 
     return NextResponse.json({
       success: true,
-      data: feedbackList || [],
+      data: feedbackWithProfiles || [],
       stats: {
         total_feedback: totalFeedback,
         average_rating: typeof averageRating === 'string' ? parseFloat(averageRating) : averageRating,
