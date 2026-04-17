@@ -1,17 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
-import { cookies } from 'next/headers'
+import { createAdminClient } from '@/lib/supabase/admin'
+import { verifyToken } from '@/lib/auth/jwt'
 
 export async function GET(request: NextRequest) {
   try {
-    const cookieStore = await cookies()
-    const adminToken = cookieStore.get('admin_token')
+    // Verify admin token (consistent with other admin APIs)
+    const token = request.cookies.get('admin-token')?.value
 
-    if (!adminToken) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    if (!token) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      )
     }
 
-    const supabase = await createClient() as any // Cast to any to allow user_feedback table
+    const { valid, payload } = await verifyToken(token)
+
+    if (!valid || payload?.type !== 'admin') {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+
+    // Use admin client to bypass RLS (consistent with other admin APIs)
+    const supabase = createAdminClient() as any // Cast to any to allow user_feedback table
 
     // Get all feedback with user profile information
     const { data: feedbackList, error: feedbackError } = await supabase
@@ -25,7 +38,7 @@ export async function GET(request: NextRequest) {
     if (feedbackError) {
       console.error('Error fetching feedback:', feedbackError)
       return NextResponse.json(
-        { error: 'Gagal mengambil data feedback' },
+        { success: false, error: 'Gagal mengambil data feedback' },
         { status: 500 }
       )
     }
@@ -56,7 +69,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error in admin feedback:', error)
     return NextResponse.json(
-      { error: 'Terjadi kesalahan server' },
+      { success: false, error: 'Terjadi kesalahan server' },
       { status: 500 }
     )
   }
