@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, TrendingUp, Award, CheckCircle } from 'lucide-react'
 import { UserNavbar } from '@/components/user/UserNavbar'
+import { FeedbackForm } from '@/components/results/FeedbackForm'
 
 interface ResultsData {
   preScore: number
@@ -70,6 +71,8 @@ export default function ResultsPage() {
   const [error, setError] = useState<string | null>(null)
   const [showCelebration, setShowCelebration] = useState(false)
   const [profile, setProfile] = useState<{ mother: { name: string } } | null>(null)
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false)
+  const [hasFeedback, setHasFeedback] = useState(false)
 
   useEffect(() => {
     async function fetchProfile() {
@@ -84,6 +87,25 @@ export default function ResultsPage() {
       }
     }
     fetchProfile()
+  }, [])
+
+  useEffect(() => {
+    async function checkFeedback() {
+      try {
+        const response = await fetch('/api/feedback/get')
+        if (response.ok) {
+          const data = await response.json()
+          setHasFeedback(data.has_submitted)
+          // Show feedback form after celebration if not submitted yet
+          if (!data.has_submitted) {
+            setTimeout(() => setShowFeedbackForm(true), 3000)
+          }
+        }
+      } catch (err) {
+        console.error('Failed to check feedback:', err)
+      }
+    }
+    checkFeedback()
   }, [])
 
   useEffect(() => {
@@ -388,9 +410,18 @@ export default function ResultsPage() {
           {/* Footer */}
           <div className="px-6 sm:px-8 py-6 bg-[#F4F7F5] border-t border-[#2F5D50]/10">
             <div className="flex flex-col sm:flex-row gap-3">
+              {!hasFeedback && (
+                <button
+                  onClick={() => setShowFeedbackForm(true)}
+                  className="flex-1 bg-[#2F5D50] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#274E43] transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <Award className="w-5 h-5" strokeWidth={2} />
+                  Beri Rating & Masukan
+                </button>
+              )}
               <button
                 onClick={() => router.push('/post-test/review')}
-                className="flex-1 bg-[#2F5D50] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#274E43] transition-all duration-200 flex items-center justify-center gap-2"
+                className={`${!hasFeedback ? 'flex-1' : 'flex-1'} ${hasFeedback ? 'bg-[#2F5D50] text-white' : 'border-2 border-[#2F5D50]/30 text-[#2F5D50] hover:border-[#2F5D50] hover:bg-white'} px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2`}
               >
                 <CheckCircle className="w-5 h-5" strokeWidth={2} />
                 Review Jawaban Post-Test
@@ -406,6 +437,18 @@ export default function ResultsPage() {
           </div>
         </motion.div>
       </div>
+
+      {/* Feedback Form Modal */}
+      {showFeedbackForm && !hasFeedback && (
+        <FeedbackForm
+          preScore={results.preScore}
+          postScore={results.postScore}
+          onSubmitSuccess={() => {
+            setHasFeedback(true)
+            setShowFeedbackForm(false)
+          }}
+        />
+      )}
     </div>
     </>
   )

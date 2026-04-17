@@ -5,6 +5,7 @@ import {
   BarChart3,
   Users,
   ClipboardList,
+  MessageSquare,
   LogOut,
   Menu,
   X,
@@ -39,6 +40,11 @@ export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
       href: '/admin/questions',
       icon: ClipboardList,
       label: 'Kelola Soal',
+    },
+    {
+      href: '/admin/feedback',
+      icon: MessageSquare,
+      label: 'Rating & Masukan',
     },
   ]
 
