@@ -1042,7 +1042,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'video',
         content: 'Video latihan menghitung (Sumber: WHO)',
-        media_url: 'https://youtu.be/0ujj7aJLZqI',
+        media_url: 'https://youtu.be/Nqq3VxIFZX0I',
         alt: 'Video latihan menghitung frekuensi napas dari WHO'
       },
       {
@@ -1061,7 +1061,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'video',
         content: 'Video hasil/jawaban',
-        media_url: 'https://youtu.be/v5J-ahiHO8g',
+        media_url: 'https://youtu.be/L3KLPp1N6tU',
         alt: 'Video hasil dan pembahasan menghitung frekuensi napas'
       },
       {
