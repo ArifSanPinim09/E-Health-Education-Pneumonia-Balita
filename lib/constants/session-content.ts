@@ -430,6 +430,30 @@ export const sessionContents: SessionContent[] = [
         media_url: '/media/images/gambar9.png',
         alt: 'Diagram klasifikasi pneumonia'
       },
+      {
+        type: 'table',
+        content: 'Tabel Klasifikasi dan Tindakan Pneumonia',
+        tableData: {
+          headers: ['Gejala/Tanda', 'Klasifikasi', 'Tindakan/Pengobatan'],
+          rows: [
+            [
+              '• Tarikan dinding dada ke dalam ATAU\n• Saturasi oksigen ≤ 92%',
+              'PNEUMONIA BERAT',
+              '1) Beri oksigen 1-4 L/menit dengan menggunakan nasal prongs\n2) Beri dosis pertama antibiotik yang sesuai\n3) Obati wheezing bila ada\n4) RUJUK SEGERA**'
+            ],
+            [
+              'Napas cepat apabila:\n• (Umur anak 2 bulan - < 12 bulan) = 50 kali per menit atau lebih\n• (Umur anak 12 bulan - < 5 tahun) = 40 kali per menit atau lebih',
+              'PNEUMONIA',
+              '1) Beri amoksisilin 2x sehari selama 3 hari atau 5 hari***\n2) Beri pelega tenggorokan dan pereda batuk yang aman\n3) Obati wheezing bila ada\n4) Apabila batuk ≥ 2 minggu, RUJUK untuk pemeriksaan TB dan sebab lain\n5) Kunjungan ulang 2 hari\n6) Nasihati kapan harus kembali segera'
+            ],
+            [
+              '• Tidak ada tarikan dinding dada bagian bawah ke dalam (TDDK)\n• Tidak ada napas cepat',
+              'BATUK BUKAN PNEUMONIA',
+              '1) Beri pelega tenggorokan dan pereda batuk yang aman\n2) Obati wheezing bila ada\n3) Apabila batuk ≥ 2 minggu, lacak kemungkinan TB\n4) Kunjungan ulang 5 hari jika tidak ada perbaikan\n5) Nasihati kapan harus kembali segera'
+            ]
+          ]
+        }
+      },
 
       // --- 2.3 Perjalanan Penyakit Pneumonia ---
       {

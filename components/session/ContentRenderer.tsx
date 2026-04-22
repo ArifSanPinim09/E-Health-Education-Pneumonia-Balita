@@ -9,7 +9,8 @@ import {
   Lightbulb, 
   TrendingUp, 
   Info,
-  BookOpen
+  BookOpen,
+  Table
 } from 'lucide-react';
 
 interface ContentRendererProps {
@@ -315,6 +316,108 @@ export default function ContentRenderer({ sections }: ContentRendererProps) {
                 unit={section.quizData?.unit}
                 feedback={section.quizData?.feedback}
               />
+            );
+
+          case 'table':
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="my-6 sm:my-8"
+              >
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-5">
+                  {section.content && (
+                    <div className="flex items-center gap-2 mb-4">
+                      <Table className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F5D50]" />
+                      <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                        {section.content as string}
+                      </h3>
+                    </div>
+                  )}
+                  
+                  {/* Desktop Table View */}
+                  <div className="hidden lg:block overflow-x-auto">
+                    <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                      <thead>
+                        <tr className="bg-[#2F5D50]">
+                          {section.tableData?.headers.map((header, headerIndex) => (
+                            <th
+                              key={headerIndex}
+                              className="px-4 py-3 text-left text-xs sm:text-sm font-semibold text-white border-r border-[#3d7361] last:border-r-0"
+                            >
+                              {header}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {section.tableData?.rows.map((row, rowIndex) => (
+                          <motion.tr
+                            key={rowIndex}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: rowIndex * 0.05, duration: 0.3 }}
+                            className={`border-b border-gray-200 last:border-b-0 ${
+                              rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                            } hover:bg-blue-50 transition-colors`}
+                          >
+                            {row.map((cell, cellIndex) => (
+                              <td
+                                key={cellIndex}
+                                className="px-4 py-3 text-xs sm:text-sm text-gray-700 border-r border-gray-200 last:border-r-0 align-top"
+                              >
+                                {cell.split('\n').map((line, lineIndex) => (
+                                  <div key={lineIndex} className={lineIndex > 0 ? 'mt-1' : ''}>
+                                    {line}
+                                  </div>
+                                ))}
+                              </td>
+                            ))}
+                          </motion.tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Mobile Card View */}
+                  <div className="lg:hidden space-y-4">
+                    {section.tableData?.rows.map((row, rowIndex) => (
+                      <motion.div
+                        key={rowIndex}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: rowIndex * 0.05, duration: 0.3 }}
+                        className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm"
+                      >
+                        {row.map((cell, cellIndex) => (
+                          <div
+                            key={cellIndex}
+                            className={`p-3 sm:p-4 ${
+                              cellIndex < row.length - 1 ? 'border-b border-gray-200' : ''
+                            }`}
+                          >
+                            <div className="font-semibold text-xs sm:text-sm text-[#2F5D50] mb-2">
+                              {section.tableData?.headers[cellIndex]}
+                            </div>
+                            <div className="text-xs sm:text-sm text-gray-700 space-y-1">
+                              {cell.split('\n').map((line, lineIndex) => (
+                                <div key={lineIndex}>
+                                  {line}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             );
 
           default:
