@@ -1066,7 +1066,7 @@ export const sessionContents: SessionContent[] = [
       {
         type: 'video',
         content: 'Video latihan menghitung (Sumber: WHO)',
-        media_url: 'https://youtu.be/Nqq3VxIFZX0I',
+        media_url: 'https://youtu.be/Nqq3VxIFZX0',
         alt: 'Video latihan menghitung frekuensi napas dari WHO'
       },
       {
