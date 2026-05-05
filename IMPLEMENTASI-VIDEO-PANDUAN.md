@@ -123,10 +123,10 @@ Dashboard dengan video card:
 ## 🎬 Video Details
 
 ### YouTube Video
-- **URL:** https://youtu.be/GMsrnDg_bg0
-- **Video ID:** `GMsrnDg_bg0`
+- **URL:** https://youtu.be/pkA3PQFALL8
+- **Video ID:** `pkA3PQFALL8`
 - **Thumbnail:** Auto-generated dari YouTube (`maxresdefault.jpg`)
-- **Embed:** `https://www.youtube.com/embed/GMsrnDg_bg0?autoplay=1&rel=0`
+- **Embed:** `https://www.youtube.com/embed/pkA3PQFALL8?autoplay=1&rel=0`
 
 ### Embed Parameters
 - `autoplay=1` - Auto-play saat user klik play button

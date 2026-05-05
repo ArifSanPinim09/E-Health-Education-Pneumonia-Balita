@@ -17,8 +17,8 @@ export function VideoGuide({ variant = 'landing', className = '' }: VideoGuidePr
   })
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // YouTube video ID dari URL: https://youtu.be/GMsrnDg_bg0
-  const videoId = 'GMsrnDg_bg0'
+  // YouTube video ID dari URL: https://youtu.be/pkA3PQFALL8
+  const videoId = 'pkA3PQFALL8'
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
 
   const handlePlayClick = () => {
