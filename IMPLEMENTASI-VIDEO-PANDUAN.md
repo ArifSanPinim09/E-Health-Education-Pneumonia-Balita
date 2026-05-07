@@ -123,10 +123,10 @@ Dashboard dengan video card:
 ## 🎬 Video Details
 
 ### YouTube Video
-- **URL:** https://youtu.be/pkA3PQFALL8
-- **Video ID:** `pkA3PQFALL8`
+- **URL:** https://youtu.be/3TMhPJGIhOY
+- **Video ID:** `3TMhPJGIhOY`
 - **Thumbnail:** Auto-generated dari YouTube (`maxresdefault.jpg`)
-- **Embed:** `https://www.youtube.com/embed/pkA3PQFALL8?autoplay=1&rel=0`
+- **Embed:** `https://www.youtube.com/embed/3TMhPJGIhOY?autoplay=1&rel=0`
 
 ### Embed Parameters
 - `autoplay=1` - Auto-play saat user klik play button
@@ -180,7 +180,7 @@ Dashboard dengan video card:
 
 ### 1. Thumbnail Loading
 ```typescript
-const videoId = 'GMsrnDg_bg0'
+const videoId = '3TMhPJGIhOY'
 const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
 ```
 
@@ -472,5 +472,5 @@ Video panduan telah berhasil diintegrasikan dengan:
 ---
 
 **Dibuat:** 17 April 2026  
-**Video URL:** https://youtu.be/GMsrnDg_bg0  
+**Video URL:** https://youtu.be/3TMhPJGIhOY  
 **Status:** Production Ready ✅
