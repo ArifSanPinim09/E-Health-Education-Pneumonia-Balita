@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { verifyToken } from '@/lib/auth/jwt'
+import { fetchAllAuthUsers } from '@/lib/admin/auth-users'
 
 export async function GET(request: NextRequest) {
   try {
@@ -84,19 +85,14 @@ export async function GET(request: NextRequest) {
       throw sessionError
     }
 
-    // Fetch user emails from auth.users
-    const { data: authUsers, error: authError } = await supabase.auth.admin.listUsers()
-
-    if (authError) {
-      console.error('Error fetching auth users:', authError)
-      throw authError
-    }
+    // Fetch user emails from auth.users (semua halaman, bukan hanya 50 pertama)
+    const allAuthUsers = await fetchAllAuthUsers(supabase)
 
     // Create a map for quick lookups
     const childMap = new Map((childProfiles || []).map((c: any) => [c.user_id, c]))
     const testMap = new Map<string, { pre?: number; post?: number }>()
     const sessionMap = new Map<string, number>()
-    const emailMap = new Map(authUsers.users.map((u) => [u.id, u.email]))
+    const emailMap = new Map(allAuthUsers.map((u) => [u.id, u.email]))
 
     // Process test submissions
     testSubmissions?.forEach((test: any) => {

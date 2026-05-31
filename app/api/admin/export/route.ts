@@ -4,6 +4,7 @@ import { verifyToken } from '@/lib/auth/jwt'
 import * as XLSX from 'xlsx'
 import { formatDateIndonesian, formatDateTimeIndonesian, formatNumberIndonesian } from '@/lib/utils/date-formatter'
 import { filterRespondentItems } from '@/lib/admin/respondent-filter'
+import { fetchAllAuthUsers } from '@/lib/admin/auth-users'
 
 export async function GET(request: NextRequest) {
   try {
@@ -89,17 +90,12 @@ export async function GET(request: NextRequest) {
       throw sessionError
     }
 
-    // Fetch user emails from auth.users
-    const { data: authUsers, error: authError } = await supabase.auth.admin.listUsers()
-
-    if (authError) {
-      console.error('Error fetching auth users:', authError)
-      throw authError
-    }
+    // Fetch user emails from auth.users (semua halaman, bukan hanya 50 pertama)
+    const allAuthUsers = await fetchAllAuthUsers(supabase)
 
     // Create maps for quick lookups
     const childMap = new Map((childProfiles || []).map((c: any) => [c.user_id, c]))
-    const emailMap = new Map(authUsers.users.map((u) => [u.id, u.email]))
+    const emailMap = new Map(allAuthUsers.map((u) => [u.id, u.email]))
     
     // Group test submissions by user and type
     const testMap = new Map<string, { pre?: any; post?: any }>()
