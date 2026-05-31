@@ -3,6 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { verifyToken } from '@/lib/auth/jwt'
 import * as XLSX from 'xlsx'
 import { formatDateIndonesian, formatDateTimeIndonesian, formatNumberIndonesian } from '@/lib/utils/date-formatter'
+import { filterRespondentItems } from '@/lib/admin/respondent-filter'
 
 export async function GET(request: NextRequest) {
   try {
@@ -27,6 +28,11 @@ export async function GET(request: NextRequest) {
 
     // Use admin client to bypass RLS
     const supabase = createAdminClient()
+
+    // Parameter pencarian & filter (disamakan dengan halaman /admin/respondents)
+    const searchParams = request.nextUrl.searchParams
+    const search = searchParams.get('search') || ''
+    const filter = searchParams.get('filter') || 'all'
 
     // Fetch all mother profiles
     const { data: motherProfiles, error: motherError } = await supabase
@@ -118,8 +124,34 @@ export async function GET(request: NextRequest) {
       sessionMap.get(session.user_id)!.push(session)
     })
 
+    // Terapkan pencarian + filter status agar hasil export = tampilan tabel
+    const filteredMotherProfiles = filterRespondentItems(
+      motherProfiles.map((m: any) => {
+        const tests = testMap.get(m.user_id) || {}
+        const sessions = sessionMap.get(m.user_id) || []
+        return {
+          ...m,
+          motherName: m.name || '',
+          childName: childMap.get(m.user_id)?.name || '',
+          email: emailMap.get(m.user_id) || '',
+          hasPre: !!tests.pre,
+          hasPost: !!tests.post,
+          sessionsCompleted: sessions.filter((s: any) => s.completed).length,
+        }
+      }),
+      search,
+      filter
+    )
+
+    if (filteredMotherProfiles.length === 0) {
+      return NextResponse.json(
+        { success: false, error: 'Tidak ada data yang cocok dengan filter untuk diekspor' },
+        { status: 404 }
+      )
+    }
+
     // Format data for Excel export
-    const exportData = motherProfiles.map((mother: any) => {
+    const exportData = filteredMotherProfiles.map((mother: any) => {
       const child = childMap.get(mother.user_id)
       const tests = testMap.get(mother.user_id) || {}
       const sessions = sessionMap.get(mother.user_id) || []

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import RespondentTable from '@/components/admin/RespondentTable'
 import AdminSidebar from '@/components/admin/AdminSidebar'
 import { ExportButton } from '@/components/admin/ExportButton'
+import { ExportMasterButton } from '@/components/admin/ExportMasterButton'
 import { X } from 'lucide-react'
 
 interface Respondent {
@@ -157,7 +158,10 @@ export default function RespondentsPage() {
                   Kelola dan pantau data semua responden
                 </p>
               </div>
-              <ExportButton />
+              <div className="flex flex-col sm:flex-row gap-2">
+                <ExportButton search={searchQuery} filter={filterStatus} />
+                <ExportMasterButton search={searchQuery} filter={filterStatus} />
+              </div>
             </div>
           </motion.div>
 
